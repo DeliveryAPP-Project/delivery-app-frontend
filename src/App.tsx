@@ -4,7 +4,9 @@ import Home from './components/Home';
 import { GlobalStyle } from './styles/global';
 import  theme  from './styles/theme';
 
+
 function App() {
+
   return (
     <>
       <ThemeProvider theme={theme}>
