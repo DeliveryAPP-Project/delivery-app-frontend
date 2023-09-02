@@ -6,7 +6,10 @@
 
 #### **Website** ( [ReactJS](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/) )
 
-- [Nome da lib](https://link-para-lib.com)
+- [React Router Dom](https://reactrouter.com/en/main)
+- [Styled Components](https://styled-components.com/)
+- [React Query - Tanstack](https://tanstack.com/query/v4)
+- [Axios](https://axios-http.com/ptbr/docs/intro)
 
 #### **Utilitários**
 
@@ -38,7 +41,32 @@ Features que estão sendo adicionadas na aplicação
 
 Afim de facilitar a organização e manutenção do código, foi definido um padrão para organização das pastas neste projeto.
 
-> Explicar brevemente sobre a estrutura de pastas e componentes
+### Estrutura de pastas
+
+→ components: Pasta onde ficam os componentes da aplicação. <br />
+→ contexts: Pasta onde ficam os componentes da aplicação. Cada contexto criado vai ter uma pasta própria dentro da estrutura de contexts. <br />
+→ errors: Pasta onde ficam os errorsHandlers customizados da aplicação. <br />
+→ hooks: Pasta onde ficam os custom hooks da aplicação. Cada custom hook vai seguir o mesmo padrão do context. <br />
+→ lib: Pasta onde ficam algumas configurações internas de lib externas que precisamos utilizar da aplicação. <br />
+→ pages: Pasta onde ficam os componentes de cada página da aplicação. As páginas vão seguir a mesma padronização dos outros componentes. <br />
+→ routes: Pasta onde ficam as rotas públicas e privadas de cada página da aplicação. <br />
+→ service: Pasta onde vamos armazenar toda a camada de serviço. Cada service vai ter uma pasta alocada internamente na pasta service. E vai utilizar a classe `httpClient` para realizar as requests. <br />
+→ styles: Pasta onde vamos armazenar toda a configuração de estilo global e tema da aplicação. <br />
+→ utils: Pasta onde vamos armazenar todos os utilitários. <br />
+
+### Estrutura de componentes
+
+Para padronização dos componentes, nós vamos utilizar um pattern de container/presentation. O componente vai possuir uma camada de presentation, que vai possuir toda a view do componente, e uma camada de container, que vai possuir toda a lógica do componente. <br />
+
+Essa comunicação entre o container e presentation vai ser feita através de um customHook exportado do container.
+
+Vamos tomar como exemplo um componente chamado `example`:
+
+→ index.ts: Responsável por exportar o componente, e o que mais for necessário para funcionamento do componente;
+→ example.tsx: Responsável por ter a camada de presentation do componente;
+→ example.hook.ts: Responsável por armazenar a camada de container do componente;
+→ example.spec.tsx: Responsável por armazenar os testes do componente;
+→ example.styles.ts: Responsável por toda estilização do componente;
 
 ## Como executar o projeto
 
@@ -66,6 +94,7 @@ yarn install
 ```
 
 Caso você esteja utilizando `npm`, execute:
+
 ```bash
 npm install
 ```
@@ -80,10 +109,10 @@ yarn dev
 ```
 
 Caso você esteja utilizando `npm`, execute:
+
 ```bash
 npm run dev
 ```
-
 
 ## Como contribuir
 
@@ -105,4 +134,3 @@ A galera que ta fazendo acontecer ;)
     </td>
   </tr>
 </table>
-
