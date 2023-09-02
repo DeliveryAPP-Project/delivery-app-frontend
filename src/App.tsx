@@ -1,18 +1,21 @@
-import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
-import Home from './components/Home';
+import ThemeProvider from './components/ThemeProvider';
+import { queryClient, QueryClientProvider } from './libs/query';
 import { GlobalStyle } from './styles/global';
-import  theme  from './styles/theme';
+import { PrivateRoutes, PublicRoutes } from './routes';
 
 function App() {
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <strong>Delivery App</strong>
-        <Home />
-      </ThemeProvider>
-      <GlobalStyle />
-    </>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ThemeProvider>
+          <PrivateRoutes />
+          <PublicRoutes />
+        </ThemeProvider>
+        <GlobalStyle />
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 
