@@ -1,3 +1,4 @@
+import Footer from '../Footer';
 import { useHomeHook } from './Home.hook';
 import * as styled from './Home.styles';
 
@@ -12,6 +13,7 @@ export function Home() {
         <button onClick={handleDecrement}>decrement</button>
         <strong>count: {count}</strong>
       </styled.Content>
+      <Footer/>
     </styled.Container>
   );
 }
