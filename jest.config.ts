@@ -196,6 +196,15 @@ const config: Config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+
+  transformIgnorePatterns: [
+    '/node_modules/',
+    '^.+\\.png$',
+    '^.+\\.jpg$',
+    '^.+\\.jpeg$',
+    '^.+\\.gif$',
+    '^.+\\.svg$',
+  ],
 };
 
 export default config;
