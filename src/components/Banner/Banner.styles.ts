@@ -3,7 +3,7 @@ import { LinkProps } from 'react-router-dom';
 import styled from 'styled-components';
 
 type IContent = ComponentProps<'div'> & {
-  imgUrl: string;
+  src: string;
 };
 
 export const Container = styled.section`
@@ -15,7 +15,7 @@ export const Container = styled.section`
 `;
 
 export const Content = styled.div<IContent>`
-  background-image: url(${(props) => props.imgUrl});
+  background-image: url(${(props) => props.src});
   background-size: contain;
   height: 637px;
   width: 1440px;
