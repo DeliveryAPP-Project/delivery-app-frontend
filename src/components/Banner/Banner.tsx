@@ -5,9 +5,9 @@ import * as styled from './Banner.styles';
 export function Banner() {
   return (
     <styled.Container>
-      <styled.Content imgUrl={BannerImg}>
+      <styled.Content src={BannerImg}>
         <styled.TextContainer>
-          <h1>HAMBUR</h1>
+          <h1>HAMPER</h1>
           <p>
             Facilitamos sua busca pelo restaurante ideal. Com mais de 1000
             estabelecimentos cadastrados, ofertamos uma ampla quantidade de
