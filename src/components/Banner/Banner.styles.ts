@@ -32,10 +32,9 @@ export const TextContainer = styled.div`
   width: 60%;
   padding-inline: 80px;
 
-  h1 {
-    font-size: 90px;
-    font-family: ${(props) => props.theme.fonts.brand};
-    font-weight: 400;
+  img {
+    width: 253px;
+    margin-bottom: 20px;
   }
 
   p {

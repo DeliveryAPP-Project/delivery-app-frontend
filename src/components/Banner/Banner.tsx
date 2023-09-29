@@ -1,3 +1,4 @@
+import logo from '../../assets/logo.svg';
 import BannerImg from '../../assets/pizza-image.png';
 
 import * as styled from './Banner.styles';
@@ -7,7 +8,7 @@ export function Banner() {
     <styled.Container>
       <styled.Content src={BannerImg}>
         <styled.TextContainer>
-          <h1>HAMPER</h1>
+          <img src={logo} alt="Logo da HAMPER" />
           <p>
             Facilitamos sua busca pelo restaurante ideal. Com mais de 1000
             estabelecimentos cadastrados, ofertamos uma ampla quantidade de
