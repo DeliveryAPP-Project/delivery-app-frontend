@@ -1,4 +1,6 @@
 import Header from '../Header/index';
+import Banner from '../Banner';
+
 
 import * as styled from './Home.styles';
 
@@ -8,6 +10,7 @@ export function Home() {
     <styled.Container>
       <styled.Content>
         <Header />
+        <Banner />
       </styled.Content>
     </styled.Container>
   );
