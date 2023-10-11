@@ -4,7 +4,7 @@ export const Container = styled.div``;
 
 export const Content = styled.div``;
 
-export const BestRatedContainer = styled.div`
+export const BestRatedContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
