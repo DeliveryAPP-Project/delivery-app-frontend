@@ -12,8 +12,8 @@ function App() {
         <ThemeProvider>
           <PrivateRoutes />
           <PublicRoutes />
+          <GlobalStyle />
         </ThemeProvider>
-        <GlobalStyle />
       </BrowserRouter>
     </QueryClientProvider>
   );

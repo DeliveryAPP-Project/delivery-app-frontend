@@ -4,7 +4,6 @@ import * as styled from './Home.styles';
 
 export function Home() {
 
-
   return (
     <styled.Container>
       <styled.Content>
