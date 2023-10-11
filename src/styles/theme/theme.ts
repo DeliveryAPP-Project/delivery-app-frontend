@@ -6,9 +6,10 @@ export const theme: DefaultTheme = {
     'main-yellow': '#FAA613',
     'eclipse-yellow': '#FEA200',
     black: '#000',
-    white: '#FFF'
+    white: '#FFF',
+    'title-color': '#1E1E1E',
   },
   fonts: {
-    header: 'Inter, sans-serif',
+    inter: 'Inter, sans-serif',
   }
 };

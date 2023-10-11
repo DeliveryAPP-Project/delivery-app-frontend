@@ -9,9 +9,10 @@ declare module 'styled-components' {
       'eclipse-yellow': string;
       black: string;
       white: string;
+      'title-color': string;
       },
       fonts:{
-        header: string;
+        inter: string;
       }
   }
 }
