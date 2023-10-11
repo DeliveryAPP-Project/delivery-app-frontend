@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 type ImageType = ComponentProps<'div'> & {
   ImgUrl: string;
-}
+};
 
 const NavTextBase = styled.div`
   font-weight: 700;
@@ -38,7 +38,7 @@ export const HeaderContent = styled.header`
   display: flex;
   align-items: center;
 
-  nav{
+  nav {
     width: 303px;
     height: 48px;
 
