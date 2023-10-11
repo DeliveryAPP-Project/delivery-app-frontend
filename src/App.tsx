@@ -12,11 +12,12 @@ function App() {
         <ThemeProvider>
           <PrivateRoutes />
           <PublicRoutes />
+          <GlobalStyle />
         </ThemeProvider>
-        <GlobalStyle />
       </BrowserRouter>
     </QueryClientProvider>
   );
 }
 
 export default App;
+

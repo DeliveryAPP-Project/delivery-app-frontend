@@ -3,16 +3,15 @@ import 'styled-components';
 // and extend them!
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors:{
-      'gray-800': string;
-      'main-yellow': string;
-      'eclipse-yellow': string;
-      black: string;
+    colors: {
+      primary: string;
       white: string;
-      'title-color': string;
-      },
-      fonts:{
-        inter: string;
-      }
+      blackFont: string;
+    },
+    fonts: {
+      body: string;
+      brand: string;
+    }
   }
 }
+

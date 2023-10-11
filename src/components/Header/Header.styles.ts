@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 type ImageType = ComponentProps<'div'> & {
   ImgUrl: string;
-}
+};
 
 const NavTextBase = styled.div`
   font-weight: 700;
@@ -19,19 +19,26 @@ const NavTextBase = styled.div`
   cursor: pointer;
 `;
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled.div`
+  width: 100%;
+  height: 100px;
+
+  display: flex;
+  justify-content: center;
+`;
+
+export const HeaderContent = styled.header`
   width: 1440px;
   height: 78px;
 
   position: fixed;
-  z-index: 100;
 
   background: ${(props) => props.theme.colors['main-yellow']};
 
   display: flex;
   align-items: center;
 
-  nav{
+  nav {
     width: 303px;
     height: 48px;
 
@@ -39,9 +46,8 @@ export const HeaderContainer = styled.header`
     align-items: center;
     gap: 38px;
 
-    position: absolute;
-    top: 14px;
-    left: 1048px;
+    position: relative;
+    left: 1074px;
   }
 `;
 
@@ -50,8 +56,8 @@ export const Logo = styled.div<ImageType>`
   height: 57px;
 
   position: relative;
-  top: 11px;
-  left: 73px;
+  top: -16px;
+  left: 72px;
 
   background-image: url(${(props) => props.ImgUrl});
   background-size: contain;
@@ -66,8 +72,8 @@ export const ElipseLogo = styled.div`
   width: 55px;
   height: 55px;
 
-  position: absolute;
-  top: 11px;
+  position: relative;
+  top: 29px;
   left: 56px;
 
   background: ${(props) => props.theme.colors['eclipse-yellow']};

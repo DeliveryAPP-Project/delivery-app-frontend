@@ -1,16 +1,15 @@
-// import Header from '../Header/index';
-import Header from '../Header';
-import Card from '../Restaurants-and-foods/Card/index';
+import Header from '../Header/index';
+import Banner from '../Banner';
+
 
 import * as styled from './Home.styles';
 
 export function Home() {
-
   return (
     <styled.Container>
       <styled.Content>
         <Header />
-        <Card />
+        <Banner />
       </styled.Content>
     </styled.Container>
   );
