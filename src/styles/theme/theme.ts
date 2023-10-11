@@ -2,13 +2,13 @@ import { DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
   colors: {
-    'gray-800': '#ccc',
-    'main-yellow': '#FAA613',
-    'eclipse-yellow': '#FEA200',
-    black: '#000',
-    white: '#FFF'
+    primary: '#FAA613',
+    white: '#FFFFFF',
+    blackFont: '#1E1E1E',
   },
   fonts: {
-    header: 'Inter, sans-serif',
+    body: 'Inter, sans-serif',
+    brand: 'Staatliches'
   }
 };
+
