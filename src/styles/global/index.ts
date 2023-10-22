@@ -13,8 +13,12 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: ${props => props.theme.colors.white};
-    color: ${props => props.theme.colors.blackFont};
-    font-family: ${props => props.theme.fonts.body};
+    background-color: ${(props) => props.theme.colors.white};
+    color: ${(props) => props.theme.colors.blackFont};
+    font-family: ${(props) => props.theme.fonts.body};
+  }
+
+  button {
+    cursor: pointer;
   }
 `;

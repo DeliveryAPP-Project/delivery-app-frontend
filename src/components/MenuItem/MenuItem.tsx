@@ -1,3 +1,4 @@
+import closeIcon from './icons/closeIcon.svg';
 import MinusCircle from './icons/MinusCircle';
 import PlusCircle from './icons/PlusCircle';
 import {
@@ -12,13 +13,19 @@ interface MenuItemProps {
   name: string;
   description: string;
   price: number;
+  isCart?: boolean;
 }
 
 export function MenuItem(props: MenuItemProps) {
-  const { description, name, price, urlImage } = props;
+  const { description, name, price, urlImage, isCart = false } = props;
 
   return (
     <Container>
+      {isCart && (
+        <button className="close-button">
+          <img src={closeIcon} alt="close-icon" />
+        </button>
+      )}
       <ContainerInfo>
         <img src={urlImage} alt="hamburguer" />
         <div className="information">
@@ -46,9 +53,11 @@ export function MenuItem(props: MenuItemProps) {
             </button>
           </div>
         </div>
-        <Button>
-          <small>Adicionar ao carrinho</small>
-        </Button>
+        {!isCart && (
+          <Button>
+            <small>Adicionar ao carrinho</small>
+          </Button>
+        )}
       </ContainerBuy>
     </Container>
   );
