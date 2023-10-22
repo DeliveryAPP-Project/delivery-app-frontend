@@ -11,12 +11,28 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  position: relative;
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    border: none;
+    background-color: transparent;
+  }
 `;
 
 export const ContainerInfo = styled.div`
   display: flex;
   gap: 33px;
   align-items: center;
+
+  img {
+    width: 190px;
+    height: 190px;
+    border-radius: 1200px;
+  }
 
   .information {
     display: flex;
