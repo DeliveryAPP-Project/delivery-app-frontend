@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import BestRatedCard from '../BestRatedCard';
-import Header from '../Header/index';
 import Banner from '../Banner';
+import BestRatedCard from '../BestRatedCard';
 
 import * as styled from './Home.styles';
 
@@ -43,7 +42,6 @@ export function Home() {
   return (
     <styled.Container>
       <styled.Content>
-        <Header />
         <Banner />
 
         <styled.BestRatedContainer>

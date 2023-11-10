@@ -15,7 +15,7 @@ export function Banner() {
             opções
           </p>
 
-          <styled.ButtonLink to='#'>
+          <styled.ButtonLink to='/restaurants'>
             Restaurantes
           </styled.ButtonLink>
         </styled.TextContainer>

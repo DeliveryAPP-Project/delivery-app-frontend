@@ -62,14 +62,14 @@ export const DivSeparation = styled.div`
 `;
 
 export const TitleRestaurant = styled.h1`
-  font-family: ${(props) => props.theme.fonts.inter};
+  font-family: ${(props) => props.theme.fonts.body};
   font-weight: 700;
   font-size: 20px;
   line-height: 24.2px;
 `;
 
 export const TextRestaurant = styled.span`
-  font-family: ${(props) => props.theme.fonts.inter};
+  font-family: ${(props) => props.theme.fonts.body};
   font-size: 17px;
   line-height: 24.2px;
   text-align: start;
@@ -82,10 +82,10 @@ export const ViewButton = styled.button`
   border: none;
   border-radius: 50px;
 
-  background: ${(props) => props.theme.colors['main-yellow']};
+  background: ${(props) => props.theme.colors.primary};
 
-  color: ${(props) => props.theme.colors.black};
-  font-family: ${(props) => props.theme.fonts.inter};
+  color: ${(props) => props.theme.colors.blackFont};
+  font-family: ${(props) => props.theme.fonts.body};
   font-weight: 700;
   font-size: 20px;
   line-height: 24.2px;
@@ -104,11 +104,11 @@ export const Evaluation = styled.span`
   width: 33px;
   height: 24px;
 
-  font-family: ${(props) => props.theme.fonts.inter};
+  font-family: ${(props) => props.theme.fonts.body};
   font-weight: 700;
   font-size: 20px;
   line-height: 24.2px;
-  color: ${(props) => props.theme.colors.black};
+  color: ${(props) => props.theme.colors.blackFont};
 `;
 
 export const Star = styled.span<ImageType>`

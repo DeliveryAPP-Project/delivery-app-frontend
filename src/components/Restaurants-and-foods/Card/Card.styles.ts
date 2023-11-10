@@ -37,11 +37,11 @@ export const TitleCard = styled.h1`
   top: 119px;
   left: 40px;
 
-  font-family: ${(props) => props.theme.fonts.inter};
+  font-family: ${(props) => props.theme.fonts.body};
   font-weight: 700;
   font-size: 84px;
   line-height: 101.66px;
-  color: ${(props) => props.theme.colors['title-color']};
+  color: ${(props) => props.theme.colors.blackFont};
 
   z-index: 1;
 `;
@@ -54,9 +54,9 @@ export const SubTitleCard = styled.h2`
   top: 353px;
   left: 50px;
 
-  font-family: ${(props) => props.theme.fonts.inter};
+  font-family: ${(props) => props.theme.fonts.body};
   font-weight: 500;
   font-size: 25px;
   line-height: 36.31px;
-  color: ${(props) => props.theme.colors['title-color']};
+  color: ${(props) => props.theme.colors.blackFont};
 `;

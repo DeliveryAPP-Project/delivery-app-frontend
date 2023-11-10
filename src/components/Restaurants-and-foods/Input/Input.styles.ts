@@ -10,21 +10,21 @@ export const SearchForRestaurants = styled.input`
   height: 46px;
 
   position: relative;
-  top: 837px;
+  top: 735px;
   left: 534px;
 
   border-radius: 52.27px;
   border: none;
   padding-left: 50px;
 
-  font-family: ${(props) => props.theme.fonts.inter};
+  font-family: ${(props) => props.theme.fonts.body};
   font-size: 17px;
-  color: ${(props) => props.theme.colors.black};
+  color: ${(props) => props.theme.colors.blackFont};
 
-  box-shadow: 0px 4px 10px 0px ${(props) => props.theme.colors.black};
+  box-shadow: 0px 4px 10px 0px ${(props) => props.theme.colors.blackFont};
 
   &::placeholder{
-    font-family: ${(props) => props.theme.fonts.inter};
+    font-family: ${(props) => props.theme.fonts.body};
     font-weight: 700;
     font-size: 20px;
     line-height: 24.2px;
@@ -42,7 +42,7 @@ export const SearchMagnifyingGlass = styled.div<ImageType>`
   height: 32.41px;
 
   position: relative;
-  top: 800.32px;
+  top: 696px;
   left: 552.64px;
 
   background-image: url(${(props) => props.ImgUrl});

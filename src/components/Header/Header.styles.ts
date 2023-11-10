@@ -9,9 +9,9 @@ const NavTextBase = styled.div`
   font-weight: 700;
   size: 20px;
 
-  color: ${(props) => props.theme.colors.black};
+  color: ${(props) => props.theme.colors.blackFont};
   line-height: 24.2px;
-  font-family: ${(props) => props.theme.fonts.header};
+  font-family: ${(props) => props.theme.fonts.body};
 
   background: transparent;
   border: none;
@@ -21,7 +21,7 @@ const NavTextBase = styled.div`
 
 export const HeaderContainer = styled.div`
   width: 100%;
-  height: 100px;
+  height: 78px;
 
   display: flex;
   justify-content: center;
@@ -32,8 +32,9 @@ export const HeaderContent = styled.header`
   height: 78px;
 
   position: fixed;
+  z-index: 100;
 
-  background: ${(props) => props.theme.colors['main-yellow']};
+  background: ${(props) => props.theme.colors.primary};
 
   display: flex;
   align-items: center;
@@ -76,7 +77,7 @@ export const ElipseLogo = styled.div`
   top: 29px;
   left: 56px;
 
-  background: ${(props) => props.theme.colors['eclipse-yellow']};
+  background: ${(props) => props.theme.colors.primary};
 
   border-radius: 50%;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);

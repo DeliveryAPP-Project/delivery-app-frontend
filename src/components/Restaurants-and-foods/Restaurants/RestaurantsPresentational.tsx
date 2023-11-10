@@ -1,3 +1,7 @@
+import * as Dialog from '@radix-ui/react-dialog';
+
+import Modal from '../../Modal';
+
 import * as styled from './Restaurants.styles';
 
 export interface CardProps {
@@ -23,7 +27,15 @@ export function RestaurantsPresentational({ ImgUrl, Star }: CardProps){
               4.5
             </styled.Evaluation>
           </styled.EvaluationContainer>
-          <styled.ViewButton>Ver</styled.ViewButton>
+
+          <Dialog.Root>
+            <Dialog.Trigger asChild>
+              <styled.ViewButton>Ver</styled.ViewButton>
+            </Dialog.Trigger>
+
+            <Modal />
+          </Dialog.Root>
+
         </styled.DivSeparation>
       </styled.RestaurantInformation>
     </styled.CardsRestaurantsAndFoods>

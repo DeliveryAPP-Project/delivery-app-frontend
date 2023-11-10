@@ -10,6 +10,9 @@ interface FunctionsDown {
 
 export function HeaderPresentational({ handleDescendingToTheAboveUs,  handleGoingDownToTheFooter}: FunctionsDown) {
 
+  const data = new Date();
+  console.log(data);
+
   return(
     <div>
       <styled.HeaderContainer>
