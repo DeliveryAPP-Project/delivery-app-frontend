@@ -5,20 +5,20 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    font-size: 62.5%;
   }
 
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
 
-    font-size: 1.6rem;
+    font-size: 62.5%;
   }
 
   body {
     background-color: ${props => props.theme.colors.white};
-    color: ${props => props.theme.colors.blackFont};
+    color: ${props => props.theme.colors.black};
     font-family: ${props => props.theme.fonts.body};
+
+    font-size: 1.6rem;
   }
 `;
