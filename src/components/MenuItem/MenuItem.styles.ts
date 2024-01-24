@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 618px;
-  height: 227px;
-  padding: 16px;
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  width: 61.8rem;
+  height: 22.7rem;
+  padding: 1.6rem;
+  border-radius: 2rem;
+  background: ${(props) => props.theme.colors.white};
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.25);
 
   display: flex;
   align-items: center;
@@ -15,7 +15,7 @@ export const Container = styled.div`
 
 export const ContainerInfo = styled.div`
   display: flex;
-  gap: 33px;
+  gap: 3.3rem;
   align-items: center;
 
   .information {
@@ -23,21 +23,21 @@ export const ContainerInfo = styled.div`
     flex-direction: column;
 
     strong {
-      font-size: 20px;
+      font-size: 2rem;
       font-family: Inter;
       font-weight: 700;
     }
 
     small {
       font-family: Inter;
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 500;
     }
 
     small:last-child {
       color: #0038ff;
       font-family: Inter;
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 700;
     }
   }
@@ -48,37 +48,37 @@ export const ContainerBuy = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
+  gap: 2.4rem;
   strong {
     font-family: Inter;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
   }
 
   .information-buy {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: .2rem;
 
     small {
       font-family: Inter;
-      font-size: 14.483px;
+      font-size: 1.4rem;
       font-weight: 700;
     }
 
     .container-buttons {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 1rem;
       button {
         background: transparent;
         border: none;
       }
 
       strong {
-        color: #000;
+        color: ${(props) => props.theme.colors.black};
         font-family: Inter;
-        font-size: 20px;
+        font-size: 2rem;
         font-weight: 700;
       }
     }
@@ -86,20 +86,20 @@ export const ContainerBuy = styled.div`
 `;
 
 export const Button = styled.button`
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 50px;
-  background: var(--Amarelo-principal, #faa613);
+  box-shadow: 0 .4rem .4rem 0 rgba(0, 0, 0, 0.25);
+  border-radius: 5rem;
+  background: ${(props) => props.theme.colors.yellow1};
 
   border: none;
-  width: 170px;
-  height: 53px;
+  width: 17rem;
+  height: 5.3rem;
   text-align: center;
 
   small {
-    color: #000;
+    color: ${(props) => props.theme.colors.black};;
     font-family: Inter;
-    font-size: 15px;
+    font-size: 1.5rem;
     font-weight: 700;
-    width: 93px;
+    width: 9.3rem;
   }
 `;

@@ -5,13 +5,13 @@ type ImageType = ComponentProps<'div'> & {
   ImgUrl: string;
 };
 
-const NavTextBase = styled.div`
+const NavTextBase = styled.a`
   font-weight: 700;
-  size: 20px;
+  size: 2rem;
 
   color: ${(props) => props.theme.colors.black};
-  line-height: 24.2px;
-  font-family: ${(props) => props.theme.fonts.header};
+  line-height: 2.42rem;
+  font-family: ${(props) => props.theme.fonts.body};
 
   background: transparent;
   border: none;
@@ -21,103 +21,106 @@ const NavTextBase = styled.div`
 
 export const HeaderContainer = styled.div`
   width: 100%;
-  height: 100px;
 
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  position: fixed;
 `;
 
 export const HeaderContent = styled.header`
-  width: 1440px;
-  height: 78px;
+  width: 100%;
+  max-width: 144rem;
+  height: 7.8rem;
 
-  position: fixed;
-
-  background: ${(props) => props.theme.colors['main-yellow']};
+  background: ${(props) => props.theme.colors.yellow1};
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   nav {
-    width: 303px;
-    height: 48px;
+    width: 30.3rem;
+    height: 4.8rem;
 
     display: flex;
     align-items: center;
-    gap: 38px;
-
-    position: relative;
-    left: 1074px;
+    gap: 3.8rem;
   }
 `;
 
 export const Logo = styled.div<ImageType>`
-  width: 22px;
-  height: 57px;
+  width: 2.2rem;
+  height: 5.7rem;
 
   position: relative;
-  top: -16px;
-  left: 72px;
+  top: -1.6rem;
+  left: 7.2rem;
 
   background-image: url(${(props) => props.ImgUrl});
   background-size: contain;
   background-repeat: no-repeat;
 
   font-weight: 400;
-  size: 45.56px;
-  line-height: 56.95px;
+  size: 4.5rem;
+  line-height: 5.6rem;
 `;
 
 export const ElipseLogo = styled.div`
-  width: 55px;
-  height: 55px;
+  width: 5.5rem;
+  height: 5.5rem;
 
   position: relative;
-  top: 29px;
-  left: 56px;
+  top: 2.9rem;
+  left: 5.6rem;
 
-  background: ${(props) => props.theme.colors['eclipse-yellow']};
+  background: ${(props) => props.theme.colors.yellow1};
 
   border-radius: 50%;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 .3rem .5rem 0 rgba(0, 0, 0, 0.25);
 `;
 
 export const About = styled(NavTextBase)`
-  width: 58px;
-  height: 24px;
+  width: 5.8rem;
+  height: 2.4rem;
+
+  font-size: 2rem;
 `;
 
 export const Contact = styled(NavTextBase)`
-  width: 80px;
-  height: 24px;
+  width: 8rem;
+  height: 2.4rem;
+
+  font-size: 2rem;
 `;
 
 export const Car = styled.div`
-  width: 48px;
-  height: 48px;
+  width: 4.8rem;
+  height: 4.8rem;
 `;
 
 export const ElipseCar = styled.div`
-  width: 48px;
-  height: 48px;
-  border-radius: 50px;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 5rem;
 
   background: ${(props) => props.theme.colors.white};
 
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 .3rem .5rem 0 rgba(0, 0, 0, 0.25);
 
   cursor: pointer;
 `;
 
 export const IconCar = styled.div<ImageType>`
-  width: 24px;
-  height: 24px;
+  width: 2.4rem;
+  height: 2.4rem;
 
   background-image: url(${(props) => props.ImgUrl});
   background-size: contain;
   background-repeat: no-repeat;
 
   position: relative;
-  top: 13px;
-  left: 11px;
+  top: 1.3rem;
+  left: 1.1rem;
 `;

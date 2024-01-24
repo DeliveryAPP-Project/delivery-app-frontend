@@ -18,7 +18,5 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${props => props.theme.colors.white};
     color: ${props => props.theme.colors.black};
     font-family: ${props => props.theme.fonts.body};
-
-    font-size: 1.6rem;
   }
 `;

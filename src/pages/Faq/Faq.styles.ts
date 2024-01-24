@@ -3,12 +3,14 @@ import styled from 'styled-components';
 export const Container = styled.div``;
 
 export const Content = styled.div`
-  max-width: 1440px;
+  max-width: 144rem;
+  width: 100%;
   margin-inline: auto;
-  padding-inline: 80px;
+  padding-inline: 8rem;
+  padding-top: 10rem;
 
   section {
-    height: 400px;
+    height: 40rem;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -16,34 +18,33 @@ export const Content = styled.div`
     div {
       display: flex;
       flex-direction: column;
-      row-gap: 24px;
+      row-gap: 2.4rem;
 
       img {
-        width: 320px;
+        width: 32rem;
       }
 
       h2 {
-        font-size: 38px;
+        font-size: 3.8rem;
       }
     }
   }
 `;
 
 export const FaqSession = styled.div`
-  margin-top: 100px;
+  margin-top: 10rem;
   
   ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    row-gap: 24px;
+    row-gap: 2.4rem;
 
     li {
-      font-size: 20px;
-
       display: flex;
       flex-direction: column;
-      row-gap: 24px;
+      row-gap: 2.4rem;
+      font-size: 1.6rem;
 
       span {
         font-weight: 700;

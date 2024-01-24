@@ -7,18 +7,22 @@ type IContent = ComponentProps<'div'> & {
 };
 
 export const Container = styled.section`
-  height: 637px;
   width: 100%;
+  padding-top: 7.8rem;
 
   background-color: ${(props) => props.theme.colors.white};
-  color: ${(props) => props.theme.colors.blackFont};
+  color: ${(props) => props.theme.colors.black};
 `;
 
 export const Content = styled.div<IContent>`
   background-image: url(${(props) => props.src});
-  background-size: contain;
-  height: 637px;
-  width: 1440px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 63.7rem;
+  max-width: 144rem;
+  width: 100%;
+  
   margin-inline: auto;
 `;
 
@@ -26,19 +30,20 @@ export const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: 30px;
+  row-gap: 3rem;
 
   height: 100%;
+
   width: 60%;
-  padding-inline: 80px;
+  padding-inline: 8rem;
 
   img {
-    width: 253px;
-    margin-bottom: 20px;
+    width: 25.3rem;
+    margin-bottom: 2rem;
   }
 
   p {
-    font-size: 30px;
+    font-size: 3rem;
   }
 `;
 
@@ -47,14 +52,14 @@ export const ButtonLink = styled.a<LinkProps>`
   align-items: center;
   justify-content: center;
 
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.yellow1};
 
-  width: 248px;
-  height: 75px;
-  border-radius: 20px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  width: 24.8rem;
+  height: 7.5rem;
+  border-radius: 2rem;
+  box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);
 
   cursor: pointer;
 `;
