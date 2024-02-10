@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react';
-import { LinkProps } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 type IContent = ComponentProps<'div'> & {
@@ -47,11 +47,13 @@ export const TextContainer = styled.div`
   }
 `;
 
-export const ButtonLink = styled.a<LinkProps>`
+export const ButtonLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
 
+  text-decoration: none;
+  color: inherit;
   font-size: 2rem;
   font-weight: 700;
   background-color: ${(props) => props.theme.colors.yellow1};
