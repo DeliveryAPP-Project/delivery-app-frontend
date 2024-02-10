@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import BestRatedCard from '../BestRatedCard';
-import Header from '../Header/index';
-import Banner from '../Banner';
+import BestRatedCard from '../../components/BestRatedCard';
+import Header from '../../components/Header/index';
+import Banner from '../../components/Banner';
 
 import * as styled from './Home.styles';
 
