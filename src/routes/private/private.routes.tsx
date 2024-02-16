@@ -1,6 +1,6 @@
 import { Route, Routes as RoutesProvider } from 'react-router-dom';
 
-import Home from '../../components/Home';
+import Home from '../../pages/Home';
 import { TRoutes } from '../types';
 
 import PrivateProvider from './private.provider';

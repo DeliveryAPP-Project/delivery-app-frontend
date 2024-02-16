@@ -4,31 +4,35 @@ import shoppingCart from '../../assets/shopping-cart.png';
 import * as styled from './Header.styles';
 
 interface FunctionsDown {
-  handleDescendingToTheAboveUs: ()=> void;
-  handleGoingDownToTheFooter: ()=> void;
+  handleDescendingToTheAboveUs: () => void;
+  handleGoingDownToTheFooter: () => void;
 }
 
-export function HeaderPresentational({ handleDescendingToTheAboveUs,  handleGoingDownToTheFooter}: FunctionsDown) {
-
-  return(
-    <div>
-      <styled.HeaderContainer>
-        <styled.HeaderContent>
-          <div>
-            <styled.ElipseLogo />
-            <styled.Logo ImgUrl={logo}/>
-          </div>
-          <nav>
-            <styled.About onClick={handleDescendingToTheAboveUs}>Sobre</styled.About>
-            <styled.Contact onClick={handleGoingDownToTheFooter}>Contato</styled.Contact>
-            <styled.Car>
-              <styled.ElipseCar>
-                <styled.IconCar ImgUrl={shoppingCart}/>
-              </styled.ElipseCar>
-            </styled.Car>
-          </nav>
-        </styled.HeaderContent>
-      </styled.HeaderContainer>
-    </div>
+export function HeaderPresentational({
+  handleDescendingToTheAboveUs,
+  handleGoingDownToTheFooter,
+}: FunctionsDown) {
+  return (
+    <styled.HeaderContainer>
+      <styled.HeaderContent>
+        <div>
+          <styled.ElipseLogo />
+          <styled.Logo ImgUrl={logo} />
+        </div>
+        <nav>
+          <styled.About onClick={handleDescendingToTheAboveUs}>
+            Sobre
+          </styled.About>
+          <styled.Contact onClick={handleGoingDownToTheFooter}>
+            Contato
+          </styled.Contact>
+          <styled.Car>
+            <styled.ElipseCar>
+              <styled.IconCar ImgUrl={shoppingCart} />
+            </styled.ElipseCar>
+          </styled.Car>
+        </nav>
+      </styled.HeaderContent>
+    </styled.HeaderContainer>
   );
 }

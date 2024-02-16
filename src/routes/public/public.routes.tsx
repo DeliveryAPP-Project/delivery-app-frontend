@@ -1,7 +1,7 @@
 import { Route, Routes as RoutesProvider } from 'react-router-dom';
 
-import Home from '../../components/Home';
 import Faq from '../../pages/Faq';
+import Home from '../../pages/Home';
 import PurchaseConfirmation from '../../pages/PurchaseConfirmation';
 import { TRoutes } from '../types';
 

@@ -4,9 +4,10 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      primary: string;
+      yellow1: string;
+      yellow2: string;
       white: string;
-      blackFont: string;
+      black: string;
     },
     fonts: {
       body: string;

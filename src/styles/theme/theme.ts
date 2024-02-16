@@ -2,9 +2,10 @@ import { DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
   colors: {
-    primary: '#FAA613',
+    yellow1: '#FAA613',
+    yellow2: '#FFB800',
     white: '#FFFFFF',
-    blackFont: '#1E1E1E',
+    black: '#1E1E1E',
   },
   fonts: {
     body: 'Inter, sans-serif',

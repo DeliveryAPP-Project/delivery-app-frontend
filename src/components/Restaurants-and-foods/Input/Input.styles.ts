@@ -6,30 +6,30 @@ type ImageType = ComponentProps<'div'> & {
 }
 
 export const SearchForRestaurants = styled.input`
-  width: 354.41px;
-  height: 46px;
+  width: 35.4rem;
+  height: 4.6rem;
 
   position: relative;
-  top: 837px;
-  left: 534px;
+  top: 83.7rem;
+  left: 53.4rem;
 
-  border-radius: 52.27px;
+  border-radius: 5.2rem;
   border: none;
-  padding-left: 50px;
+  padding-left: 5rem;
 
-  font-family: ${(props) => props.theme.fonts.inter};
-  font-size: 17px;
+  font-family: ${(props) => props.theme.fonts.body};
+  font-size: 1.7rem;
   color: ${(props) => props.theme.colors.black};
 
-  box-shadow: 0px 4px 10px 0px ${(props) => props.theme.colors.black};
+  box-shadow: 0 .4rem 1rem 0 ${(props) => props.theme.colors.black};
 
   &::placeholder{
-    font-family: ${(props) => props.theme.fonts.inter};
+    font-family: ${(props) => props.theme.fonts.body};
     font-weight: 700;
-    font-size: 20px;
-    line-height: 24.2px;
+    font-size: 2rem;
+    line-height: 2.4rem;
 
-    padding-left: 30px;
+    padding-left: 3rem;
   }
 
   &:focus{
@@ -38,12 +38,12 @@ export const SearchForRestaurants = styled.input`
 `;
 
 export const SearchMagnifyingGlass = styled.div<ImageType>`
-  width: 32.41px;
-  height: 32.41px;
+  width: 3.2rem;
+  height: 3.2rem;
 
   position: relative;
-  top: 800.32px;
-  left: 552.64px;
+  top: 80rem;
+  left: 55.2rem;
 
   background-image: url(${(props) => props.ImgUrl});
   background-size: contain;
