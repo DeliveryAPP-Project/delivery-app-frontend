@@ -17,7 +17,7 @@ export default function BestRated() {
 
 			return restaurants;
 		},
-		queryKey: ['restaurants'],
+		queryKey: ['best-rated-restaurants'],
 	});
 
 	useEffect(() => {

@@ -1,39 +1,37 @@
-import noImage from '../../assets/no-image.png';
+import noImg from '../../assets/no-image.png';
 import starImg from '../../assets/star.svg';
 
-import {
-	Container,
-	Content,
-	ImageContainer,
-	TextContainer,
-} from './BestRatedCard.styles';
+import * as styled from './BestRatedCard.styles';
 
 type IBestRatedCard = {
-  data: IRestaurant
+	data: IRestaurant;
 };
 
 export default function BestRatedCard({ data }: IBestRatedCard) {
 	return (
-		<Container>
-			<Content>
-				<ImageContainer>
-					{data.url_image_logo ? (
-						<img src={data.url_image_logo} alt="" />
-					) : (
-						<img src={noImage} alt="" />
-					)}
-				</ImageContainer>
+		<styled.Container>
+			<styled.Content>
+				{/* Quando for corrigido os links das imagens na api, pode retirar o .includes */}
+				<styled.Image
+					src={
+						data.url_image_logo.includes('http') ? data.url_image_logo : noImg
+					}
+					alt={
+						data.url_image_logo
+							? `Logo do restaurante ${data.name}`
+							: 'Imagem de restaurante não encontrada'
+					}
+				/>
 
-				<TextContainer>
+				<styled.TextContainer>
 					<span>{data.name}</span>
 					<span>
-						<img src={starImg} alt="Star icon" />
+						<img src={starImg} alt='Star icon' />
 						{data.classification}
 					</span>
 					{/* <span>{data.status}</span>  */}
-				</TextContainer>
-			</Content>
-		</Container>
+				</styled.TextContainer>
+			</styled.Content>
+		</styled.Container>
 	);
 }
-

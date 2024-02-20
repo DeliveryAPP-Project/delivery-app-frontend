@@ -11,20 +11,12 @@ export const Content = styled.div`
   margin: 0 auto;
 `;
 
-export const ImageContainer = styled.div`
+export const Image = styled.img`
   width: 30rem;
   height: 30rem;
 
   border-radius: 100%;
-  overflow: hidden;
   box-shadow: 0 4.972130298614502px 14.916390419006348px 3.314753532409668px #00000040;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
 `;
 
 export const TextContainer = styled.div`
