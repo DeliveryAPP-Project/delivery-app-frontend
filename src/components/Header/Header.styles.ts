@@ -1,123 +1,78 @@
-import { ComponentProps } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-type ImageType = ComponentProps<'div'> & {
-  ImgUrl: string;
-};
-
-const NavTextBase = styled.div`
-  font-weight: 700;
-  size: 20px;
-
-  color: ${(props) => props.theme.colors.black};
-  line-height: 24.2px;
-  font-family: ${(props) => props.theme.fonts.header};
-
-  background: transparent;
-  border: none;
-
-  cursor: pointer;
-`;
-
-export const HeaderContainer = styled.div`
+export const Container = styled.header`
   width: 100%;
-  height: 100px;
-
-  display: flex;
-  justify-content: center;
-`;
-
-export const HeaderContent = styled.header`
-  width: 1440px;
-  height: 78px;
+  height: 7.8rem;
 
   position: fixed;
+  top: 0;
+  left: 0;
 
-  background: ${(props) => props.theme.colors['main-yellow']};
+  background-color: ${props => props.theme.colors.primary};
+`;
+
+export const Content = styled.header`
+  max-width: 144rem;
+  width: 100%;
+  height: 100%;
+
+  margin: 0 auto;
+  padding-inline: 5.6rem;
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
+`;
 
-  nav {
-    width: 303px;
-    height: 48px;
+export const Navigate = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    display: flex;
-    align-items: center;
-    gap: 38px;
+  width: 100%;
+`;
 
-    position: relative;
-    left: 1074px;
+export const Logo = styled(Link)`
+  width: 5.5rem;
+  height: 5.5rem;
+
+  border-radius: 100%;
+  background-color: #FEA200;
+  box-shadow: 0 0.3rem 0.4rem rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const LinksContainer = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+`;
+
+export const LinkContent = styled.li`
+  font-weight: 700;
+
+  a {
+    font-size: 2rem;
   }
 `;
 
-export const Logo = styled.div<ImageType>`
-  width: 22px;
-  height: 57px;
+export const CartLink = styled(Link)`
+  width: 4.8rem;
+  height: 4.8rem;
 
-  position: relative;
-  top: -16px;
-  left: 72px;
+  border-radius: 100%;
+  background-color: white;
+  box-shadow: 0 0.3rem 0.4rem rgba(0, 0, 0, 0.25);
 
-  background-image: url(${(props) => props.ImgUrl});
-  background-size: contain;
-  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  font-weight: 400;
-  size: 45.56px;
-  line-height: 56.95px;
-`;
-
-export const ElipseLogo = styled.div`
-  width: 55px;
-  height: 55px;
-
-  position: relative;
-  top: 29px;
-  left: 56px;
-
-  background: ${(props) => props.theme.colors['eclipse-yellow']};
-
-  border-radius: 50%;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
-`;
-
-export const About = styled(NavTextBase)`
-  width: 58px;
-  height: 24px;
-`;
-
-export const Contact = styled(NavTextBase)`
-  width: 80px;
-  height: 24px;
-`;
-
-export const Car = styled.div`
-  width: 48px;
-  height: 48px;
-`;
-
-export const ElipseCar = styled.div`
-  width: 48px;
-  height: 48px;
-  border-radius: 50px;
-
-  background: ${(props) => props.theme.colors.white};
-
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
-
-  cursor: pointer;
-`;
-
-export const IconCar = styled.div<ImageType>`
-  width: 24px;
-  height: 24px;
-
-  background-image: url(${(props) => props.ImgUrl});
-  background-size: contain;
-  background-repeat: no-repeat;
-
-  position: relative;
-  top: 13px;
-  left: 11px;
+  img {
+    transform: translateX(-.15rem);
+  }
 `;
