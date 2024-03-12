@@ -1,22 +1,14 @@
-import { BrowserRouter } from 'react-router-dom';
-
+import { RouterProvider } from 'react-router-dom';
 import ThemeProvider from './components/ThemeProvider';
-import { queryClient, QueryClientProvider } from './libs/query';
 import { GlobalStyle } from './styles/global';
-import { PrivateRoutes, PublicRoutes } from './routes';
-
+import { publicRoutes } from './routes';
 function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider>
-          <PrivateRoutes />
-          <PublicRoutes />
-          <GlobalStyle />
-        </ThemeProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
-  );
+	return (
+		<ThemeProvider>
+			<RouterProvider router={publicRoutes} />
+			<GlobalStyle />
+		</ThemeProvider>
+	);
 }
 
 export default App;

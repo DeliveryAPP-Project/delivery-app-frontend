@@ -8,12 +8,12 @@ type IInput = ComponentProps<'input'> & {
   name: string;
 };
 
-export function Input({ inputSize, name, ...props }: IInput) {
-  const { register } = useFormContext();
+export default function Input({ inputSize, name, ...props }: IInput) {
+	const { register } = useFormContext();
 
-  return (
-    <styled.InputContainer inputSize={inputSize} id={name} {...register(name)}>
-      {props.children}
-    </styled.InputContainer>
-  );
+	return (
+		<styled.InputContainer inputSize={inputSize} id={name} {...register(name)}>
+			{props.children}
+		</styled.InputContainer>
+	);
 }

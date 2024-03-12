@@ -3,65 +3,80 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 type IContent = ComponentProps<'div'> & {
-  src: string;
+	src: string;
 };
 
 export const Container = styled.section`
-  width: 100%;
-  padding-top: 7.8rem;
+	height: 63.7rem;
+	width: 100%;
 
-  background-color: ${(props) => props.theme.colors.white};
-  color: ${(props) => props.theme.colors.black};
+	background-color: ${(props) => props.theme.colors.white};
+	color: ${(props) => props.theme.colors.blackFont};
 `;
 
 export const Content = styled.div<IContent>`
-  background-image: url(${(props) => props.src});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 63.7rem;
-  max-width: 144rem;
-  width: 100%;
-  
-  margin-inline: auto;
+	background-image: url(${(props) => props.src});
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 63.7rem;
+	max-width: 144rem;
+	width: 100%;
+	margin-inline: auto;
 `;
 
 export const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 3rem;
+	display: flex;
+	flex-direction: column;
+	padding-top: 11rem;
 
-  height: 100%;
+	height: 100%;
+	max-width: 83rem;
+	width: 100%;
+	padding-inline: 8rem;
 
-  width: 60%;
-  padding-inline: 8rem;
+	img {
+		width: 25.3rem;
+		margin-bottom: 3rem;
+	}
 
-  img {
-    width: 25.3rem;
-    margin-bottom: 2rem;
-  }
+	h1 {
+		margin-bottom: 2rem;
+		font-size: 9rem;
+		font-weight: 700;
+		max-width: 60rem;
+	}
+`;
 
-  p {
-    font-size: 3rem;
-  }
+type IDescription = {
+	size?: 'small';
+};
+
+export const Description = styled.p<IDescription>`
+	font-size: 3rem;
+
+	${(props) =>
+		props.size === 'small' &&
+		`
+    width: 46rem;
+  `}
 `;
 
 export const ButtonLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-  text-decoration: none;
-  color: inherit;
-  font-size: 2rem;
-  font-weight: 700;
-  background-color: ${(props) => props.theme.colors.yellow1};
+	margin-top: 5.3rem;
 
-  width: 24.8rem;
-  height: 7.5rem;
-  border-radius: 2rem;
-  box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);
+	font-size: 2rem;
+	font-weight: 700;
+	background-color: ${(props) => props.theme.colors.primary};
 
-  cursor: pointer;
+	width: 24.8rem;
+	height: 7.5rem;
+	border-radius: 2rem;
+	box-shadow: 0 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+
+	cursor: pointer;
 `;
