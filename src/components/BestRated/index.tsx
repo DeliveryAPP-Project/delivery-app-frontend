@@ -12,7 +12,7 @@ export default function BestRated() {
 	
 	const { data: restaurants } = useQuery<IRestaurant[]>({
 		queryFn: async () => {
-			const { data } = await api.get('/restaurants/');
+			const { data } = await api.get('/restaurants');
 			const restaurants = data.restaurants as IRestaurant[];
 
 			return restaurants;
