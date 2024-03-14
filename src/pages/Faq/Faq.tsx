@@ -1,13 +1,11 @@
 import faqImg from '../../assets/faq-asset.svg';
 import logoImg from '../../assets/logo.svg';
-import Header from '../../components/Header';
 
 import * as styled from './Faq.styles';
 
 export function Faq() {
 	return (
 		<styled.Container>
-			<Header />
 			<styled.Content>
 				<section>
 					<div>
