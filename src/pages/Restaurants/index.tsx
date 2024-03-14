@@ -25,8 +25,8 @@ export default function Restaurants() {
 
 	const { data: restaurants } = useQuery<IRestaurant[]>({
 		queryFn: async () => {
-			const { data } = await api.get('/restaurants/');
-			return data.restaurants;
+			const { data } = await api.get('/restaurants');
+			return data;
 		},
 		queryKey: ['restaurants'],
 	});
