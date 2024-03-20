@@ -6,7 +6,6 @@ import bannerImg from '../../assets/banner-image-purchase-confirmation-page.png'
 import charactersImg from '../../assets/characters.svg';
 import brandImg from '../../assets/logo.svg';
 import Form from '../../components/Form';
-import Header from '../../components/Header';
 
 import * as styled from './PurchaseConfirmation.styles';
 
@@ -47,7 +46,6 @@ export default function PurchaseConfirmation() {
 
 	return (
 		<styled.Container>
-			<Header />
 			<styled.Banner src={bannerImg}>
 				<img src={brandImg} alt="" />
 			</styled.Banner>
