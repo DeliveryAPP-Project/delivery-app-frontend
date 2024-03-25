@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 type Icontainer = {
-	size: 'md' | 'lg';
+	size: 'md' | 'lg' | 'xl';
 	shadow: boolean;
 };
 
@@ -12,8 +12,12 @@ export const Container = styled.div<Icontainer>`
 	width: ${(props) => props.size === 'lg' && '19.6rem'};
 	height: ${(props) => props.size === 'lg' && '19.6rem'};
 
+	width: ${(props) => props.size === 'xl' && '35rem'};
+	height: ${(props) => props.size === 'xl' && '35rem'};
+
 	border-radius: ${(props) => props.size === 'md' && '19rem'};
 	border-radius: ${(props) => props.size === 'lg' && '19.6rem'};
+	border-radius: ${(props) => props.size === 'xl' && '35rem'};
 
 	box-shadow: ${(props) =>
 		props.shadow &&
