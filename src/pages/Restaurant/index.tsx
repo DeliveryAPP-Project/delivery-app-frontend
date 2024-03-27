@@ -17,23 +17,23 @@ export default function Restaurant() {
 	const data = state.data as IRestaurant;
 	const [restaurant, setRestaurant] = useState<IRestaurant>(data);
 
-	const { data: foods } = useQuery<IFood[]>({
-		queryKey: [`foods-${restaurant.id}`],
-		queryFn: async () => {
-			const response = await api.get('/products');
-			return response.data;
-		},
-	});
-
-	// Modelo de rota da API para buscar os produtos de um restaurante
-
 	// const { data: foods } = useQuery<IFood[]>({
 	// 	queryKey: [`foods-${restaurant.id}`],
 	// 	queryFn: async () => {
-	// 		const response = await api.get(`/restaurants/${restaurant.id}/products`);
+	// 		const response = await api.get('/products');
 	// 		return response.data;
 	// 	},
 	// });
+
+	// Modelo de rota da API para buscar os produtos de um restaurante
+
+	const { data: foods } = useQuery<IFood[]>({
+		queryKey: [`foods-${restaurant.id}`],
+		queryFn: async () => {
+			const response = await api.get(`/restaurants/${restaurant.id}/products`);
+			return response.data;
+		},
+	});
 
 	useEffect(() => {
 		if (data) {
