@@ -82,7 +82,6 @@ export function Faq() {
 					</styled.FaqSession>
 				</styled.Content>
 			</styled.Container>
-			<Footer Marginfooter={500}/>
 		</React.Fragment>
 	);
 }

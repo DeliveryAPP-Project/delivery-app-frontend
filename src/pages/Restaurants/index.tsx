@@ -62,7 +62,6 @@ export default function Restaurants() {
 						restaurantsFiltered.length > 0 ? restaurantsFiltered : restaurants
 					}
 				/>
-				<Footer Marginfooter={1962}/>
 			</styled.Content>
 		</>
 	);

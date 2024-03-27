@@ -1,9 +1,8 @@
 import Banner from '../../components/Banner';
 import BestRated from '../../components/BestRated';
-
 import logo from '../../assets/logo.svg';
 import bannerImg from '../../assets/pizza-image.png';
-import Footer from '../../components/Footer';
+
 
 const bannerHomeInfo = {
 	logo: logo,
@@ -18,7 +17,6 @@ export default function Home() {
 		<>
 			<Banner info={bannerHomeInfo} />
 			<BestRated />
-			<Footer Marginfooter={1962}/>
 		</>
 	);
 }
