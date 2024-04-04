@@ -1,8 +1,8 @@
 import Banner from '../../components/Banner';
 import BestRated from '../../components/BestRated';
-
 import logo from '../../assets/logo.svg';
 import bannerImg from '../../assets/pizza-image.png';
+
 
 const bannerHomeInfo = {
 	logo: logo,
