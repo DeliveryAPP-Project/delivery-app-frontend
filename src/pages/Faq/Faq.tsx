@@ -1,8 +1,6 @@
 import React from 'react';
 import faqImg from '../../assets/faq-asset.svg';
 import logoImg from '../../assets/logo.svg';
-import Footer from '../../components/Footer';
-
 import * as styled from './Faq.styles';
 
 export function Faq() {

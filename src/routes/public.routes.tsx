@@ -6,20 +6,7 @@ import PurchaseConfirmation from '../pages/PurchaseConfirmation';
 import Layout from '../components/Layout';
 import Restaurants from '../pages/Restaurants';
 import Restaurant from '../pages/Restaurant';
-
-// export const publicRoutes = createBrowserRouter([
-// 	{
-// 		path: '/',
-// 		element: <Layout />,
-// 		children: [
-// 			{ path: '/', element: <Home /> },
-// 			{ path: '/restaurantes', element: <Restaurants /> },
-// 			{ path: '/restaurantes/:id', element: <Restaurant /> },
-// 			{ path: '/faq', element: <Faq /> },
-// 			{ path: '/confirme-sua-compra', element: <PurchaseConfirmation /> },
-// 		],
-// 	},
-// ]);
+import NotFound404 from '../pages/NotFound404';
 
 export function PublicRoutes() {
 	return (
@@ -30,6 +17,7 @@ export function PublicRoutes() {
 				<Route path='restaurantes/:id' element={<Restaurant />}/>
 				<Route path='faq' element={<Faq />}/>
 				<Route path='conclua-sua-compra' element={<PurchaseConfirmation />}/>
+				<Route path='*' element={<NotFound404 />}/>
 			</Route>
 		</Routes>
 	);
