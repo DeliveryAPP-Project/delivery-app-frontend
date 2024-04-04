@@ -12,12 +12,14 @@ export function PublicRoutes() {
 	return (
 		<Routes>
 			<Route path='/' element={<Layout />}>
+
 				<Route index element={<Home />} />
-				<Route path='restaurantes' element={<Restaurants />}/>
-				<Route path='restaurantes/:id' element={<Restaurant />}/>
-				<Route path='faq' element={<Faq />}/>
-				<Route path='conclua-sua-compra' element={<PurchaseConfirmation />}/>
-				<Route path='*' element={<NotFound404 />}/>
+				<Route path='restaurantes' element={<Restaurants />} />
+				<Route path='restaurantes/:id' element={<Restaurant />} />
+				<Route path='faq' element={<Faq />} />
+				<Route path='conclua-sua-compra' element={<PurchaseConfirmation />} />
+				<Route path='*' element={<NotFound404 />} errorElement={<NotFound404 />}
+				/>
 			</Route>
 		</Routes>
 	);
