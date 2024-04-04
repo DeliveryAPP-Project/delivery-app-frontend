@@ -5,6 +5,7 @@ import * as styled from './FoodCard.styles';
 import noImg from '../../assets/no-image.png';
 import plusIcon from '../../assets/plus-circle.png';
 import minusIcon from '../../assets/minusCircle.svg';
+import { useModal } from '../../context/ModalContext';
 
 type IFoodCard = {
 	food: IFood;
@@ -12,6 +13,7 @@ type IFoodCard = {
 
 export default function FoodCard({ food }: IFoodCard) {
 	const [count, setCount] = useState(0);
+	const { handleOpen, handleProduct, handleType } = useModal();
 
 	function moneyFormatter(value: number) {
 		return new Intl.NumberFormat('pt-BR', {
@@ -28,9 +30,10 @@ export default function FoodCard({ food }: IFoodCard) {
 		count > 0 && setCount(count - 1);
 	}
 
-	// Apenas para exemplificar a ação de abertura do modal
 	function handleModal() {
-		alert('Modal aberto');
+		handleType('product');
+		handleProduct(food);
+		handleOpen();
 	}
 
 	useEffect(() => {

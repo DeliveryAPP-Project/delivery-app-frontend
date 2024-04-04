@@ -2,7 +2,7 @@ import * as styled from './ImageBall.styles';
 
 type IImageBall = {
 	src: string;
-	size?: 'md' | 'lg';
+	size?: 'md' | 'lg' | 'xl';
 	text: string;
 	shadow?: boolean;
 };
