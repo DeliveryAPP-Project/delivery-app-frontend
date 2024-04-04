@@ -5,6 +5,7 @@ import Faq from '../pages/Faq';
 import PurchaseConfirmation from '../pages/PurchaseConfirmation';
 import Layout from '../components/Layout';
 import Restaurants from '../pages/Restaurants';
+import Restaurant from '../pages/Restaurant';
 
 export const publicRoutes = createBrowserRouter([
 	{
@@ -13,6 +14,7 @@ export const publicRoutes = createBrowserRouter([
 		children: [
 			{ path: '/', element: <Home /> },
 			{ path: '/restaurantes', element: <Restaurants /> },
+			{ path: '/restaurantes/:id', element: <Restaurant /> },
 			{ path: '/faq', element: <Faq /> },
 			{ path: '/confirme-sua-compra', element: <PurchaseConfirmation /> },
 		],

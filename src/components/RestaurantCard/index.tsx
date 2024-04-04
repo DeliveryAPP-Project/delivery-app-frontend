@@ -30,7 +30,9 @@ export default function RestaurantCard({ data }: IRestaurantCard) {
 
 				<styled.InfoContent>
 					<p>{data.location}</p>
-					<Link to={`/restaurantes/${data.id}`}>Ver</Link>
+					<Link to={`/restaurantes/${data.id}`} state={{ data: data }}>
+						Ver
+					</Link>
 				</styled.InfoContent>
 			</styled.InfoContainer>
 		</styled.Container>
