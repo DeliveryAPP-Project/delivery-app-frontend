@@ -10,7 +10,6 @@ import { api } from '../../service/api';
 
 import bannerImg from '../../assets/variedade-de-salada-saudavel-com-espaco-de-copia.png';
 import search from '../../assets/Search.png';
-import Footer from '../../components/Footer';
 
 const bannerRestaurantsInfo = {
 	title: 'Restaurantes e Foods',
