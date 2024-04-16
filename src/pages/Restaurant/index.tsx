@@ -30,8 +30,10 @@ export default function Restaurant() {
 	const { data: foods } = useQuery<IFood[]>({
 		queryKey: [`foods-${restaurant.id}`],
 		queryFn: async () => {
-			const response = await api.get(`/restaurants/${restaurant.id}/products`);
-			return response.data;
+			const { data } = await api.get(`/restaurants/${restaurant.id}/products`);
+			const { associated_products } = data as IRestaurant;
+
+			return associated_products;
 		},
 	});
 
