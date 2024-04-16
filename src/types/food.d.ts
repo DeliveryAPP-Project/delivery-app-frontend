@@ -4,4 +4,5 @@ declare type IFood = {
 	value: number;
 	description: string;
 	url_image: string;
+	restaurant_id: number;
 };
