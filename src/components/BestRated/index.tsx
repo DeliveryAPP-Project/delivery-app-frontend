@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
 import BestRatedCard from '../BestRatedCard';
 import * as styled from './BestRated.styles';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../../service/api';
 import { useEffect, useState } from 'react';
+
 
 export default function BestRated() {
 	const [bestRatedRestaurants, setBestRatedRestaurants] = useState<
@@ -46,7 +46,7 @@ export default function BestRated() {
 				))}
 			</styled.BestRatedContent>
 
-			<Link to='/restaurantes'>Ver mais opções</Link>
+			<styled.BestRatedLink to='/restaurantes'>Ver mais opções</styled.BestRatedLink>
 		</styled.Container>
 	);
 }

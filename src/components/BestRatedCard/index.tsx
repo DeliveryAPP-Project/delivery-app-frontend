@@ -10,9 +10,10 @@ type IBestRatedCard = {
 
 export default function BestRatedCard({ data }: IBestRatedCard) {
 	return (
-		<styled.Container>
-			<styled.Content>
-				<Link to={`/restaurantes/${data.id}`} state={{ data: data }}>
+		<>
+			<styled.Container to={`/restaurantes/${data.id}`} state={{ data: data }} >
+				<styled.Content>
+
 					<styled.Image
 						src={
 							data.url_image_logo.includes('http') ? data.url_image_logo : noImg
@@ -23,18 +24,19 @@ export default function BestRatedCard({ data }: IBestRatedCard) {
 								: 'Imagem de restaurante não encontrada'
 						}
 					/>
-				</Link>
 
-				{/* Quando for corrigido os links das imagens na api, pode retirar o .includes */}
-				<styled.TextContainer>
-					<span>{data.name}</span>
-					<span>
-						<img src={starImg} alt='Star icon' />
-						{data.classification}
-					</span>
-					{/* <span>{data.status}</span>  */}
-				</styled.TextContainer>
-			</styled.Content>
-		</styled.Container>
+
+					{/* Quando for corrigido os links das imagens na api, pode retirar o .includes */}
+					<styled.TextContainer>
+						<span>{data.name}</span>
+						<span>
+							<img src={starImg} alt='Star icon' />
+							{data.classification}
+						</span>
+						{/* <span>{data.status}</span>  */}
+					</styled.TextContainer>
+				</styled.Content>
+			</styled.Container>
+		</>
 	);
 }
