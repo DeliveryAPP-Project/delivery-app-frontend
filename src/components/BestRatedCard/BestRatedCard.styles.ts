@@ -14,7 +14,6 @@ export const Content = styled.div`
 export const Image = styled.img`
   width: 30rem;
   height: 30rem;
-
   border-radius: 100%;
   box-shadow: 0 4.972130298614502px 14.916390419006348px 3.314753532409668px #00000040;
 `;
