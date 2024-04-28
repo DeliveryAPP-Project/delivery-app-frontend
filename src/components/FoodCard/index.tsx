@@ -6,6 +6,8 @@ import noImg from '../../assets/no-image.png';
 import plusIcon from '../../assets/plus-circle.png';
 import minusIcon from '../../assets/minusCircle.svg';
 import { useModal } from '../../context/ModalContext';
+import { useCart } from '../../context/cartContext';
+
 
 type IFoodCard = {
 	food: IFood;
@@ -14,6 +16,7 @@ type IFoodCard = {
 export default function FoodCard({ food }: IFoodCard) {
 	const [count, setCount] = useState(0);
 	const { handleOpen, handleProduct, handleType } = useModal();
+	const { handleAddProductToCart } = useCart();
 
 	function moneyFormatter(value: number) {
 		return new Intl.NumberFormat('pt-BR', {
@@ -73,7 +76,7 @@ export default function FoodCard({ food }: IFoodCard) {
 							</styled.ButtonAction>
 						</styled.ActionContent>
 
-						<styled.ButtonAddCard>Adicionar ao carrinho</styled.ButtonAddCard>
+						<styled.ButtonAddCard onClick={() => count > 0 && handleAddProductToCart({ product: food, quantity: count })}>Adicionar ao carrinho</styled.ButtonAddCard>
 					</styled.ActionContainer>
 				</styled.Right>
 			</styled.Content>
