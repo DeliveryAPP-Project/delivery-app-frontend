@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.section`
@@ -11,7 +12,15 @@ export const Container = styled.section`
     margin-block: 10rem;
   }
 
-  a {
+`;
+
+export const BestRatedContent = styled.div`
+  display: flex;
+  column-gap: 6rem;
+  justify-content: center;
+`;
+
+export const BestRatedLink = styled(Link)`
     width: 35.3rem;
     height: 8.6rem;
     
@@ -29,11 +38,5 @@ export const Container = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-`;
-
-export const BestRatedContent = styled.div`
-  display: flex;
-  column-gap: 6rem;
-  justify-content: center;
-`;
+  
+`
