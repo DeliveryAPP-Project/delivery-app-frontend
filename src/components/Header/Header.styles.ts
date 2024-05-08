@@ -8,11 +8,12 @@ export const Container = styled.header`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
 
   background-color: ${props => props.theme.colors.primary};
 `;
 
-export const Content = styled.header`
+export const Content = styled.div`
   max-width: 144rem;
   width: 100%;
   height: 100%;
