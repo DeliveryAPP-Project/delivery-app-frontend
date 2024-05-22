@@ -15,7 +15,7 @@ const cartProducts: ICart[] = [
 		value: 30,
 		restaurant_id: 1,
 		url_image:
-			'https://s3-alpha-sig.figma.com/img/71f2/4801/850b2ef20ea4fdd701cf074ad198c870?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mG6lryJatCXV3cZ0BkkzUIRcoFBL6d8EvjpXJ~1-rY4Ve90NURy2n4V2FoOy4BFan3ouKCJe38XnV4TtbAPN0aly49GplJfjvcLI8lMOl~fLSe2bGeIegqHoDSGuzxbU4VLL4XYdabWNyCCvsW1nJhp0l~-g02TUifR5eLWVtyfKTQlUxB0-AJLR8jXChHZ7q-lHnepHFi0g7IpMGLY~HqVDVVWhsTIqA0aHcpJXfdz94w1dYIfTDptF6bwl64x0t-HpRHZb1kIS637vSBm~8P-z3W-wiPfQCBQ65fWA0Y3yipdJp5qEOzC6W6B2VrWexxUeOnutldBgF5XZln-3qw__',
+			'https://s3-alpha-sig.figma.com/img/71f2/4801/850b2ef20ea4fdd701cf074ad198c870?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=O0WM6T6biFSgDObEB0YALlY8aF84gneFjo8WPbjxdHsJgEu2gXMgjcCQtbfhyoCuMdv7Y3Luxwq~2f0QoKCz2pY5YairrK5Jn78SZYsAQ5fzWD1nyrK5nFKSEkqVXh0NW1MkXVrScDyNiJ1D~b0YvBL2UhuElZ4zhrHIviWSJ7G0vCWlZ3m2yPWf2rj8n7pc4CV~9cU-y7C8-1dAVApk0e5EhuEfc54jQLE5tZWzzm6CMxLsNKfEvEwiOr-aNdgPAEbqYvrMszFyRmyGhfPIyoJpd9UVv2o1EQZX-YcHWMoerjdNYM~T8nX2vaQG3JzHF6eX599B-dloxrOXCVfZig__',
 		quantity: 2,
 	},
 	{
@@ -25,7 +25,7 @@ const cartProducts: ICart[] = [
 		value: 30,
 		restaurant_id: 1,
 		url_image:
-			'https://s3-alpha-sig.figma.com/img/71f2/4801/850b2ef20ea4fdd701cf074ad198c870?Expires=1716163200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mG6lryJatCXV3cZ0BkkzUIRcoFBL6d8EvjpXJ~1-rY4Ve90NURy2n4V2FoOy4BFan3ouKCJe38XnV4TtbAPN0aly49GplJfjvcLI8lMOl~fLSe2bGeIegqHoDSGuzxbU4VLL4XYdabWNyCCvsW1nJhp0l~-g02TUifR5eLWVtyfKTQlUxB0-AJLR8jXChHZ7q-lHnepHFi0g7IpMGLY~HqVDVVWhsTIqA0aHcpJXfdz94w1dYIfTDptF6bwl64x0t-HpRHZb1kIS637vSBm~8P-z3W-wiPfQCBQ65fWA0Y3yipdJp5qEOzC6W6B2VrWexxUeOnutldBgF5XZln-3qw__',
+			'https://s3-alpha-sig.figma.com/img/71f2/4801/850b2ef20ea4fdd701cf074ad198c870?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=O0WM6T6biFSgDObEB0YALlY8aF84gneFjo8WPbjxdHsJgEu2gXMgjcCQtbfhyoCuMdv7Y3Luxwq~2f0QoKCz2pY5YairrK5Jn78SZYsAQ5fzWD1nyrK5nFKSEkqVXh0NW1MkXVrScDyNiJ1D~b0YvBL2UhuElZ4zhrHIviWSJ7G0vCWlZ3m2yPWf2rj8n7pc4CV~9cU-y7C8-1dAVApk0e5EhuEfc54jQLE5tZWzzm6CMxLsNKfEvEwiOr-aNdgPAEbqYvrMszFyRmyGhfPIyoJpd9UVv2o1EQZX-YcHWMoerjdNYM~T8nX2vaQG3JzHF6eX599B-dloxrOXCVfZig__',
 		quantity: 1,
 	},
 ];
