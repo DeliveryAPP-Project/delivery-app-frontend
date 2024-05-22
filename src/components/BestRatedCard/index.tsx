@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import noImg from '../../assets/no-image.png';
 import starImg from '../../assets/star.svg';
 
