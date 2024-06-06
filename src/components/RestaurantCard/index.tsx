@@ -22,18 +22,23 @@ export default function RestaurantCard({ data }: IRestaurantCard) {
 			<styled.InfoContainer>
 				<styled.InfoContent>
 					<h3>{data.name}</h3>
+					<p>{data.location}</p>
+					{/* <div>
+						<img src={star} alt='Ícone de estrela' />
+						<span>{data.classification}</span>
+					</div> */}
+				</styled.InfoContent>
+			</styled.InfoContainer>
+			<styled.InfoContainer>
+			<styled.InfoContent2>
 					<div>
 						<img src={star} alt='Ícone de estrela' />
 						<span>{data.classification}</span>
 					</div>
-				</styled.InfoContent>
-
-				<styled.InfoContent>
-					<p>{data.location}</p>
 					<Link to={`/restaurantes/${data.id}`} state={{ data: data }}>
 						Ver
 					</Link>
-				</styled.InfoContent>
+				</styled.InfoContent2>
 			</styled.InfoContainer>
 		</styled.Container>
 	);
