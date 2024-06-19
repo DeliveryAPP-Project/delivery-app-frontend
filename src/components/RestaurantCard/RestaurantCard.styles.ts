@@ -32,14 +32,14 @@ export const InfoContent = styled.div`
   display: flex;
   flex-direction:column;
   justify-content: center;
-  flex-wrap: wrap;
-  font-size: 2rem;
-  width: 190px;
-
+  font-size: 21px;
+  width: 100%;
+  margin-left: 25px;
+  gap: 70px;
   h3 {
+    display: flex;
     font-weight: 700;
     width: 100%;
-    margin-bottom: 80px;
   }
 
 
@@ -57,6 +57,7 @@ export const InfoContent = styled.div`
 
   p {
     font-weight: 500;
+    font-size: 18px;
   }
 
   a {
@@ -68,7 +69,6 @@ export const InfoContent = styled.div`
     height: 5.3rem;
     border-radius: 5rem;
     box-shadow: 0 .4rem .4rem rgba(0, 0, 0, 0.25);
-    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,8 +76,8 @@ export const InfoContent = styled.div`
 `;
 
 export const InfoContent2 = styled(InfoContent)`
+  display: flex;
   align-items: center;
-  div {
-    margin-bottom: 50px;
-  }
+  gap: 40px;
+  width: 176px;
 `

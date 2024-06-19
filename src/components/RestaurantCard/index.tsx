@@ -23,10 +23,6 @@ export default function RestaurantCard({ data }: IRestaurantCard) {
 				<styled.InfoContent>
 					<h3>{data.name}</h3>
 					<p>{data.location}</p>
-					{/* <div>
-						<img src={star} alt='Ícone de estrela' />
-						<span>{data.classification}</span>
-					</div> */}
 				</styled.InfoContent>
 			</styled.InfoContainer>
 			<styled.InfoContainer>
