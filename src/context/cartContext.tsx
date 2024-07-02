@@ -10,6 +10,7 @@ export type ICartContext = {
 	cart: ICartItem[];
 	handleAddProductToCart: (product: ICartItem) => void;
 	handleRemoveProductFromCart: (productId: number) => void;
+	handleIncrementProduct: (productId: number) => void;
 };
 
 export const CartContext = createContext({} as ICartContext);
@@ -52,9 +53,27 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		setCart(filteredCart);
 	}
 
+	function handleIncrementProduct(productId: number) {
+		const updatedCart: ICartItem[] = [];
+
+		cart.forEach((item) => {
+			if (item.product.id === productId) {
+				item.quantity++;
+			}
+			updatedCart.push(item);
+		});
+
+		setCart(updatedCart);
+	}
+
 	return (
 		<CartContext.Provider
-			value={{ cart, handleAddProductToCart, handleRemoveProductFromCart }}
+			value={{
+				cart,
+				handleAddProductToCart,
+				handleRemoveProductFromCart,
+				handleIncrementProduct,
+			}}
 		>
 			{children}
 		</CartContext.Provider>
