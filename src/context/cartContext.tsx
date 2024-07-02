@@ -9,6 +9,7 @@ export type ICartItem = {
 export type ICartContext = {
 	cart: ICartItem[];
 	handleAddProductToCart: (product: ICartItem) => void;
+	handleRemoveProductFromCart: (productId: number) => void;
 };
 
 export const CartContext = createContext({} as ICartContext);
@@ -45,8 +46,16 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 	}
 
+	function handleRemoveProductFromCart(productId: number) {
+		const filteredCart = cart.filter((item) => item.product.id !== productId);
+
+		setCart(filteredCart);
+	}
+
 	return (
-		<CartContext.Provider value={{ cart, handleAddProductToCart }}>
+		<CartContext.Provider
+			value={{ cart, handleAddProductToCart, handleRemoveProductFromCart }}
+		>
 			{children}
 		</CartContext.Provider>
 	);

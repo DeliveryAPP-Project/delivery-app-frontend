@@ -5,6 +5,7 @@ import * as styled from './CartCard.styles';
 import minusIcon from '../../assets/minusCircle.svg';
 import plusIcon from '../../assets/plus-circle.png';
 import trashIcon from '../../assets/trash-icon.svg';
+import { useCart } from '../../context/cartContext';
 
 type CartCardProps = {
 	product: IFood & {
@@ -15,6 +16,7 @@ type CartCardProps = {
 export function CartCard({ product }: CartCardProps) {
 	const [count, setCount] = useState(product.quantity);
 	const { handleOpen, handleProduct, handleType } = useModal();
+	const { handleRemoveProductFromCart } = useCart();
 
 	function handleModal() {
 		handleType('product');
@@ -37,14 +39,12 @@ export function CartCard({ product }: CartCardProps) {
 		count > 0 && setCount(count - 1);
 	}
 
-	function removeProductOfCart() {
-		alert('Produto removido');
-	}
-
 	return (
 		<>
 			<styled.Container>
-				<styled.CardButtonClose onClick={removeProductOfCart}>
+				<styled.CardButtonClose
+					onClick={() => handleRemoveProductFromCart(product.id)}
+				>
 					<img src={trashIcon} />
 				</styled.CardButtonClose>
 
