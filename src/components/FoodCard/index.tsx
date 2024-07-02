@@ -8,7 +8,6 @@ import minusIcon from '../../assets/minusCircle.svg';
 import { useModal } from '../../context/ModalContext';
 import { useCart } from '../../context/cartContext';
 
-
 type IFoodCard = {
 	food: IFood;
 };
@@ -16,7 +15,13 @@ type IFoodCard = {
 export default function FoodCard({ food }: IFoodCard) {
 	const [count, setCount] = useState(0);
 	const { handleOpen, handleProduct, handleType } = useModal();
-	const { handleAddProductToCart } = useCart();
+	const {
+		cart,
+		handleAddProductToCart,
+		handleIncrementProduct,
+		handleDecrementProduct,
+		handleRemoveProductFromCart,
+	} = useCart();
 
 	function moneyFormatter(value: number) {
 		return new Intl.NumberFormat('pt-BR', {
@@ -26,11 +31,29 @@ export default function FoodCard({ food }: IFoodCard) {
 	}
 
 	function handleSumCount() {
-		setCount(count + 1);
+		if (cart.length > 0) {
+			cart.forEach((item) => {
+				if (item.product.id === food.id) {
+					handleIncrementProduct(food.id);
+				} else {
+					setCount(count + 1);
+				}
+			});
+		} else {
+			setCount(count + 1);
+		}
 	}
 
 	function handleSubCount() {
-		count > 0 && setCount(count - 1);
+		if (cart.length > 0 && count > 1) {
+			cart.forEach((item) => {
+				if (item.product.id === food.id) {
+					handleDecrementProduct(food.id);
+				} else {
+					setCount(count - 1);
+				}
+			});
+		}
 	}
 
 	function handleModal() {
@@ -38,6 +61,20 @@ export default function FoodCard({ food }: IFoodCard) {
 		handleProduct(food);
 		handleOpen();
 	}
+
+	function handleRemoveProduct() {
+		handleRemoveProductFromCart(food.id);
+		setCount(0);
+	}
+
+	useEffect(() => {
+		if (cart.length > 0) {
+			const updatedCount =
+				cart.find((item) => item.product.id === food.id)?.quantity ?? 0;
+
+			setCount(updatedCount);
+		}
+	}, []);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -76,7 +113,20 @@ export default function FoodCard({ food }: IFoodCard) {
 							</styled.ButtonAction>
 						</styled.ActionContent>
 
-						<styled.ButtonAddCard onClick={() => count > 0 && handleAddProductToCart({ product: food, quantity: count })}>Adicionar ao carrinho</styled.ButtonAddCard>
+						{cart.find((item) => item.product.id === food.id) ? (
+							<styled.ButtonRemoveCard onClick={handleRemoveProduct}>
+								Remover do carrinho
+							</styled.ButtonRemoveCard>
+						) : (
+							<styled.ButtonAddCard
+								onClick={() =>
+									count > 0 &&
+									handleAddProductToCart({ product: food, quantity: count })
+								}
+							>
+								Adicionar ao carrinho
+							</styled.ButtonAddCard>
+						)}
 					</styled.ActionContainer>
 				</styled.Right>
 			</styled.Content>
