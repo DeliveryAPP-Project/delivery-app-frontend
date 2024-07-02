@@ -16,7 +16,11 @@ type CartCardProps = {
 export function CartCard({ product }: CartCardProps) {
 	const [count, setCount] = useState(product.quantity);
 	const { handleOpen, handleProduct, handleType } = useModal();
-	const { handleRemoveProductFromCart, handleIncrementProduct } = useCart();
+	const {
+		handleRemoveProductFromCart,
+		handleIncrementProduct,
+		handleDecrementProduct,
+	} = useCart();
 
 	function handleModal() {
 		handleType('product');
@@ -29,10 +33,6 @@ export function CartCard({ product }: CartCardProps) {
 			style: 'currency',
 			currency: 'BRL',
 		}).format(value);
-	}
-
-	function handleSubCount() {
-		count > 0 && setCount(count - 1);
 	}
 
 	return (
@@ -64,7 +64,10 @@ export function CartCard({ product }: CartCardProps) {
 				<styled.CardValueContainer>
 					<span>{moneyFormatter(product.value)}</span>
 					<styled.ActionContent>
-						<styled.ButtonAction type='button' onClick={handleSubCount}>
+						<styled.ButtonAction
+							type='button'
+							onClick={() => handleDecrementProduct(product.id)}
+						>
 							<img src={minusIcon} />
 						</styled.ButtonAction>
 						<span>{product.quantity}</span>
