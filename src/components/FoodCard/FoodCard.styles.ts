@@ -106,3 +106,18 @@ export const ButtonAddCard = styled.button`
 	cursor: pointer;
 	box-shadow: 0px 4px 4px 0px #00000040;
 `;
+
+export const ButtonRemoveCard = styled.button`
+	height: 5rem;
+	width: 17rem;
+	border: none;
+	border-radius: 5rem;
+	background-color: red;
+	font-weight: 700;
+	font-family: ${(props) => props.theme.fonts.body};
+	padding-inline: 3.6rem;
+	padding-block: 0.8rem;
+	margin-top: 1.2rem;
+	cursor: pointer;
+	box-shadow: 0px 4px 4px 0px #00000040;
+`;

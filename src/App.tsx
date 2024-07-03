@@ -8,16 +8,16 @@ import { CartProvider } from './context/cartContext';
 function App() {
 	return (
 		<ThemeProvider>
-			<CartProvider>
-				<ModalProvider>
+			<ModalProvider>
+				<CartProvider>
 					<BrowserRouter>
 						<PublicRoutes />
 						{/* <RouterProvider router={publicRoutes} /> */}
 						<Modal />
 						<GlobalStyle />
 					</BrowserRouter>
-				</ModalProvider>
-			</CartProvider>
+				</CartProvider>
+			</ModalProvider>
 		</ThemeProvider>
 	);
 }
