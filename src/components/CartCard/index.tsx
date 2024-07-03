@@ -66,7 +66,7 @@ export function CartCard({ product }: CartCardProps) {
 					</div>
 				</styled.CardDescriptionContainer>
 				<styled.CardValueContainer>
-					<span>{moneyFormatter(product.value * count)}</span>
+					<span>{moneyFormatter(product.value)}</span>
 					<styled.ActionContent>
 						<styled.ButtonAction type='button' onClick={handleSubCount}>
 							<img src={minusIcon} />
