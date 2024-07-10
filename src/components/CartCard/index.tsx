@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useModal } from '../../context/ModalContext';
 import * as styled from './CartCard.styles';
 
@@ -14,7 +13,6 @@ type CartCardProps = {
 };
 
 export function CartCard({ product }: CartCardProps) {
-	const [count, setCount] = useState(product.quantity);
 	const { handleOpen, handleProduct, handleType } = useModal();
 	const {
 		handleRemoveProductFromCart,
