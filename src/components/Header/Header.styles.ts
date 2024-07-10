@@ -76,4 +76,6 @@ export const CartLink = styled(Link)`
   img {
     transform: translateX(-.15rem);
   }
+
+  
 `;

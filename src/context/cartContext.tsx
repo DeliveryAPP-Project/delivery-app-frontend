@@ -20,6 +20,9 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 	const [cart, setCart] = useState<ICartItem[]>([]);
 	const { handleOpen, handleType } = useModal();
 
+	console.log(`aqui e o cart: ${cart.length}`)
+	
+
 	useEffect(() => {
 		const storedCart = localStorage.getItem(JSON.stringify(cart));
 		if (storedCart) {
@@ -65,6 +68,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		});
 
 		setCart(updatedCart);
+		console.log(`aqui ${updatedCart}`)
 	}
 
 	function handleDecrementProduct(productId: number) {
@@ -93,6 +97,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 			{children}
 		</CartContext.Provider>
 	);
+
+	
 };
 
 export function useCart() {

@@ -44,10 +44,10 @@ export function Cart() {
 										<CartCard key={item.product.id} product={{
 											id: item.product.id,
 											name: item.product.name,
-                      description: item.product.description,
-                      value: item.product.value,
-                      restaurant_id: item.product.restaurant_id,
-                      url_image: item.product.url_image,
+											description: item.product.description,
+											value: item.product.value,
+											restaurant_id: item.product.restaurant_id,
+											url_image: item.product.url_image,
 											quantity: item.quantity,
 										}} />
 									))}
