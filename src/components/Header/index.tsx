@@ -10,9 +10,6 @@ export default function Header() {
 	const showLinks = pathname === '/' || (pathname === '/faq' && true);
 	const { cart } = useCart()
 
-	console.log(`aqui e o cart do header: ${cart.length}`)
-	
-
 	return (
 		<styled.Container>
 			<styled.Content>
@@ -33,10 +30,12 @@ export default function Header() {
 								</styled.LinkContent>
 							</>
 						)}
-						<span>{cart.length}</span>
-						<styled.CartLink to='/carrinho'>
-							<img src={cartt} alt='Imagem de carrinho de compras' />
-						</styled.CartLink>
+						<styled.ContainerIconCart>
+							{cart.length >= 1 ? <styled.CircusSpan>{cart.length}</styled.CircusSpan> : ""}
+							<styled.CartLink to='/carrinho'>
+								<img src={cartt} alt='Imagem de carrinho de compras' />
+							</styled.CartLink>
+						</styled.ContainerIconCart>
 					</styled.LinksContainer>
 				</styled.Navigate>
 			</styled.Content>
