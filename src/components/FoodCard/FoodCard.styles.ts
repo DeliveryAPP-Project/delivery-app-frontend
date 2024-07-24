@@ -30,6 +30,13 @@ export const Left = styled.div`
 
 	row-gap: 2rem;
 
+	div {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		height: 100%;
+	}
+
 	button {
 		border: none;
 		background: none;
@@ -57,6 +64,11 @@ export const Title = styled.h3`
 
 export const Description = styled.p`
 	font-size: 2.4rem;
+
+	width: 16rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 `;
 
 export const Money = styled.span`

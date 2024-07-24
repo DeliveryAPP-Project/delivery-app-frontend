@@ -29,6 +29,8 @@ export const Content = styled.div`
   background-color: ${props => props.theme.colors.primary};
   box-shadow: 0 0 1.1rem .9rem rgba(0, 0, 0, 0.25);
 
+  max-width: 60rem;
+
   &::after {
     content: '';
     position: absolute;
@@ -82,17 +84,14 @@ export const ModalFoodDescription = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.4rem;
 
-  margin-top: 1rem;
+  margin-top: 1.4rem;
   font-size: 2.4rem;
+  text-align: center;
 
   h2 {
     font-weight: 700;
-  }
-
-  p {
-    font-weight: 600;
   }
 `;
 
