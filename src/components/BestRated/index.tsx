@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 import { api } from '../../service/api';
 import { useEffect, useState } from 'react';
 
-
 export default function BestRated() {
 	const [bestRatedRestaurants, setBestRatedRestaurants] = useState<
 		IRestaurant[]
@@ -14,25 +13,32 @@ export default function BestRated() {
 		queryFn: async () => {
 			const { data } = await api.get('/restaurants/');
 			const restaurants = data as IRestaurant[];
-			
+
 			return restaurants;
 		},
 		queryKey: ['best-rated-restaurants'],
 	});
 
+	function handleOrdererRestaurants(restaurants: IRestaurant[]) {
+		const ordererRestaurants = restaurants;
+
+		ordererRestaurants.sort((a, b) =>
+			a.classification > b.classification ? -1 : 1
+		);
+
+		return ordererRestaurants;
+	}
+
+	function handleSelectBestRatedRestaurants(restaurants: IRestaurant[]) {
+		restaurants.length > 3
+			? setBestRatedRestaurants(restaurants.slice(0, 3))
+			: setBestRatedRestaurants(restaurants);
+	}
+
 	useEffect(() => {
 		if (restaurants) {
-			const ordererRestaurants = restaurants;
-
-			ordererRestaurants.sort((a, b) =>
-				a.classification > b.classification ? -1 : 1
-			);
-
-			setBestRatedRestaurants([
-				ordererRestaurants[0],
-				ordererRestaurants[1],
-				ordererRestaurants[2],
-			]);
+			const ordererRestaurants = handleOrdererRestaurants(restaurants);
+			handleSelectBestRatedRestaurants(ordererRestaurants);
 		}
 	}, [restaurants]);
 
@@ -46,7 +52,9 @@ export default function BestRated() {
 				))}
 			</styled.BestRatedContent>
 
-			<styled.BestRatedLink to='/restaurantes'>Ver mais opções</styled.BestRatedLink>
+			<styled.BestRatedLink to='/restaurantes'>
+				Ver mais opções
+			</styled.BestRatedLink>
 		</styled.Container>
 	);
 }
