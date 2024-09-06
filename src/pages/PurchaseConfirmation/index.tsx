@@ -27,7 +27,10 @@ const purchaseConfirmationSchema = z.object({
 	client_address: z.string().trim().nonempty('Este campo é obrigatório'),
 	client_address_number: z.string().trim().nonempty('Este campo é obrigatório'),
 	client_address_complement: z.string().trim().optional(),
-	client_address_neighborhood: z.string().trim().nonempty('Este campo é obrigatório'),
+	client_address_neighborhood: z
+		.string()
+		.trim()
+		.nonempty('Este campo é obrigatório'),
 	client_zip_code: z.string().trim().nonempty('Este campo é obrigatório'),
 });
 
@@ -42,45 +45,78 @@ export default function PurchaseConfirmation() {
 
 	const {
 		handleSubmit,
-		formState: { errors }
+		formState: { errors },
 	} = purchaseForm;
 
 	const handleNewOrderMutation = useMutation({
 		mutationFn: async (order: IOrder) => {
-			const response = await api.post('/orders/', order)
+			const response = await api.post('/orders/', order);
 			return response.data;
-		}
-	})
+		},
+	});
+
+	function totalCart() {
+		let total = 0;
+		cart?.products.map((item) => {
+			total += item.value * item.quantity;
+		});
+
+		return new Intl.NumberFormat('pt-BR', {
+			style: 'currency',
+			currency: 'BRL',
+		}).format(total);
+	}
+
+	function handleWhatsAppMessage(data: IPurchaseConfirmation) {
+		const breakLine = '%0A';
+
+		const products = cart?.products
+			.map((product) => {
+				return `${breakLine}*Produto nº*: ${product.id}${breakLine}
+						*Nome do produto*: ${product.name}${breakLine}
+						*Quantidade*: ${product.quantity}${breakLine}
+		`;
+			})
+			.join('');
+
+		const orderMessage = '*Detalhes do pedido:*' + products + `${breakLine}`;
+
+		const clientMessage = `*Detalhes do cliente:*${breakLine}
+		*Nome do cliente:* ${data.client_name}${breakLine}
+		*Endereço:* ${data.client_address}, nº ${data.client_address_number}${breakLine}
+		*Complemento*: ${
+			data.client_address_complement
+				? data.client_address_complement
+				: 'Sem complemento'
+		}${breakLine}
+		*Bairro:* ${data.client_address_neighborhood}${breakLine}
+		*CEP:* ${data.client_zip_code}${breakLine}
+		*Telefone:* ${data.client_cellphone}
+	`;
+
+		const total = totalCart();
+		const totalMessage = `*Total a pagar:* ${total}${breakLine}${breakLine}`;
+
+		const whatsAppMessage = `${cart.restaurantPhoneNumber}?text=${orderMessage}${totalMessage}${clientMessage}`;
+
+		return whatsAppMessage;
+	}
 
 	async function handlePurchaseConfirmation(data: IPurchaseConfirmation) {
-		const products: { product_id: number; quantity: number }[] = []
+		const whatsAppMessage = handleWhatsAppMessage(data);
 
-		cart.forEach(item => {
-			products.push({ product_id: item.product.id, quantity: item.quantity })
-		})
+		const whatsAppLink = `https://wa.me/${whatsAppMessage}`;
 
-		const order: IOrder = {
-			client_name: data.client_name,
-    	client_cellphone: data.client_cellphone,
-	    client_address: data.client_address,
-  	  client_address_number: data.client_address_number,
-    	client_address_complement: data.client_address_complement,
-    	client_address_neighborhood: data.client_address_neighborhood,
-    	client_zip_code: data.client_zip_code,
-    	restaurant_id: cart[0].product.restaurant_id,
-    	products: products
-		}
-		
-		await handleNewOrderMutation.mutateAsync(order)
+		window.open(whatsAppLink);
 	}
 
 	return (
 		<styled.Container>
 			<styled.Banner src={bannerImg}>
-				<img src={brandImg} alt="" />
+				<img src={brandImg} alt='' />
 			</styled.Banner>
 			<styled.Content>
-				<img src={charactersImg} alt="" />
+				<img src={charactersImg} alt='' />
 
 				<h1>Agora vamos concluir sua compra!</h1>
 				<h2>Insira suas informações:</h2>
@@ -92,52 +128,74 @@ export default function PurchaseConfirmation() {
 						<styled.FormLine>
 							<div>
 								<Form.Field>
-									<Form.Label htmlFor="client_name">Nome completo:</Form.Label>
-									<Form.Input name="client_name" inputSize="600px" />
+									<Form.Label htmlFor='client_name'>Nome completo:</Form.Label>
+									<Form.Input name='client_name' inputSize='600px' />
 								</Form.Field>
-								{errors.client_name && <span>{errors.client_name.message}</span>}
+								{errors.client_name && (
+									<span>{errors.client_name.message}</span>
+								)}
 							</div>
 
 							<div>
 								<Form.Field>
-									<Form.Label htmlFor="client_cellphone">Telefone:</Form.Label>
-									<Form.Input inputSize="300px" name="client_cellphone" />
+									<Form.Label htmlFor='client_cellphone'>Telefone:</Form.Label>
+									<Form.Input inputSize='300px' name='client_cellphone' />
 								</Form.Field>
-								{errors.client_cellphone && <span>{errors.client_cellphone.message}</span>}
-							</div>
-						</styled.FormLine>
-
-						<styled.FormLine>
-							<div>
-								<Form.Field>
-									<Form.Label htmlFor="client_address">Endereço:</Form.Label>
-									<Form.Input inputSize="400px" name="client_address" />
-								</Form.Field>
-								{errors.client_address && <span>{errors.client_address.message}</span>}
-							</div>
-
-							<div>
-								<Form.Field>
-									<Form.Label htmlFor="client_address_number">Número:</Form.Label>
-									<Form.Input inputSize="114px" name="client_address_number" />
-								</Form.Field>
-								{errors.client_address_number && <span>{errors.client_address_number.message}</span>}
-							</div>
-
-							<div>
-								<Form.Field>
-									<Form.Label htmlFor="client_address_complement">Complemento:</Form.Label>
-									<Form.Input inputSize="100%" name="client_address_complement" />
-								</Form.Field>
-								{errors.client_address_complement && <span>{errors.client_address_complement.message}</span>}
+								{errors.client_cellphone && (
+									<span>{errors.client_cellphone.message}</span>
+								)}
 							</div>
 						</styled.FormLine>
 
 						<styled.FormLine>
 							<div>
 								<Form.Field>
-									<Form.Label htmlFor="client_address_neighborhood">Bairro:</Form.Label>
-									<Form.Input inputSize="740px" name="client_address_neighborhood" />
+									<Form.Label htmlFor='client_address'>Endereço:</Form.Label>
+									<Form.Input inputSize='400px' name='client_address' />
+								</Form.Field>
+								{errors.client_address && (
+									<span>{errors.client_address.message}</span>
+								)}
+							</div>
+
+							<div>
+								<Form.Field>
+									<Form.Label htmlFor='client_address_number'>
+										Número:
+									</Form.Label>
+									<Form.Input inputSize='114px' name='client_address_number' />
+								</Form.Field>
+								{errors.client_address_number && (
+									<span>{errors.client_address_number.message}</span>
+								)}
+							</div>
+
+							<div>
+								<Form.Field>
+									<Form.Label htmlFor='client_address_complement'>
+										Complemento:
+									</Form.Label>
+									<Form.Input
+										inputSize='100%'
+										name='client_address_complement'
+									/>
+								</Form.Field>
+								{errors.client_address_complement && (
+									<span>{errors.client_address_complement.message}</span>
+								)}
+							</div>
+						</styled.FormLine>
+
+						<styled.FormLine>
+							<div>
+								<Form.Field>
+									<Form.Label htmlFor='client_address_neighborhood'>
+										Bairro:
+									</Form.Label>
+									<Form.Input
+										inputSize='740px'
+										name='client_address_neighborhood'
+									/>
 								</Form.Field>
 								{errors.client_address_neighborhood && (
 									<span>{errors.client_address_neighborhood.message}</span>
@@ -146,10 +204,12 @@ export default function PurchaseConfirmation() {
 
 							<div>
 								<Form.Field>
-									<Form.Label htmlFor="client_zip_code">Cep:</Form.Label>
-									<Form.Input inputSize="300px" name="client_zip_code" />
+									<Form.Label htmlFor='client_zip_code'>Cep:</Form.Label>
+									<Form.Input inputSize='300px' name='client_zip_code' />
 								</Form.Field>
-								{errors.client_zip_code && <span>{errors.client_zip_code.message}</span>}
+								{errors.client_zip_code && (
+									<span>{errors.client_zip_code.message}</span>
+								)}
 							</div>
 						</styled.FormLine>
 
@@ -157,16 +217,21 @@ export default function PurchaseConfirmation() {
 							<ul>
 								<li>
 									<p>
-                    Ao clicar em Finalizar Pedido, você será redirecionado ao
-                    WhatsApp do estabelecimento. Lá você pode realizar o
-                    pagamento e acompanhar o status do seu pedido.
+										Ao clicar em Finalizar Pedido, você será redirecionado ao
+										WhatsApp do estabelecimento. Lá você pode realizar o
+										pagamento e acompanhar o status do seu pedido.
 									</p>
 								</li>
 							</ul>
 						</styled.TextContainer>
 
-						<styled.FormButton type="submit" disabled={handleNewOrderMutation.isPending}>
-              {handleNewOrderMutation.isPending ? "Enviando Pedido" : "Finalizar Pedido"}
+						<styled.FormButton
+							type='submit'
+							disabled={handleNewOrderMutation.isPending}
+						>
+							{handleNewOrderMutation.isPending
+								? 'Enviando Pedido'
+								: 'Finalizar Pedido'}
 						</styled.FormButton>
 					</styled.FormContainer>
 				</FormProvider>
@@ -174,4 +239,3 @@ export default function PurchaseConfirmation() {
 		</styled.Container>
 	);
 }
-

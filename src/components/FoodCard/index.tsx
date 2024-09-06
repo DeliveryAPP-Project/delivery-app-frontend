@@ -10,9 +10,10 @@ import { useCart } from '../../context/cartContext';
 
 type IFoodCard = {
 	food: IFood;
+	restaurantPhoneNumber: string;
 };
 
-export default function FoodCard({ food }: IFoodCard) {
+export default function FoodCard({ food, restaurantPhoneNumber }: IFoodCard) {
 	const [count, setCount] = useState(0);
 	const { handleOpen, handleProduct, handleType } = useModal();
 	const {
@@ -31,9 +32,9 @@ export default function FoodCard({ food }: IFoodCard) {
 	}
 
 	function handleSumCount() {
-		if (cart.length > 0) {
-			cart.forEach((item) => {
-				if (item.product.id === food.id) {
+		if (cart?.products?.length > 0) {
+			cart.products.map((item) => {
+				if (item.id === food.id) {
 					handleIncrementProduct(food.id);
 				} else {
 					setCount(count + 1);
@@ -45,9 +46,9 @@ export default function FoodCard({ food }: IFoodCard) {
 	}
 
 	function handleSubCount() {
-		if (cart.length > 0 && count > 1) {
-			cart.forEach((item) => {
-				if (item.product.id === food.id) {
+		if (cart?.products?.length > 0 && count > 1) {
+			cart.products.map((item) => {
+				if (item.id === food.id) {
 					handleDecrementProduct(food.id);
 				} else {
 					setCount(count - 1);
@@ -68,9 +69,9 @@ export default function FoodCard({ food }: IFoodCard) {
 	}
 
 	useEffect(() => {
-		if (cart.length > 0) {
+		if (cart?.products?.length > 0) {
 			const updatedCount =
-				cart.find((item) => item.product.id === food.id)?.quantity ?? 0;
+				cart.products.find((item) => item.id === food.id)?.quantity ?? 0;
 
 			setCount(updatedCount);
 		}
@@ -113,7 +114,7 @@ export default function FoodCard({ food }: IFoodCard) {
 							</styled.ButtonAction>
 						</styled.ActionContent>
 
-						{cart.find((item) => item.product.id === food.id) ? (
+						{cart?.products?.find((item) => item.id === food.id) ? (
 							<styled.ButtonRemoveCard onClick={handleRemoveProduct}>
 								Remover do carrinho
 							</styled.ButtonRemoveCard>
@@ -121,7 +122,10 @@ export default function FoodCard({ food }: IFoodCard) {
 							<styled.ButtonAddCard
 								onClick={() =>
 									count > 0 &&
-									handleAddProductToCart({ product: food, quantity: count })
+									handleAddProductToCart(
+										{ ...food, quantity: count },
+										restaurantPhoneNumber
+									)
 								}
 							>
 								Adicionar ao carrinho
