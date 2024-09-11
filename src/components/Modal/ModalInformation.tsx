@@ -7,25 +7,23 @@ export function ModalInformation() {
 	return (
 		<styled.ModalInformationContainer>
 			<styled.ModalInformationTitle>Atenção</styled.ModalInformationTitle>
+			<styled.ModalInformationSubtitle>
+				Ainda há itens de outro estabelecimento no seu carrinho.
+			</styled.ModalInformationSubtitle>
 
-			<styled.ModalInformationDescriptionContainer>
-				<styled.ModalInformationDescription>
-					Ainda existem itens de outro estabelecimento no seu carrinho.
-				</styled.ModalInformationDescription>
-				<styled.ModalInformationDescription>
-					É preciso comprarem um estabelecimento por vez.
-				</styled.ModalInformationDescription>
-				<styled.ModalInformationDescription>
-					Você pode voltar e finalizar seu pedido no carrinho ou abandonar o
-					carrinho para continuar a compra neste estabelecimento.
-				</styled.ModalInformationDescription>
-			</styled.ModalInformationDescriptionContainer>
+			<styled.ModalInformationDescription>
+				Finalize o pedido atual ou esvazie o carrinho para continuar comprando
+				neste novo estabelecimento.
+			</styled.ModalInformationDescription>
 
 			<styled.ModalInformationActionContainer>
 				<styled.ModalInformationActionButton onClick={handleClose}>
 					Cancelar pedido
 				</styled.ModalInformationActionButton>
-				<styled.ModalInformationActionLink to='/conclua-sua-compra' onClick={handleClose}>
+				<styled.ModalInformationActionLink
+					to='/conclua-sua-compra'
+					onClick={handleClose}
+				>
 					Concluir pedido
 				</styled.ModalInformationActionLink>
 			</styled.ModalInformationActionContainer>
