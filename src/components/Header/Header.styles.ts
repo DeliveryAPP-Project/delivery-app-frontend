@@ -77,3 +77,28 @@ export const CartLink = styled(Link)`
     transform: translateX(-.15rem);
   }
 `;
+
+
+export const ContainerIconCart = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  width: 10rem;
+  height: auto;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CircusSpan = styled.span`
+  border-radius: 100%;
+  background-color: #ff0000;
+  width: 1.7rem;
+  height: 1.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  bottom: 1.9rem;
+  right: 1.5rem;
+  font-size: 1rem;
+`;
