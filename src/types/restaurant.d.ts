@@ -7,4 +7,5 @@ declare type IRestaurant = {
 	url_image_logo: string;
 	url_image_banner: string;
 	associated_products: IFood[];
+	telephone: string;
 };

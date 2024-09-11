@@ -13,8 +13,8 @@ export function Cart() {
 
 	function totalCart() {
 		let total = 0;
-		cart.forEach((item) => {
-			total += item.product.value * item.quantity;
+		cart?.products.map((item) => {
+			total += item.value * item.quantity;
 		});
 		return total;
 	}
@@ -34,22 +34,25 @@ export function Cart() {
 					<styled.CartIconContainer>
 						<styled.CartIcon src={imgCartIcon} />
 					</styled.CartIconContainer>
-					{cart.length > 0 ? (
+					{cart?.products?.length > 0 ? (
 						<>
 							<styled.CartContainerDescription>
 								<styled.CartContainerTitle>Carrinho</styled.CartContainerTitle>
 
 								<styled.CartCardContainer>
-									{cart.map((item) => (
-										<CartCard key={item.product.id} product={{
-											id: item.product.id,
-											name: item.product.name,
-                      description: item.product.description,
-                      value: item.product.value,
-                      restaurant_id: item.product.restaurant_id,
-                      url_image: item.product.url_image,
-											quantity: item.quantity,
-										}} />
+									{cart?.products.map((item) => (
+										<CartCard
+											key={item.id}
+											product={{
+												id: item.id,
+												name: item.name,
+												description: item.description,
+												value: item.value,
+												restaurant_id: item.restaurant_id,
+												url_image: item.url_image,
+												quantity: item.quantity,
+											}}
+										/>
 									))}
 								</styled.CartCardContainer>
 							</styled.CartContainerDescription>

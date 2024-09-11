@@ -1,14 +1,12 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useModal } from './ModalContext';
 
-export type ICartItem = {
-	product: IFood;
-	quantity: number;
-};
-
 export type ICartContext = {
-	cart: ICartItem[];
-	handleAddProductToCart: (product: ICartItem) => void;
+	cart: ICart;
+	handleAddProductToCart: (
+		product: ICartItem,
+		restaurantPhoneNumber: string
+	) => void;
 	handleRemoveProductFromCart: (productId: number) => void;
 	handleIncrementProduct: (productId: number) => void;
 	handleDecrementProduct: (productId: number) => void;
@@ -17,7 +15,7 @@ export type ICartContext = {
 export const CartContext = createContext({} as ICartContext);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
-	const [cart, setCart] = useState<ICartItem[]>([]);
+	const [cart, setCart] = useState<ICart>({} as ICart);
 	const { handleOpen, handleType } = useModal();
 
 	useEffect(() => {
@@ -31,51 +29,77 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		localStorage.setItem('cart', JSON.stringify(cart));
 	}, [cart]);
 
-	function handleAddProductToCart(product: ICartItem) {
-		if (cart.length === 0) {
-			setCart([...cart, product]);
+	function handleAddProductToCart(
+		product: ICartItem,
+		restaurantPhoneNumber: string
+	) {
+		const updatedProducts: ICartItem[] = cart?.products || [];
+
+		if (!cart?.products || cart.products.length === 0) {
+			updatedProducts.push(product);
 		} else {
-			cart.forEach((item) => {
-				if (item.product.restaurant_id !== product.product.restaurant_id) {
+			cart.products.map((item) => {
+				if (item.restaurant_id !== product.restaurant_id) {
 					handleType('information');
 					handleOpen();
-
 					return;
 				} else {
-					setCart([...cart, product]);
+					updatedProducts.push(product);
 				}
 			});
 		}
+
+		const updatedCart: ICart = {
+			products: updatedProducts,
+			restaurantPhoneNumber,
+		};
+
+		setCart(updatedCart);
 	}
 
 	function handleRemoveProductFromCart(productId: number) {
-		const filteredCart = cart.filter((item) => item.product.id !== productId);
+		const filteredCart = cart.products.filter((item) => item.id !== productId);
+		const updatedCart: ICart = {
+			products: filteredCart,
+			restaurantPhoneNumber:
+				filteredCart.length === 0 ? '' : cart.restaurantPhoneNumber,
+		};
 
-		setCart(filteredCart);
+		setCart(updatedCart);
 	}
 
 	function handleIncrementProduct(productId: number) {
-		const updatedCart: ICartItem[] = [];
+		const updatedProduct: ICartItem[] = [];
 
-		cart.forEach((item) => {
-			if (item.product.id === productId) {
+		cart?.products.map((item) => {
+			if (item.id === productId) {
 				item.quantity++;
 			}
-			updatedCart.push(item);
+			updatedProduct.push(item);
 		});
+
+		const updatedCart: ICart = {
+			products: updatedProduct,
+			restaurantPhoneNumber: cart.restaurantPhoneNumber,
+		};
 
 		setCart(updatedCart);
 	}
 
 	function handleDecrementProduct(productId: number) {
-		const updatedCart: ICartItem[] = [];
+		const updatedProduct: ICartItem[] = [];
 
-		cart.forEach((item) => {
-			if (item.product.id === productId && item.quantity > 1) {
+		cart.products.map((item) => {
+			if (item.id === productId && item.quantity > 1) {
 				item.quantity--;
 			}
-			updatedCart.push(item);
+			updatedProduct.push(item);
 		});
+
+		const updatedCart: ICart = {
+			products: updatedProduct,
+			restaurantPhoneNumber: cart.restaurantPhoneNumber,
+		};
 
 		setCart(updatedCart);
 	}

@@ -17,16 +17,6 @@ export default function Restaurant() {
 	const data = state.data as IRestaurant;
 	const [restaurant, setRestaurant] = useState<IRestaurant>(data);
 
-	// const { data: foods } = useQuery<IFood[]>({
-	// 	queryKey: [`foods-${restaurant.id}`],
-	// 	queryFn: async () => {
-	// 		const response = await api.get('/products');
-	// 		return response.data;
-	// 	},
-	// });
-
-	// Modelo de rota da API para buscar os produtos de um restaurante
-
 	const { data: foods } = useQuery<IFood[]>({
 		queryKey: [`foods-${restaurant.id}`],
 		queryFn: async () => {
@@ -84,7 +74,11 @@ export default function Restaurant() {
 
 				<styled.FoodsContainer>
 					{foods?.map((food) => (
-						<FoodCard key={food.id} food={food} />
+						<FoodCard
+							key={food.id}
+							food={food}
+							restaurantPhoneNumber={restaurant.telephone}
+						/>
 					))}
 				</styled.FoodsContainer>
 			</styled.Content>
