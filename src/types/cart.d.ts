@@ -5,4 +5,5 @@ declare type ICartItem = IFood & {
 declare type ICart = {
 	products: ICartItem[];
 	restaurantPhoneNumber: string;
+	numberProducts: number;
 };

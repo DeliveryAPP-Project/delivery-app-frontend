@@ -52,6 +52,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		const updatedCart: ICart = {
 			products: updatedProducts,
 			restaurantPhoneNumber,
+			numberProducts: updatedProducts.length
 		};
 
 		setCart(updatedCart);
@@ -61,8 +62,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		const filteredCart = cart.products.filter((item) => item.id !== productId);
 		const updatedCart: ICart = {
 			products: filteredCart,
-			restaurantPhoneNumber:
-				filteredCart.length === 0 ? '' : cart.restaurantPhoneNumber,
+			restaurantPhoneNumber: filteredCart.length === 0 ? '' : cart.restaurantPhoneNumber,
+			numberProducts: filteredCart.length
 		};
 
 		setCart(updatedCart);
@@ -81,6 +82,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		const updatedCart: ICart = {
 			products: updatedProduct,
 			restaurantPhoneNumber: cart.restaurantPhoneNumber,
+			numberProducts: updatedProduct.length
 		};
 
 		setCart(updatedCart);
@@ -99,6 +101,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		const updatedCart: ICart = {
 			products: updatedProduct,
 			restaurantPhoneNumber: cart.restaurantPhoneNumber,
+			numberProducts: updatedProduct.length
 		};
 
 		setCart(updatedCart);
