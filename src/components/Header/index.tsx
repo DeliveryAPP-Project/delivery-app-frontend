@@ -31,7 +31,7 @@ export default function Header() {
 							</>
 						)}
 						<styled.ContainerIconCart>
-							{cart.length >= 1 ? <styled.CircusSpan>{cart.length}</styled.CircusSpan> : ""}
+							{cart.numberProducts >= 1 ? <styled.CircusSpan>{cart.numberProducts}</styled.CircusSpan> : ""}
 							<styled.CartLink to='/carrinho'>
 								<img src={cartt} alt='Imagem de carrinho de compras' />
 							</styled.CartLink>
