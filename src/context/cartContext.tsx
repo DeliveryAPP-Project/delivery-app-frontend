@@ -15,18 +15,13 @@ export type ICartContext = {
 export const CartContext = createContext({} as ICartContext);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
-	const [cart, setCart] = useState<ICart>({} as ICart);
+	const storedCart = localStorage.getItem('HAMPER-CART');
+
+	const [cart, setCart] = useState<ICart>(storedCart ? JSON.parse(storedCart) : {} as ICart);
 	const { handleOpen, handleType } = useModal();
 
 	useEffect(() => {
-		const storedCart = localStorage.getItem(JSON.stringify(cart));
-		if (storedCart) {
-			setCart(JSON.parse(storedCart));
-		}
-	}, []);
-
-	useEffect(() => {
-		localStorage.setItem('cart', JSON.stringify(cart));
+		localStorage.setItem('HAMPER-CART', JSON.stringify(cart));
 	}, [cart]);
 
 	function handleAddProductToCart(
