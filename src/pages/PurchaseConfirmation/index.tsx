@@ -84,11 +84,10 @@ export default function PurchaseConfirmation() {
 		const clientMessage = `*Detalhes do cliente:*${breakLine}
 		*Nome do cliente:* ${data.client_name}${breakLine}
 		*Endereço:* ${data.client_address}, nº ${data.client_address_number}${breakLine}
-		*Complemento*: ${
-			data.client_address_complement
+		*Complemento*: ${data.client_address_complement
 				? data.client_address_complement
 				: 'Sem complemento'
-		}${breakLine}
+			}${breakLine}
 		*Bairro:* ${data.client_address_neighborhood}${breakLine}
 		*CEP:* ${data.client_zip_code}${breakLine}
 		*Telefone:* ${data.client_cellphone}
@@ -214,16 +213,23 @@ export default function PurchaseConfirmation() {
 						</styled.FormLine>
 
 						<styled.TextContainer>
-							<ul>
-								<li>
-									<p>
-										Ao clicar em Finalizar Pedido, você será redirecionado ao
-										WhatsApp do estabelecimento. Lá você pode realizar o
-										pagamento e acompanhar o status do seu pedido.
-									</p>
-								</li>
-							</ul>
+							<p>
+								Forma de pagamento
+							</p>
 						</styled.TextContainer>
+
+						<styled.containerButton>
+							<styled.buttonOpition>
+								<styled.textOption>
+									Pix
+								</styled.textOption>
+							</styled.buttonOpition>
+							<styled.buttonOpition2>
+								<styled.textOption>
+									Dinheiro
+								</styled.textOption>
+							</styled.buttonOpition2>
+						</styled.containerButton>
 
 						<styled.FormButton
 							type='submit'
@@ -231,7 +237,7 @@ export default function PurchaseConfirmation() {
 						>
 							{handleNewOrderMutation.isPending
 								? 'Enviando Pedido'
-								: 'Finalizar Pedido'}
+								: 'Continuar'}
 						</styled.FormButton>
 					</styled.FormContainer>
 				</FormProvider>
