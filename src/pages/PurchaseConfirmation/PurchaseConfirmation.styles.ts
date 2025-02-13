@@ -47,11 +47,13 @@ export const Content = styled.div`
 		margin-top: 77px;
 		font-size: 40px;
 		font-weight: 600;
+		margin-bottom: 50px;
 	}
 `;
 
 export const FormContainer = styled.form`
-	margin-block: 25px 72px;
+	/* margin-block: 25px 72px; */
+	margin-bottom: 30px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -106,8 +108,9 @@ export const TextContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	margin-top: 5px;
-
+	margin-top: 15px;
+	margin-bottom: 5px;
+	/* border: solid 1px red; */
 	p {
 		font-size: 32px;
 		font-weight: 600;
@@ -130,9 +133,11 @@ export const buttonOpition = styled.button`
 	height: 163px;
 	border: solid 1px #737373;
 	border-radius: 10px;
+	margin-bottom: 30px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
 	background-color: #FFF;
 	background-image: url(${pix});
 	background-position: center 25px;
@@ -156,3 +161,24 @@ export const textOption = styled.p`
 	margin-top: 40px;
 `;
 
+export const totalvalueContainer = styled.div`
+	/* border: solid 1px black; */
+	width: 80%;
+	height: 50px;
+	display: flex;
+	align-items: baseline;
+	margin-top: 20px;
+	margin-bottom: 100px;
+	
+
+`
+export const totalValueText = styled.p`
+	font-size: 36px;
+	font-weight: 400;
+	margin-left: 30px;
+	
+`
+export const totalValueText2 = styled(totalValueText)`
+	font-weight: 600;
+	margin: 6px;
+`
