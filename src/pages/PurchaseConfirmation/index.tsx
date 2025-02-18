@@ -84,11 +84,10 @@ export default function PurchaseConfirmation() {
 		const clientMessage = `*Detalhes do cliente:*${breakLine}
 		*Nome do cliente:* ${data.client_name}${breakLine}
 		*Endereço:* ${data.client_address}, nº ${data.client_address_number}${breakLine}
-		*Complemento*: ${
-			data.client_address_complement
+		*Complemento*: ${data.client_address_complement
 				? data.client_address_complement
 				: 'Sem complemento'
-		}${breakLine}
+			}${breakLine}
 		*Bairro:* ${data.client_address_neighborhood}${breakLine}
 		*CEP:* ${data.client_zip_code}${breakLine}
 		*Telefone:* ${data.client_cellphone}
@@ -214,27 +213,51 @@ export default function PurchaseConfirmation() {
 						</styled.FormLine>
 
 						<styled.TextContainer>
-							<ul>
-								<li>
-									<p>
-										Ao clicar em Finalizar Pedido, você será redirecionado ao
-										WhatsApp do estabelecimento. Lá você pode realizar o
-										pagamento e acompanhar o status do seu pedido.
-									</p>
-								</li>
-							</ul>
+							<p>
+								Forma de pagamento
+							</p>
 						</styled.TextContainer>
-
-						<styled.FormButton
+						{/* <styled.FormButton
 							type='submit'
 							disabled={handleNewOrderMutation.isPending}
 						>
 							{handleNewOrderMutation.isPending
 								? 'Enviando Pedido'
-								: 'Finalizar Pedido'}
-						</styled.FormButton>
+								: 'Continuar'}
+						</styled.FormButton> */}
 					</styled.FormContainer>
 				</FormProvider>
+				<styled.containerButton>
+					<styled.buttonOption>
+						<styled.textOption>
+							Pix
+						</styled.textOption>
+					</styled.buttonOption>
+					<styled.buttonOption2>
+						<styled.textOption>
+							Dinheiro
+						</styled.textOption>
+					</styled.buttonOption2>
+				</styled.containerButton>
+				{/* <styled.totalvalueContainer>
+					<styled.totalValueText>Valor total:  </styled.totalValueText>
+					<styled.totalValueText2>R$ 00,00{ }</styled.totalValueText2>
+				</styled.totalvalueContainer> */}
+				<styled.paymentMethodMoneyGeneralContainer>
+					<styled.paymentMethodMoneyContainer>
+						<styled.paymentMethodMoneyCheckbox type='checkbox' />
+						<styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
+					</styled.paymentMethodMoneyContainer>
+					<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' />
+					<styled.FormButton
+						type='submit'
+						disabled={handleNewOrderMutation.isPending}
+					>
+						{handleNewOrderMutation.isPending
+							? 'Enviando Pedido'
+							: 'Continuar'}
+					</styled.FormButton>
+				</styled.paymentMethodMoneyGeneralContainer>
 			</styled.Content>
 		</styled.Container>
 	);
