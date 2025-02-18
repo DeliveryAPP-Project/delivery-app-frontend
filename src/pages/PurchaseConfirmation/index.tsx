@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
-// import { useMutation } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { z } from 'zod';
 
 import bannerImg from '../../assets/banner-image-purchase-confirmation-page.png';
@@ -10,7 +10,7 @@ import Form from '../../components/Form';
 
 import * as styled from './PurchaseConfirmation.styles';
 import { useCart } from '../../context/cartContext';
-// import { api } from '../../service/api';
+import { api } from '../../service/api';
 
 const purchaseConfirmationSchema = z.object({
 	client_name: z
@@ -48,12 +48,12 @@ export default function PurchaseConfirmation() {
 		formState: { errors },
 	} = purchaseForm;
 
-	// const handleNewOrderMutation = useMutation({
-	// 	mutationFn: async (order: IOrder) => {
-	// 		const response = await api.post('/orders/', order);
-	// 		return response.data;
-	// 	},
-	// });
+	const handleNewOrderMutation = useMutation({
+		mutationFn: async (order: IOrder) => {
+			const response = await api.post('/orders/', order);
+			return response.data;
+		},
+	});
 
 	function totalCart() {
 		let total = 0;
@@ -228,21 +228,36 @@ export default function PurchaseConfirmation() {
 					</styled.FormContainer>
 				</FormProvider>
 				<styled.containerButton>
-					<styled.buttonOpition>
+					<styled.buttonOption>
 						<styled.textOption>
 							Pix
 						</styled.textOption>
-					</styled.buttonOpition>
-					<styled.buttonOpition2>
+					</styled.buttonOption>
+					<styled.buttonOption2>
 						<styled.textOption>
 							Dinheiro
 						</styled.textOption>
-					</styled.buttonOpition2>
+					</styled.buttonOption2>
 				</styled.containerButton>
-				<styled.totalvalueContainer>
+				{/* <styled.totalvalueContainer>
 					<styled.totalValueText>Valor total:  </styled.totalValueText>
 					<styled.totalValueText2>R$ 00,00{ }</styled.totalValueText2>
-				</styled.totalvalueContainer>
+				</styled.totalvalueContainer> */}
+				<styled.paymentMethodMoneyGeneralContainer>
+					<styled.paymentMethodMoneyContainer>
+						<styled.paymentMethodMoneyCheckbox type='checkbox' />
+						<styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
+					</styled.paymentMethodMoneyContainer>
+					<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' />
+					<styled.FormButton
+						type='submit'
+						disabled={handleNewOrderMutation.isPending}
+					>
+						{handleNewOrderMutation.isPending
+							? 'Enviando Pedido'
+							: 'Continuar'}
+					</styled.FormButton>
+				</styled.paymentMethodMoneyGeneralContainer>
 			</styled.Content>
 		</styled.Container>
 	);

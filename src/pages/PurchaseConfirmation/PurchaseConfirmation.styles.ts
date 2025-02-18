@@ -84,7 +84,7 @@ export const FormButton = styled.button`
 	width: 1016px;
 	height: 72px;
 	
-	margin-top: 15px;
+	margin-top: 60px;
 	font-size: 30px;
 	font-weight: 400;
 	padding: 24px 43px;
@@ -128,7 +128,7 @@ justify-content: center;
 gap: 10px;
 `;
 
-export const buttonOpition = styled.button`
+export const buttonOption = styled.button`
 	width: 502px;
 	height: 163px;
 	border: solid 1px #737373;
@@ -151,7 +151,7 @@ export const buttonOpition = styled.button`
 	}
 `;
 
-export const buttonOpition2 = styled(buttonOpition)`
+export const buttonOption2 = styled(buttonOption)`
 	background-image: url(${dinheiro});
 `;
 
@@ -168,17 +168,56 @@ export const totalvalueContainer = styled.div`
 	display: flex;
 	align-items: baseline;
 	margin-top: 20px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 	
 
-`
+`;
 export const totalValueText = styled.p`
 	font-size: 36px;
 	font-weight: 400;
 	margin-left: 30px;
 	
-`
+`;
 export const totalValueText2 = styled(totalValueText)`
 	font-weight: 600;
 	margin: 6px;
-`
+`;
+export const paymentMethodMoneyGeneralContainer = styled.div`
+	/* border: solid 1px blue; */
+	width: 76%;
+	height: 250px;
+	margin-top: 20px;
+`;
+
+export const paymentMethodMoneyContainer = styled.div`
+	display: flex;
+	align-items: center;
+	/* border: 1px solid blue; */
+	margin-bottom: 20px;
+	gap: 10px;
+`;
+
+export const paymentMethodMoneyCheckbox = styled.input`
+	width: 22px;
+	height: 22px;
+	border:solid 2px #737373;
+`;
+
+export const paymentMethodMoneyText = styled.p`
+	width: 200px;
+	height: 32px;
+	font-size: 24px;
+	font-weight: 400;
+	/* border: solid 2px red; */
+`;
+
+export const paymentMethodMoneyInput = styled.input`
+	border-style: none;
+	border-bottom: 1px solid #000000;
+	width: 396px;
+	height: 40px;
+	
+
+	font-size: 24px;
+	font-weight: 400;
+`;
