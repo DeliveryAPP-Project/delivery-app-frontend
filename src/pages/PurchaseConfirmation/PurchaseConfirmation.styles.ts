@@ -2,6 +2,7 @@ import { ComponentProps } from 'react';
 import styled from 'styled-components';
 import pix from '../../assets/pix.png'
 import dinheiro from '../../assets/dinheiro.png'
+import qrcode from '../../assets/qrcode.png'
 
 type IBanner = ComponentProps<'div'> & {
 	src: string;
@@ -221,3 +222,25 @@ export const paymentMethodMoneyInput = styled.input`
 	font-size: 24px;
 	font-weight: 400;
 `;
+
+export const paymentMethodPixGeneralContainer = styled.div`
+	/* border: 1px solid black; */
+	height: 350px;
+	width: 1020px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 15px;
+	margin-bottom: 30px;
+`;
+
+export const paymentMethodPixImg = styled.div`
+	width: 228px;
+	height: 212px;
+	/* border: 1px solid red; */
+	background-image: url(${qrcode});
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+`; 

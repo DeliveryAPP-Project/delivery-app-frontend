@@ -227,7 +227,7 @@ export default function PurchaseConfirmation() {
 						</styled.FormButton> */}
 					</styled.FormContainer>
 				</FormProvider>
-				<styled.containerButton>
+				{/* <styled.containerButton>
 					<styled.buttonOption>
 						<styled.textOption>
 							Pix
@@ -238,12 +238,12 @@ export default function PurchaseConfirmation() {
 							Dinheiro
 						</styled.textOption>
 					</styled.buttonOption2>
-				</styled.containerButton>
+				</styled.containerButton> */}
 				{/* <styled.totalvalueContainer>
 					<styled.totalValueText>Valor total:  </styled.totalValueText>
 					<styled.totalValueText2>R$ 00,00{ }</styled.totalValueText2>
 				</styled.totalvalueContainer> */}
-				<styled.paymentMethodMoneyGeneralContainer>
+				{/* {<styled.paymentMethodMoneyGeneralContainer>
 					<styled.paymentMethodMoneyContainer>
 						<styled.paymentMethodMoneyCheckbox type='checkbox' />
 						<styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
@@ -257,7 +257,20 @@ export default function PurchaseConfirmation() {
 							? 'Enviando Pedido'
 							: 'Continuar'}
 					</styled.FormButton>
-				</styled.paymentMethodMoneyGeneralContainer>
+				</styled.paymentMethodMoneyGeneralContainer>} */}
+				{
+					<styled.paymentMethodPixGeneralContainer>
+						<styled.paymentMethodPixImg/>	
+						<styled.FormButton
+							type='submit'
+							disabled={handleNewOrderMutation.isPending}
+						>
+							{handleNewOrderMutation.isPending
+								? 'Enviando Pedido'
+								: 'Já fiz o pagamento'}
+						</styled.FormButton> 
+					</styled.paymentMethodPixGeneralContainer>
+				}
 			</styled.Content>
 		</styled.Container>
 	);
