@@ -11,6 +11,7 @@ import Form from '../../components/Form';
 import * as styled from './PurchaseConfirmation.styles';
 import { useCart } from '../../context/cartContext';
 import { api } from '../../service/api';
+import { useState } from 'react';
 
 const purchaseConfirmationSchema = z.object({
 	client_name: z
@@ -38,6 +39,12 @@ type IPurchaseConfirmation = z.infer<typeof purchaseConfirmationSchema>;
 
 export default function PurchaseConfirmation() {
 	const { cart } = useCart();
+	const [showPix, setShowPix] = useState(false);
+	const [showMoney, setShowMoney] = useState(false);
+	const [showOption, setShowoption] = useState(true);
+	const [showPrice, setShowPrice] = useState(true);
+	const [buttonActive, setbuttonActive] = useState(false)
+
 
 	const purchaseForm = useForm<IPurchaseConfirmation>({
 		resolver: zodResolver(purchaseConfirmationSchema),
@@ -107,6 +114,19 @@ export default function PurchaseConfirmation() {
 		const whatsAppLink = `https://wa.me/${whatsAppMessage}`;
 
 		window.open(whatsAppLink);
+	}
+
+	function handlePixClick() {
+		setShowPix(true)
+		setShowMoney(false)
+		setShowoption(false)
+		setShowPrice(false)
+	};
+
+	function handleMoneyClick() {
+		setShowMoney(true)
+		setShowPrice(false)
+		setbuttonActive(true)
 	}
 
 	return (
@@ -227,23 +247,28 @@ export default function PurchaseConfirmation() {
 						</styled.FormButton> */}
 					</styled.FormContainer>
 				</FormProvider>
-				{/* <styled.containerButton>
-					<styled.buttonOption>
-						<styled.textOption>
-							Pix
-						</styled.textOption>
-					</styled.buttonOption>
-					<styled.buttonOption2>
-						<styled.textOption>
-							Dinheiro
-						</styled.textOption>
-					</styled.buttonOption2>
-				</styled.containerButton> */}
-				{/* <styled.totalvalueContainer>
+
+				{showOption && (
+					<styled.containerButton>
+						<styled.buttonOption onClick={handlePixClick}>
+							<styled.textOption>
+								Pix
+							</styled.textOption>
+						</styled.buttonOption>
+						<styled.buttonOption2 onClick={handleMoneyClick} className={buttonActive ? 'active' : ''}>
+							<styled.textOption>
+								Dinheiro
+							</styled.textOption>
+						</styled.buttonOption2>
+					</styled.containerButton>
+				)}
+
+				{showPrice && (<styled.totalvalueContainer>
 					<styled.totalValueText>Valor total:  </styled.totalValueText>
 					<styled.totalValueText2>R$ 00,00{ }</styled.totalValueText2>
-				</styled.totalvalueContainer> */}
-				{/* {<styled.paymentMethodMoneyGeneralContainer>
+				</styled.totalvalueContainer>)}
+
+				{showMoney && (<styled.paymentMethodMoneyGeneralContainer>
 					<styled.paymentMethodMoneyContainer>
 						<styled.paymentMethodMoneyCheckbox type='checkbox' />
 						<styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
@@ -257,20 +282,21 @@ export default function PurchaseConfirmation() {
 							? 'Enviando Pedido'
 							: 'Continuar'}
 					</styled.FormButton>
-				</styled.paymentMethodMoneyGeneralContainer>} */}
-				{
-					<styled.paymentMethodPixGeneralContainer>
-						<styled.paymentMethodPixImg/>	
-						<styled.FormButton
-							type='submit'
-							disabled={handleNewOrderMutation.isPending}
-						>
-							{handleNewOrderMutation.isPending
-								? 'Enviando Pedido'
-								: 'Já fiz o pagamento'}
-						</styled.FormButton> 
-					</styled.paymentMethodPixGeneralContainer>
-				}
+				</styled.paymentMethodMoneyGeneralContainer>)}
+
+				{showPix && (<styled.paymentMethodPixGeneralContainer>
+					<styled.paymentMethodPixImg />
+					<styled.FormButton
+						type='submit'
+						disabled={handleNewOrderMutation.isPending}
+					>
+						{handleNewOrderMutation.isPending
+							? 'Enviando Pedido'
+							: 'Já fiz o pagamento'}
+					</styled.FormButton>
+				</styled.paymentMethodPixGeneralContainer>
+				)}
+
 			</styled.Content>
 		</styled.Container>
 	);
