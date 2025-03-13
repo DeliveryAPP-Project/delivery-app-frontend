@@ -10,7 +10,7 @@ export default function Layout() {
 			<styled.Content>
 				<Outlet />
 			</styled.Content>
-			<Footer Marginfooter={30}/>
+			<Footer Marginfooter={0}/>
 		</>
 	);
 }

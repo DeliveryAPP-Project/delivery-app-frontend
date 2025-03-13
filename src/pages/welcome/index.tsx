@@ -40,36 +40,49 @@ export function Welcome() {
                 </styled.containerSection2>
 
                 <styled.containerSection3>
-                    <styled.containerContent3>
-                        <styled.circle />
-                        <styled.titleSection3>
-                            Modelo financeiro amigável
-                        </styled.titleSection3>
-                        <styled.textSection3>✅ Zero comissão sobre pedidos.</styled.textSection3>
-                        <styled.textSection3>✅ Modelo de assinatura acessível.</styled.textSection3>
-                        <styled.textSection3>✅ Pagamentos diretos e rápidos.</styled.textSection3>
-                    </styled.containerContent3>
+                    <styled.containerCard>
+                        <styled.Card>
+                            <styled.circle />
+                            <styled.titleSection3>
+                                Modelo financeiro amigável
+                            </styled.titleSection3>
+                            <styled.textSection3>✅ Zero comissão sobre pedidos.</styled.textSection3>
+                            <styled.textSection3>✅ Modelo de assinatura acessível.</styled.textSection3>
+                            <styled.textSection3>✅ Pagamentos diretos e rápidos.</styled.textSection3>
+                        </styled.Card>
 
-                    <styled.containerContent3>
-                        <styled.circle />
-                        <styled.titleSection3>
-                            Controle total dos seus pedidos
-                        </styled.titleSection3>
-                        <styled.textSection3>✅ Integração com WhatsApp, Instagram e Google Maps.</styled.textSection3>
-                        <styled.textSection3>✅ O estabelecimento mantém os dados dos clientes.</styled.textSection3>
-                        <styled.textSection3>✅ Gestão direta de pedidos e pagamentos.</styled.textSection3>
-                    </styled.containerContent3>
+                        <styled.Card>
+                            <styled.circle />
+                            <styled.titleSection3>
+                                Controle total dos seus pedidos
+                            </styled.titleSection3>
+                            <styled.textSection3>✅ Integração com WhatsApp, Instagram e Google Maps.</styled.textSection3>
+                            <styled.textSection3>✅ O estabelecimento mantém os dados dos clientes.</styled.textSection3>
+                            <styled.textSection3>✅ Gestão direta de pedidos e pagamentos.</styled.textSection3>
+                        </styled.Card>
 
-                    <styled.containerContent3>
-                        <styled.circle />
-                        <styled.title2Section3>
-                            Ferramentas de crescimento e fidelização
-                        </styled.title2Section3>
-                        <styled.textSection3>✅ Cashback e cupons gerenciados pelo restaurante.</styled.textSection3>
-                        <styled.textSection3>✅ Relatórios inteligentes sobre pedidos e clientes.</styled.textSection3>
-                        <styled.textSection3>✅ Programa de indicações para atrair novos clientes.</styled.textSection3>
-                    </styled.containerContent3>
+                        <styled.Card>
+                            <styled.circle />
+                            <styled.title2Section3>
+                                Ferramentas de crescimento e fidelização
+                            </styled.title2Section3>
+                            <styled.textSection3>✅ Cashback e cupons gerenciados pelo restaurante.</styled.textSection3>
+                            <styled.textSection3>✅ Relatórios inteligentes sobre pedidos e clientes.</styled.textSection3>
+                            <styled.textSection3>✅ Programa de indicações para atrair novos clientes.</styled.textSection3>
+                        </styled.Card>
+                    </styled.containerCard>
                 </styled.containerSection3>
+                <styled.containerSection4>
+                    <styled.containerContentSection4>
+                        <styled.titleSection4>
+                        Cadastre seu estabelecimento aqui!
+                        </styled.titleSection4>
+                        <styled.buttonCadrastNow2>
+                            Cadrastrar agora
+                        </styled.buttonCadrastNow2>
+                    </styled.containerContentSection4>
+                </styled.containerSection4>
+
             </styled.generalContainer>
         </React.Fragment>
     );

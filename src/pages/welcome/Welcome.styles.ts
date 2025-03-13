@@ -4,7 +4,7 @@ export const generalContainer = styled.section`
     display: flex;
     width: 100vw;
     height: 100%;
-    border: 1px black solid;
+    /* border: 1px black solid; */
     flex-direction: column;
 `;
 
@@ -115,24 +115,36 @@ export const buttonCadrastNow = styled.button`
     font-weight: 700;
     line-height: 100%;
     letter-spacing: 0%;
-    margin-top: 70px;
+    margin-top: 76px;
 `;
 
 export const containerSection3 = styled.section`
-    border: 1px solid blueviolet;
+    /* border: 1px solid blueviolet; */
     width: 100%;
-    height: 800px;
+    height: 700px;
     display: flex;
-    justify-content: space-around;
+    gap: 200px;
 `;
 
-export const containerContent3 = styled.div`
-    border: 1px solid red;
+export const containerCard = styled.div`
+    /* border: 1px solid yellow; */
+    height: 300px;
+    width: 1000px;
+    display: flex;
+    gap: 220px;
+    margin-top: 50px;
+    margin-left: 106px;
+    
+`;
+
+export const Card = styled.div`
+    /* border: 1px solid red; */
     width: 242px;
     height: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: auto;
 `;
 
 export const circle = styled.div`
@@ -140,8 +152,9 @@ export const circle = styled.div`
     height: 100px;
     background-color: #D9D9D9;
     border-radius: 50%;
-    border: 1px solid blueviolet;
-    
+    margin-bottom: 20px;
+    margin-right: 50px;
+    /* border: 1px solid red; */
 `;
 
 export const titleSection3 = styled.h3`
@@ -152,7 +165,8 @@ export const titleSection3 = styled.h3`
     line-height: 36px;
     letter-spacing: 0%;
     color: #1E1E1E;
-    border: 1px solid blueviolet;
+    /* border: 1px solid blueviolet; */
+    margin-bottom: 52px;
 `;
 
 export const title2Section3 = styled(titleSection3)`
@@ -165,5 +179,37 @@ export const textSection3 = styled.p`
     line-height: 36px;
     letter-spacing: 0%;
     color: #000000;
-    border: 1px solid blueviolet;
+    /* border: 1px solid blueviolet; */
+    margin-bottom: 16px;
+`;
+
+export const containerSection4 = styled.section`
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    background-color: #D9D9D940;
+`;
+
+export const containerContentSection4 = styled.div`
+    /* border: 1px solid blue; */
+    width: 529px;
+    height: 196px;
+    margin-left: 750px;
+`;
+
+export const titleSection4 = styled.h2`
+    width: 529px;
+    height: 95px;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #1E1E1E;
+`;
+
+export const buttonCadrastNow2 = styled(buttonCadrastNow)`
+    margin-top: 45px;
 `;
