@@ -5,7 +5,7 @@ interface PropsFooter {
 }
 
 export const ContainerFooter = styled.section <PropsFooter>`
-    width: 100%;
+    width: 100vw;
     height: 288px;
     background-color: #FAA613;
     margin-top: ${(props)=> props.marginFooter}px;
