@@ -179,10 +179,10 @@ export default function PurchaseConfirmation() {
 
 							<div>
 								<Form.Field>
-									<Form.Label htmlFor='client_address_number'>
+									<Form.Label htmlFor='client_address_number' >
 										Número:
 									</Form.Label>
-									<Form.Input inputSize='114px' name='client_address_number' />
+									<Form.Input inputSize='114px' name='client_address_number'/>
 								</Form.Field>
 								{errors.client_address_number && (
 									<span>{errors.client_address_number.message}</span>
@@ -273,7 +273,7 @@ export default function PurchaseConfirmation() {
 						<styled.paymentMethodMoneyCheckbox type='checkbox' />
 						<styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
 					</styled.paymentMethodMoneyContainer>
-					<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' />
+					<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />
 					<styled.FormButton
 						type='submit'
 						disabled={handleNewOrderMutation.isPending}
