@@ -2,6 +2,7 @@ import { ComponentProps } from 'react';
 import styled from 'styled-components';
 import pix from '../../assets/pix.png'
 import dinheiro from '../../assets/dinheiro.png'
+import qrcode from '../../assets/qrcode.png'
 
 type IBanner = ComponentProps<'div'> & {
 	src: string;
@@ -52,7 +53,6 @@ export const Content = styled.div`
 `;
 
 export const FormContainer = styled.form`
-	/* margin-block: 25px 72px; */
 	margin-bottom: 30px;
 	display: flex;
 	align-items: center;
@@ -64,7 +64,6 @@ export const FormContainer = styled.form`
 export const FormLine = styled.div`
 	display: flex;
 	align-items: flex-start;
-	/* justify-content: space-between; */
 
 	max-width: 1268px;
 	width: 100%;
@@ -110,7 +109,6 @@ export const TextContainer = styled.div`
 	width: 100%;
 	margin-top: 15px;
 	margin-bottom: 5px;
-	/* border: solid 1px red; */
 	p {
 		font-size: 32px;
 		font-weight: 600;
@@ -119,7 +117,6 @@ export const TextContainer = styled.div`
 `;
 
 export const containerButton = styled.div`
-/* border: solid 1px rebeccapurple; */
 width: 100%;
 height: 180px;
 display: flex;
@@ -147,7 +144,10 @@ export const buttonOption = styled.button`
 	&:hover{
 		background-color:rgba(250, 166, 19, 0.16);
 		border: solid 1px #FAA613;
-		;
+	}
+	&.active {
+		background-color:rgba(250, 166, 19, 0.16);
+		border: solid 1px #FAA613;
 	}
 `;
 
@@ -162,7 +162,6 @@ export const textOption = styled.p`
 `;
 
 export const totalvalueContainer = styled.div`
-	/* border: solid 1px black; */
 	width: 80%;
 	height: 50px;
 	display: flex;
@@ -183,7 +182,6 @@ export const totalValueText2 = styled(totalValueText)`
 	margin: 6px;
 `;
 export const paymentMethodMoneyGeneralContainer = styled.div`
-	/* border: solid 1px blue; */
 	width: 76%;
 	height: 250px;
 	margin-top: 20px;
@@ -192,7 +190,6 @@ export const paymentMethodMoneyGeneralContainer = styled.div`
 export const paymentMethodMoneyContainer = styled.div`
 	display: flex;
 	align-items: center;
-	/* border: 1px solid blue; */
 	margin-bottom: 20px;
 	gap: 10px;
 `;
@@ -201,6 +198,7 @@ export const paymentMethodMoneyCheckbox = styled.input`
 	width: 22px;
 	height: 22px;
 	border:solid 2px #737373;
+	
 `;
 
 export const paymentMethodMoneyText = styled.p`
@@ -208,7 +206,6 @@ export const paymentMethodMoneyText = styled.p`
 	height: 32px;
 	font-size: 24px;
 	font-weight: 400;
-	/* border: solid 2px red; */
 `;
 
 export const paymentMethodMoneyInput = styled.input`
@@ -217,7 +214,30 @@ export const paymentMethodMoneyInput = styled.input`
 	width: 396px;
 	height: 40px;
 	
-
 	font-size: 24px;
 	font-weight: 400;
+
+	&:focus-visible{
+		outline: none; 
+	}
 `;
+
+export const paymentMethodPixGeneralContainer = styled.div`
+	height: 350px;
+	width: 1020px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 15px;
+	margin-bottom: 30px;
+`;
+
+export const paymentMethodPixImg = styled.div`
+	width: 228px;
+	height: 212px;
+	background-image: url(${qrcode});
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+`; 
