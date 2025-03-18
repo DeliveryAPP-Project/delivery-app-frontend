@@ -4,20 +4,17 @@ export const generalContainer = styled.section`
     display: flex;
     width: 100vw;
     height: 100%;
-    /* border: 1px black solid; */
     flex-direction: column;
 `;
 
 export const containerSection1 = styled.section`
     height: 566px;
     width: 100%;
-    /* border: 1px red solid; */
     display: flex;
 `;
 export const containerContent = styled.div`
     width: 776px;
     height: 100%;
-    /* border: 1px blue solid; */
     display: flex;
     align-items: center;
 
@@ -27,7 +24,6 @@ export const containerText = styled.div`
     height: 468px;
     margin: 114px;
     margin-left: 106px;
-    /* border: 1px yellow solid; */
 `;
 
 export const titleWelcome = styled.h1`
@@ -35,7 +31,7 @@ export const titleWelcome = styled.h1`
     height: 308px;
     font-size: 64px;
     font-weight: 700;
-    line-height: 100%;
+    line-height: 116%;
     letter-spacing: 0%;
     color: #1E1E1E;
 `;
@@ -47,6 +43,7 @@ export const text1Welcome = styled.p`
     font-weight: 600;
     color: #1E1E1E;
     margin-top: 42px;
+    line-height: 150%;
 `;
 export const imageWelcome = styled(containerContent)`
     background-color:  #D9D9D940;
@@ -56,7 +53,6 @@ export const containerSection2 = styled.section`
     display: flex;
     width: 100%;
     height: 465px;
-    /* border: 1px solid black; */
     background-color: #D9D9D940;
 `;
 
@@ -65,13 +61,11 @@ export const containerContentSection2 = styled.div`
     height: 321px;
     margin-left: 105px;
     margin-top: 65px;
-    /* border: 1px solid red; */
 `;
 
 export const container2ContentSection2 = styled.div`
     width: 620px;
     height: 380px;
-    /* border: 1px blue solid; */
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -100,7 +94,8 @@ export const titleSection2 = styled.h2`
     height: 192px;
     font-size: 40px;
     font-weight: 600;
-    line-height: 100%;
+    line-height: 116%;
+    letter-spacing: 0%;
 `;
 
 export const buttonCadrastNow = styled.button`
@@ -119,7 +114,6 @@ export const buttonCadrastNow = styled.button`
 `;
 
 export const containerSection3 = styled.section`
-    /* border: 1px solid blueviolet; */
     width: 100%;
     height: 700px;
     display: flex;
@@ -127,18 +121,15 @@ export const containerSection3 = styled.section`
 `;
 
 export const containerCard = styled.div`
-    /* border: 1px solid yellow; */
     height: 300px;
     width: 1000px;
     display: flex;
     gap: 220px;
     margin-top: 50px;
     margin-left: 106px;
-    
 `;
 
 export const Card = styled.div`
-    /* border: 1px solid red; */
     width: 242px;
     height: auto;
     display: flex;
@@ -152,9 +143,8 @@ export const circle = styled.div`
     height: 100px;
     background-color: #D9D9D9;
     border-radius: 50%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     margin-right: 50px;
-    /* border: 1px solid red; */
 `;
 
 export const titleSection3 = styled.h3`
@@ -165,8 +155,7 @@ export const titleSection3 = styled.h3`
     line-height: 36px;
     letter-spacing: 0%;
     color: #1E1E1E;
-    /* border: 1px solid blueviolet; */
-    margin-bottom: 52px;
+    margin-bottom: 40px;
 `;
 
 export const title2Section3 = styled(titleSection3)`
@@ -179,12 +168,10 @@ export const textSection3 = styled.p`
     line-height: 36px;
     letter-spacing: 0%;
     color: #000000;
-    /* border: 1px solid blueviolet; */
     margin-bottom: 16px;
 `;
 
 export const containerSection4 = styled.section`
-    /* border: 1px solid red; */
     width: 100%;
     height: 320px;
     display: flex;
@@ -193,7 +180,6 @@ export const containerSection4 = styled.section`
 `;
 
 export const containerContentSection4 = styled.div`
-    /* border: 1px solid blue; */
     width: 529px;
     height: 196px;
     margin-left: 750px;
@@ -205,7 +191,7 @@ export const titleSection4 = styled.h2`
     font-size: 40px;
     font-weight: 600;
     text-align: center;
-    line-height: 100%;
+    line-height: 116%;
     letter-spacing: 0%;
     color: #1E1E1E;
 `;

@@ -7,7 +7,7 @@ import { useCart } from '../../context/cartContext';
 
 export default function Header() {
 	const { pathname } = useLocation();
-	const showLinks = pathname === '/' || (pathname === '/faq' && true);
+	const showLinks = pathname === '/' || (pathname === '/faq' && true) || (pathname === '/welcome');
 	const { cart } = useCart()
 
 	return (
@@ -22,12 +22,17 @@ export default function Header() {
 					<styled.LinksContainer>
 						{showLinks && (
 							<>
+								{pathname === '/welcome' ? <styled.registryContainer>
+									<p> Buscando expandir seu negócio? </p>
+									<span> Cadastre-se grátis </span>
+								</styled.registryContainer> : ''}
 								<styled.LinkContent>
 									<Link to='/#sobre'>Sobre</Link>
 								</styled.LinkContent>
 								<styled.LinkContent>
 									<Link to='/contato'>Contato</Link>
 								</styled.LinkContent>
+
 							</>
 						)}
 						<styled.ContainerIconCart>

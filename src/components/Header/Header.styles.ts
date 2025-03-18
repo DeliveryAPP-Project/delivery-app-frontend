@@ -78,7 +78,6 @@ export const CartLink = styled(Link)`
   }
 `;
 
-
 export const ContainerIconCart = styled.div`
   display: flex;
   flex-direction: row-reverse;
@@ -101,4 +100,25 @@ export const CircusSpan = styled.span`
   bottom: 1.9rem;
   right: 1.5rem;
   font-size: 1rem;
+`;
+
+export const registryContainer = styled.div`
+  height: 35px;
+  width: 200px;
+  text-align: center;
+  margin-top: 10px;
+  >p{
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000000;
+  };
+  >span{
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000000;
+  }
 `;
