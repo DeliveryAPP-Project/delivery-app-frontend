@@ -24,7 +24,7 @@ const purchaseConfirmationSchema = z.object({
 				.map((word) => word)
 				.join(' ');
 		}),
-	client_cellphone: z.string().trim().nonempty('Este campo é obrigatório'),
+	client_cellphone: z.string().trim().nonempty('Este campo é obrigatório').regex(/^\(\d{2}\) \d{5}-\d{4}$/, 'Formato inválido. Ex: (11) 91234-5678'),
 	client_address: z.string().trim().nonempty('Este campo é obrigatório'),
 	client_address_number: z.string().trim().nonempty('Este campo é obrigatório'),
 	client_address_complement: z.string().trim().optional(),
@@ -32,7 +32,7 @@ const purchaseConfirmationSchema = z.object({
 		.string()
 		.trim()
 		.nonempty('Este campo é obrigatório'),
-	client_zip_code: z.string().trim().nonempty('Este campo é obrigatório'),
+	client_zip_code: z.string().trim().nonempty('Este campo é obrigatório').regex(/^\d{5}-\d{3}$/, 'Formato inválido. Ex: 12345-678'),
 });
 
 type IPurchaseConfirmation = z.infer<typeof purchaseConfirmationSchema>;
@@ -148,7 +148,7 @@ export default function PurchaseConfirmation() {
 							<div>
 								<Form.Field>
 									<Form.Label htmlFor='client_name'>Nome completo:</Form.Label>
-									<Form.Input name='client_name' inputSize='600px' />
+									<Form.Input name='client_name' inputSize='600px' type='text' />
 								</Form.Field>
 								{errors.client_name && (
 									<span>{errors.client_name.message}</span>
@@ -158,7 +158,7 @@ export default function PurchaseConfirmation() {
 							<div>
 								<Form.Field>
 									<Form.Label htmlFor='client_cellphone'>Telefone:</Form.Label>
-									<Form.Input inputSize='300px' name='client_cellphone' />
+									<Form.Input inputSize='300px' name='client_cellphone' type='tel' mask='(99) 99999-9999' />
 								</Form.Field>
 								{errors.client_cellphone && (
 									<span>{errors.client_cellphone.message}</span>
@@ -170,7 +170,7 @@ export default function PurchaseConfirmation() {
 							<div>
 								<Form.Field>
 									<Form.Label htmlFor='client_address'>Endereço:</Form.Label>
-									<Form.Input inputSize='400px' name='client_address' />
+									<Form.Input inputSize='400px' name='client_address' type='text' />
 								</Form.Field>
 								{errors.client_address && (
 									<span>{errors.client_address.message}</span>
@@ -182,7 +182,7 @@ export default function PurchaseConfirmation() {
 									<Form.Label htmlFor='client_address_number' >
 										Número:
 									</Form.Label>
-									<Form.Input inputSize='114px' name='client_address_number'/>
+									<Form.Input inputSize='114px' name='client_address_number' type='number' />
 								</Form.Field>
 								{errors.client_address_number && (
 									<span>{errors.client_address_number.message}</span>
@@ -197,6 +197,7 @@ export default function PurchaseConfirmation() {
 									<Form.Input
 										inputSize='100%'
 										name='client_address_complement'
+										type='text'
 									/>
 								</Form.Field>
 								{errors.client_address_complement && (
@@ -214,6 +215,7 @@ export default function PurchaseConfirmation() {
 									<Form.Input
 										inputSize='740px'
 										name='client_address_neighborhood'
+										type='text'
 									/>
 								</Form.Field>
 								{errors.client_address_neighborhood && (
@@ -224,7 +226,7 @@ export default function PurchaseConfirmation() {
 							<div>
 								<Form.Field>
 									<Form.Label htmlFor='client_zip_code'>Cep:</Form.Label>
-									<Form.Input inputSize='300px' name='client_zip_code' />
+									<Form.Input inputSize='300px' name='client_zip_code' type='text' mask="99999-999" />
 								</Form.Field>
 								{errors.client_zip_code && (
 									<span>{errors.client_zip_code.message}</span>
@@ -237,66 +239,57 @@ export default function PurchaseConfirmation() {
 								Forma de pagamento
 							</p>
 						</styled.TextContainer>
-						{/* <styled.FormButton
-							type='submit'
-							disabled={handleNewOrderMutation.isPending}
-						>
-							{handleNewOrderMutation.isPending
-								? 'Enviando Pedido'
-								: 'Continuar'}
-						</styled.FormButton> */}
+
+						{showOption && (
+							<styled.containerButton>
+								<styled.buttonOption onClick={handlePixClick} type='button'>
+									<styled.textOption>
+										Pix
+									</styled.textOption>
+								</styled.buttonOption>
+								<styled.buttonOption2 onClick={handleMoneyClick} className={buttonActive ? 'active' : ''} type='button'>
+									<styled.textOption>
+										Dinheiro
+									</styled.textOption>
+								</styled.buttonOption2>
+							</styled.containerButton>
+						)}
+
+						{showPrice && (<styled.totalvalueContainer>
+							<styled.totalValueText>Valor total:  </styled.totalValueText>
+							<styled.totalValueText2>R$ 00,00{ }</styled.totalValueText2>
+						</styled.totalvalueContainer>)}
+
+						{showMoney && (<styled.paymentMethodMoneyGeneralContainer>
+							<styled.paymentMethodMoneyContainer>
+								<styled.paymentMethodMoneyCheckbox type='checkbox' />
+								<styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
+							</styled.paymentMethodMoneyContainer>
+							<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />
+							<styled.FormButton
+								type='submit'
+								disabled={handleNewOrderMutation.isPending}
+							>
+								{handleNewOrderMutation.isPending
+									? 'Enviando Pedido'
+									: 'Continuar'}
+							</styled.FormButton>
+						</styled.paymentMethodMoneyGeneralContainer>)}
+
+						{showPix && (<styled.paymentMethodPixGeneralContainer>
+							<styled.paymentMethodPixImg />
+							<styled.FormButton
+								type='submit'
+								disabled={handleNewOrderMutation.isPending}
+							>
+								{handleNewOrderMutation.isPending
+									? 'Enviando Pedido'
+									: 'Já fiz o pagamento'}
+							</styled.FormButton>
+						</styled.paymentMethodPixGeneralContainer>
+						)}
 					</styled.FormContainer>
 				</FormProvider>
-
-				{showOption && (
-					<styled.containerButton>
-						<styled.buttonOption onClick={handlePixClick}>
-							<styled.textOption>
-								Pix
-							</styled.textOption>
-						</styled.buttonOption>
-						<styled.buttonOption2 onClick={handleMoneyClick} className={buttonActive ? 'active' : ''}>
-							<styled.textOption>
-								Dinheiro
-							</styled.textOption>
-						</styled.buttonOption2>
-					</styled.containerButton>
-				)}
-
-				{showPrice && (<styled.totalvalueContainer>
-					<styled.totalValueText>Valor total:  </styled.totalValueText>
-					<styled.totalValueText2>R$ 00,00{ }</styled.totalValueText2>
-				</styled.totalvalueContainer>)}
-
-				{showMoney && (<styled.paymentMethodMoneyGeneralContainer>
-					<styled.paymentMethodMoneyContainer>
-						<styled.paymentMethodMoneyCheckbox type='checkbox' />
-						<styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
-					</styled.paymentMethodMoneyContainer>
-					<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />
-					<styled.FormButton
-						type='submit'
-						disabled={handleNewOrderMutation.isPending}
-					>
-						{handleNewOrderMutation.isPending
-							? 'Enviando Pedido'
-							: 'Continuar'}
-					</styled.FormButton>
-				</styled.paymentMethodMoneyGeneralContainer>)}
-
-				{showPix && (<styled.paymentMethodPixGeneralContainer>
-					<styled.paymentMethodPixImg />
-					<styled.FormButton
-						type='submit'
-						disabled={handleNewOrderMutation.isPending}
-					>
-						{handleNewOrderMutation.isPending
-							? 'Enviando Pedido'
-							: 'Já fiz o pagamento'}
-					</styled.FormButton>
-				</styled.paymentMethodPixGeneralContainer>
-				)}
-
 			</styled.Content>
 		</styled.Container>
 	);
