@@ -9,6 +9,7 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	row-gap: 2.8rem;
+	margin-bottom: 30px;
 `;
 
 export const BannerImg = styled.div<IBannerImg>`

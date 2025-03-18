@@ -6,6 +6,7 @@ export const Content = styled.section`
 	align-items: center;
 
   margin-top: 10rem;
+  margin-bottom: 30px;
 `;
 
 export const FormSearch = styled.form`

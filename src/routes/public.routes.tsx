@@ -8,12 +8,14 @@ import NotFound404 from '../pages/NotFound404';
 import PurchaseConfirmation from '../pages/PurchaseConfirmation';
 import Restaurant from '../pages/Restaurant';
 import Restaurants from '../pages/Restaurants';
+import { Welcome } from '../pages/welcome';
 
 export function PublicRoutes() {
 	return (
 		<Routes>
 			<Route path='/' element={<Layout />}>
 				<Route index element={<Home />} />
+				<Route path='welcome' element={<Welcome />} />
 				<Route path='restaurantes' element={<Restaurants />} />
 				<Route path='restaurantes/:id' element={<Restaurant />} />
 				<Route path='faq' element={<Faq />} />
