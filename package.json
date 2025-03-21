@@ -13,6 +13,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@tanstack/react-query": "^5.20.5",
     "axios": "^1.5.0",
+    "delivery-app": "file:",
     "eslint": "^8.56.0",
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "react": "^18.2.0",
