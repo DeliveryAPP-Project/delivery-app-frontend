@@ -15,7 +15,6 @@ export function PublicRoutes() {
 		<Routes>
 			<Route path='/' element={<Layout />}>
 				<Route index element={<Welcome />} />
-				{/* <Route path='welcome' element={<Home />} /> */}
 				<Route path='restaurantes' element={<Restaurants />} />
 				<Route path='restaurantes/:id' element={<Restaurant />} />
 				<Route path='faq' element={<Faq />} />
