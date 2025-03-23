@@ -4,7 +4,7 @@ interface ButtonProps {
     filled: boolean;
 }
 
-export const container = styled.div`
+export const Container = styled.div`
     position: relative;
     position: fixed;
     width: 90vw;
@@ -21,7 +21,7 @@ export const container = styled.div`
     padding: 32px;
 `;
 
-export const buttonClose = styled.span`
+export const ButtonClose = styled.span`
     position: absolute;
     right: 0;
     top: 0;
@@ -33,17 +33,17 @@ export const buttonClose = styled.span`
     }
 `;
 
-export const img = styled.img`
+export const Img = styled.img`
     width: 16px;
     height: 16px;
 `;
 
-export const label = styled.label`
+export const Label = styled.label`
     font-weight: 400;
     font-size: 18px;
 `;
 
-export const input = styled.input`
+export const Input = styled.input`
     margin-top: 7px;
     width: 320px;
     padding: 10px;
@@ -53,13 +53,13 @@ export const input = styled.input`
     border: silver 1px solid;
 `;
 
-export const span = styled.span`
+export const Span = styled.span`
     color: red; /* Tornando a mensagem de erro mais visível */
     font-weight: 400;
     font-size: 12px;
 `;
 
-export const button = styled.button<ButtonProps>`
+export const Button = styled.button<ButtonProps>`
     width: 100%;
     height: 56px;
     border-radius: 50px;

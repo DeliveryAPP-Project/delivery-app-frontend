@@ -25,16 +25,16 @@ export default function ModalRegister({ isOpen, onClose }: ModalRegisterProps) {
     return (
         <>
             {isOpen && (
-                <styled.container>
-                    <styled.buttonClose onClick={onClose}>
-                        <styled.img src={close} alt="Fechar modal" />
-                    </styled.buttonClose>
+                <styled.Container>
+                    <styled.ButtonClose onClick={onClose}>
+                        <styled.Img src={close} alt="Fechar modal" />
+                    </styled.ButtonClose>
 
-                    <styled.label>
+                    <styled.Label>
                         E-mail *
-                    </styled.label>
+                    </styled.Label>
 
-                    <styled.input
+                    <styled.Input
                         type="email"
                         placeholder="Exemplo@e-mail.com"
                         value={email}
@@ -43,19 +43,19 @@ export default function ModalRegister({ isOpen, onClose }: ModalRegisterProps) {
                     />
 
                     {!isEmailValid && (
-                        <styled.span style={{ color: 'silver' }}>
+                        <styled.Span style={{ color: 'silver' }}>
                             *E-mail Obrigatório
-                        </styled.span>
+                        </styled.Span>
                     )}
 
-                    <styled.button
+                    <styled.Button
                         type="submit"
                         filled={isEmailValid}
                         disabled={!isEmailValid}
                     >
                         Cadastrar
-                    </styled.button>
-                </styled.container>
+                    </styled.Button>
+                </styled.Container>
             )}
         </>
     );
