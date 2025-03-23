@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { Cart } from '../pages/Cart';
 import Faq from '../pages/Faq';
-import Home from '../pages/Home';
 import NotFound404 from '../pages/NotFound404';
 import PurchaseConfirmation from '../pages/PurchaseConfirmation';
 import Restaurant from '../pages/Restaurant';
