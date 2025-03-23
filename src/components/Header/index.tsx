@@ -1,14 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/HLogo.png';
-import cartt from '../../assets/shopping-cart.png';
 import * as styled from './Header.styles';
-import { useCart } from '../../context/cartContext';
 
 
 export default function Header() {
 	const { pathname } = useLocation();
 	const showLinks = pathname === '/' || (pathname === '/faq' && true) || (pathname === '/welcome');
-	const { cart } = useCart()
+	// const { cart } = useCart()
 
 	return (
 		<styled.Container>
