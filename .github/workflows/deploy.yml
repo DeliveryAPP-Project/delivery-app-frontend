@@ -1,0 +1,24 @@
+name: Deploy na AWS
+
+on:
+  push:
+    branches:
+      - homologacao  # Altere para a branch desejada
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configurar SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_actions_key
+          chmod 600 ~/.ssh/github_actions_key
+          ssh-keyscan -H ${{ secrets.AWS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Rodar Docker Compose na Instância
+        run: |
+          ssh -i ~/.ssh/github_actions_key ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} << 'EOF'
+            sudo docker-compose up --build -d
+          EOF
