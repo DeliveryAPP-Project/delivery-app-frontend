@@ -8,12 +8,13 @@ import PurchaseConfirmation from '../pages/PurchaseConfirmation';
 import Restaurant from '../pages/Restaurant';
 import Restaurants from '../pages/Restaurants';
 import { Welcome } from '../pages/welcome';
+import ModalRegisterSucess from '../components/ModalRegisterSucess';
 
 export function PublicRoutes() {
 	return (
 		<Routes>
 			<Route path='/' element={<Layout />}>
-				<Route index element={<Welcome />} />
+				<Route index element={<ModalRegisterSucess />} />
 				<Route path='restaurantes' element={<Restaurants />} />
 				<Route path='restaurantes/:id' element={<Restaurant />} />
 				<Route path='faq' element={<Faq />} />
