@@ -8,14 +8,6 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+EXPOSE 5173
 
-FROM nginx:alpine
-
-COPY --from=build /app/dist /usr/share/nginx/html
-
-ENV VITE_API_URL="http://54.167.33.212:5000/api/v1/"
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+RUN npm run dev
