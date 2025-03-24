@@ -9,7 +9,7 @@ interface ModalRegisterProps {
 
 export default function ModalRegister({ isOpen, onClose }: ModalRegisterProps) {
     const [email, setEmail] = useState("");
-    const [isEmailValid, setIsEmailValid] = useState(true);
+    const [isEmailValid, setIsEmailValid] = useState(false);
 
     const validateEmail = (email: string) => {
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
