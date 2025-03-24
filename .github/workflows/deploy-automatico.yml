@@ -1,0 +1,19 @@
+name: Deploy Hamper
+
+on:
+  push:
+    branches: [homologacao]  # Executa quando houver push/merge na branch "homologacao"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Conectar no servidor AWS e atualizar
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USER }}
+          key: ${{ secrets.AWS_SSH_KEY }}
+          script: |
+            git pull origin homologacao        # Puxa as alterações
+            docker-compose up --build -d      # Reconstrói e sobe os containers em background
