@@ -12,11 +12,6 @@ on:
         description: 'Branch para deploy (padrão: homologacao)'
         required: false
         default: 'homologacao'
-      environment:
-        description: 'Ambiente (homolog/prod)'
-        required: true
-        default: 'homolog'
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
