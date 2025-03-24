@@ -20,7 +20,7 @@ jobs:
             git checkout homologacao
             git pull
             cd ..
-            cd cd delivery-app-backend/
+            cd delivery-app-backend/
             git checkout homologacao
             git pull
             cd ..
