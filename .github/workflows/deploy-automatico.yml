@@ -1,21 +1,14 @@
-name: Deploy Hamper
+name: Deploy Homologação
 
 on:
-  # --- Disparo AUTOMÁTICO (quando houver push/merge na branch 'homologacao') ---
   push:
     branches: [homologacao]
+  workflow_dispatch:  # Agora o disparo manual funcionará!
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # Passo 1: Mostra os parâmetros (apenas para debug)
-      - name: Verificar inputs
-        run: |
-          echo "Branch selecionada: ${{ github.event.inputs.branch || 'homologacao' }}"
-          echo "Ambiente: ${{ github.event.inputs.environment }}"
-
-      # Passo 2: Conecta ao servidor AWS e executa os comandos
       - name: Deploy no servidor AWS
         uses: appleboy/ssh-action@master
         with:
@@ -23,15 +16,6 @@ jobs:
           username: ${{ secrets.AWS_SSH_USER }}
           key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
           script: |
-         
-            # Atualiza o código (usando a branch do input ou 'homologacao')
-            git fetch origin
-            git checkout ${{ github.event.inputs.branch || 'homologacao' }}
-            git pull origin ${{ github.event.inputs.branch || 'homologacao' }}
-
-            # Reconstrói e sobe os containers
-            docker-compose down
+            cd /home/ubuntu/meu-projeto
+            git pull origin homologacao
             docker-compose up --build -d
-
-            # Limpa imagens não utilizadas (opcional)
-            docker image prune -f
