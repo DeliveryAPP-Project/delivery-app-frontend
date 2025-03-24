@@ -1,0 +1,20 @@
+name: Deploy Homologação
+
+on:
+  push:
+    branches: [homologacao]
+  workflow_dispatch:  # Agora o disparo manual funcionará!
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy no servidor AWS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_SSH_HOST }}
+          username: ${{ secrets.AWS_SSH_USER }}
+          key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
+          script: |
+            git pull origin homologacao
+            docker-compose up --build -d
