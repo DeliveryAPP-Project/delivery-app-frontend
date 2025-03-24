@@ -34,18 +34,22 @@ export default function Header() {
 								<styled.LinkContent>
 									<Link to='/contato'>Contato</Link>
 								</styled.LinkContent>
-								
+
 
 							</>
 						)}
-						{pathname !== '/' && pathname === '/404' && (
-							<styled.ContainerIconCart>
-								{cart.numberProducts >= 1 ? <styled.CircusSpan>{cart.numberProducts}</styled.CircusSpan> : ""}
-								<styled.CartLink to='/carrinho'>
-									<img src={cartImg} alt='Imagem de carrinho de compras' />
-								</styled.CartLink>
-							</styled.ContainerIconCart>
-						)}
+						{(pathname !== '/' && pathname !== '/404') && (
+        <styled.ContainerIconCart>
+            {cart.numberProducts >= 1 ? (
+                <styled.CircusSpan>{cart.numberProducts}</styled.CircusSpan>
+            ) : (
+                ""
+            )}
+            <styled.CartLink to='/carrinho'>
+                <img src={cartImg} alt='Imagem de carrinho de compras' />
+            </styled.CartLink>
+        </styled.ContainerIconCart>
+    )}
 
 
 					</styled.LinksContainer>
