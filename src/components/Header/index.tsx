@@ -38,18 +38,18 @@ export default function Header() {
 
 							</>
 						)}
-						{(pathname !== '/' && pathname !== '/404') && (
-        <styled.ContainerIconCart>
-            {cart.numberProducts >= 1 ? (
-                <styled.CircusSpan>{cart.numberProducts}</styled.CircusSpan>
-            ) : (
-                ""
-            )}
-            <styled.CartLink to='/carrinho'>
-                <img src={cartImg} alt='Imagem de carrinho de compras' />
-            </styled.CartLink>
-        </styled.ContainerIconCart>
-    )}
+						{(pathname !== '/') && (
+							<styled.ContainerIconCart>
+								{cart.numberProducts >= 1 ? (
+									<styled.CircusSpan>{cart.numberProducts}</styled.CircusSpan>
+								) : (
+									""
+								)}
+								<styled.CartLink to='/carrinho'>
+									<img src={cartImg} alt='Imagem de carrinho de compras' />
+								</styled.CartLink>
+							</styled.ContainerIconCart>
+						)}
 
 
 					</styled.LinksContainer>
