@@ -1,19 +1,49 @@
 name: Deploy Hamper
 
 on:
+  # --- Disparo AUTOMÁTICO (quando houver push/merge na branch 'homologacao') ---
   push:
-    branches: [homologacao]  # Executa quando houver push/merge na branch "homologacao"
+    branches: [homologacao]
+
+  # --- Disparo MANUAL (via botão no GitHub) ---
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch para deploy (padrão: homologacao)'
+        required: false
+        default: 'homologacao'
+      environment:
+        description: 'Ambiente (homolog/prod)'
+        required: true
+        default: 'homolog'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Conectar no servidor AWS e atualizar
+      # Passo 1: Mostra os parâmetros (apenas para debug)
+      - name: Verificar inputs
+        run: |
+          echo "Branch selecionada: ${{ github.event.inputs.branch || 'homologacao' }}"
+          echo "Ambiente: ${{ github.event.inputs.environment }}"
+
+      # Passo 2: Conecta ao servidor AWS e executa os comandos
+      - name: Deploy no servidor AWS
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.AWS_HOST }}
-          username: ${{ secrets.AWS_USER }}
-          key: ${{ secrets.AWS_SSH_KEY }}
+          host: ${{ secrets.AWS_SSH_HOST }}
+          username: ${{ secrets.AWS_SSH_USER }}
+          key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
           script: |
-            git pull origin homologacao        # Puxa as alterações
-            docker-compose up --build -d      # Reconstrói e sobe os containers em background
+         
+            # Atualiza o código (usando a branch do input ou 'homologacao')
+            git fetch origin
+            git checkout ${{ github.event.inputs.branch || 'homologacao' }}
+            git pull origin ${{ github.event.inputs.branch || 'homologacao' }}
+
+            # Reconstrói e sobe os containers
+            docker-compose down
+            docker-compose up --build -d
+
+            # Limpa imagens não utilizadas (opcional)
+            docker image prune -f
