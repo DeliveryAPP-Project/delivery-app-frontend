@@ -16,5 +16,12 @@ jobs:
           username: ${{ secrets.AWS_SSH_USER }}
           key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
           script: |
-            git pull origin homologacao
+            cd delivery-app-frontend/
+            git checkout homologacao
+            git pull
+            cd ..
+            cd cd delivery-app-backend/
+            git checkout homologacao
+            git pull
+            cd ..
             docker-compose up --build -d
