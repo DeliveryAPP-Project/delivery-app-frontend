@@ -9,7 +9,7 @@ export function Welcome() {
                     <styled.containerContent>
                         <styled.containerText>
                             <styled.titleWelcome>
-                                Seja bem-vindo!!! Venha fazer parte do time HAMPER!
+                                Seja bem-vindo! Venha fazer parte do time HAMPER!!!
                             </styled.titleWelcome>
                             <styled.text1Welcome>
                                 Entre na HAMPER e tenha um modelo financeiro amigável, controle total dos seus pedidos, ferramentas de crescimento e fidelização.
