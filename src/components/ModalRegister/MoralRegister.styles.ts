@@ -41,6 +41,7 @@ export const Img = styled.img`
 export const Label = styled.label`
     font-weight: 400;
     font-size: 18px;
+    margin-left: 16px;
 `;
 
 export const Input = styled.input`
