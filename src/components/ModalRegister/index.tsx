@@ -42,11 +42,11 @@ export default function ModalRegister({ isOpen, onClose }: ModalRegisterProps) {
                         required
                     />
 
-                    {!isEmailValid && (
-                        <styled.Span style={{ color: 'silver' }}>
-                            *E-mail Obrigatório
-                        </styled.Span>
-                    )}
+
+                    <styled.Span style={{ color: 'silver' }}>
+                        *E-mail Obrigatório
+                    </styled.Span>
+
 
                     <styled.Button
                         type="submit"
