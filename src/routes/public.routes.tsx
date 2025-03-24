@@ -8,6 +8,7 @@ import NotFound404 from '../pages/NotFound404';
 import PurchaseConfirmation from '../pages/PurchaseConfirmation';
 import Restaurant from '../pages/Restaurant';
 import Restaurants from '../pages/Restaurants';
+import RegistrationCompany from '../pages/RegistrationCompany';
 import { Welcome } from '../pages/welcome';
 
 export function PublicRoutes() {
@@ -20,11 +21,13 @@ export function PublicRoutes() {
 				<Route path='faq' element={<Faq />} />
 				<Route path='conclua-sua-compra' element={<PurchaseConfirmation />} />
 				<Route path='carrinho' element={<Cart />} />
+				<Route path='cadastre-sua-empresa' element={<RegistrationCompany/>}/>
 				<Route
 					path='*'
 					element={<NotFound404 />}
 					errorElement={<NotFound404 />}
 				/>
+				
 			</Route>
 		</Routes>
 	);
