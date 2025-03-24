@@ -46,12 +46,13 @@ export const Label = styled.label`
 
 export const Input = styled.input`
     margin-top: 7px;
-    width: 320px;
+    width: 415px;
     padding: 10px;
     height: 56px;
     display: flex;
     border-radius: 4px;
     border: silver 1px solid;
+
 `;
 
 export const Span = styled.span`
