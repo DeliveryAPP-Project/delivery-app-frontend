@@ -5,7 +5,7 @@ import ModalRegister from "../../components/ModalRegister";
 export function Welcome() {
     const [modal, setModal] = useState(false)
 
-    function handleModal() {
+    async function handleModal() {
         setModal(!modal)
     }
 
@@ -84,8 +84,8 @@ export function Welcome() {
                         <styled.titleSection4>
                             Cadastre seu estabelecimento aqui!
                         </styled.titleSection4>
-                        <styled.buttonCadrastNow2>
-                        Cadastrar agora
+                        <styled.buttonCadrastNow2 onClick={handleModal}>
+                            Cadastrar agora
                         </styled.buttonCadrastNow2>
                     </styled.containerContentSection4>
                 </styled.containerSection4>

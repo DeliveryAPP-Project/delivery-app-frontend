@@ -39,3 +39,15 @@ text-align: left;
 margin: 0 42px;
 margin-top: 30px;
 `
+
+export const ButtonClose = styled.span`
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 30px;
+    margin-right: 30px;
+    cursor: pointer;
+    :hover {
+        background-color: red;
+    }
+`;
