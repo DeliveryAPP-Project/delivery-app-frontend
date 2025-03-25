@@ -20,8 +20,4 @@ jobs:
             git checkout homologacao
             git pull
             cd ..
-            cd delivery-app-backend/
-            git checkout homologacao
-            git pull
-            cd ..
             docker-compose up --build -d
