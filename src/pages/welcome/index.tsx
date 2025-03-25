@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import * as styled from "./Welcome.styles";
+import ModalRegister from "../../components/ModalRegister";
 
 export function Welcome() {
+    const [modal, setModal] = useState(false)
+
+    function handleModal() {
+        setModal(!modal)
+    }
+
     return (
         <React.Fragment>
             <styled.generalContainer>
@@ -24,7 +31,7 @@ export function Welcome() {
                         <styled.titleSection2>
                             Conheça as vantagens de ser parceiro da HAMPER!
                         </styled.titleSection2>
-                        <styled.buttonCadrastNow>
+                        <styled.buttonCadrastNow onClick={handleModal}>
                             Cadastrar agora
                         </styled.buttonCadrastNow>
                     </styled.containerContentSection2>
@@ -75,13 +82,15 @@ export function Welcome() {
                 <styled.containerSection4>
                     <styled.containerContentSection4>
                         <styled.titleSection4>
-                        Cadastre seu estabelecimento aqui!
+                            Cadastre seu estabelecimento aqui!
                         </styled.titleSection4>
                         <styled.buttonCadrastNow2>
                         Cadastrar agora
                         </styled.buttonCadrastNow2>
                     </styled.containerContentSection4>
                 </styled.containerSection4>
+
+                <ModalRegister isOpen={modal} onClose={handleModal} />
 
             </styled.generalContainer>
         </React.Fragment>
