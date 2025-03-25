@@ -44,7 +44,7 @@ export default function PurchaseConfirmation() {
 	const [showOption, setShowoption] = useState(true);
 	const [showPrice, setShowPrice] = useState(true);
 	const [buttonActive, setbuttonActive] = useState(false)
-
+	const [showChange, setShowChange] = useState(false)
 
 	const purchaseForm = useForm<IPurchaseConfirmation>({
 		resolver: zodResolver(purchaseConfirmationSchema),
@@ -127,6 +127,9 @@ export default function PurchaseConfirmation() {
 		setShowMoney(true)
 		setShowPrice(false)
 		setbuttonActive(true)
+	}
+	function handleChangeClick() {
+		setShowChange(!showChange)
 	}
 
 	return (
@@ -262,10 +265,15 @@ export default function PurchaseConfirmation() {
 
 						{showMoney && (<styled.paymentMethodMoneyGeneralContainer>
 							<styled.paymentMethodMoneyContainer>
-								<styled.paymentMethodMoneyCheckbox type='checkbox' />
-								<styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
+								<styled.paymentMethodMoneyCheckbox type='checkbox' onClick={handleChangeClick} />
+
+								<styled.paymentMethodMoneyText >Precisa de troco </styled.paymentMethodMoneyText>
+
 							</styled.paymentMethodMoneyContainer>
-							<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />
+							
+							{showChange ? (<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />) : null }
+							
+							
 							<styled.FormButton
 								type='submit'
 								disabled={handleNewOrderMutation.isPending}
