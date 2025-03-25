@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormProvider, useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
+import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import bannerImg from '../../assets/banner-image-purchase-confirmation-page.png';
@@ -8,10 +8,10 @@ import charactersImg from '../../assets/characters.svg';
 import brandImg from '../../assets/logo.svg';
 import Form from '../../components/Form';
 
-import * as styled from './PurchaseConfirmation.styles';
+import { useEffect, useState } from 'react';
 import { useCart } from '../../context/cartContext';
 import { api } from '../../service/api';
-import { useState, useEffect } from 'react';
+import * as styled from './PurchaseConfirmation.styles';
 
 const purchaseConfirmationSchema = z.object({
     client_name: z
@@ -41,10 +41,10 @@ export default function PurchaseConfirmation() {
     const { cart } = useCart();
     const [showPix, setShowPix] = useState(false);
     const [showMoney, setShowMoney] = useState(false);
-    const [showOption, setShowoption] = useState(true);
+    const [, setShowoption] = useState(true);
     const [showPrice, setShowPrice] = useState(true);
     const [buttonActive, setbuttonActive] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(300); 
+    const [timeLeft, setTimeLeft] = useState(300);
 
     useEffect(() => {
         let timer: ReturnType<typeof setInterval>;
@@ -146,7 +146,7 @@ export default function PurchaseConfirmation() {
         setShowMoney(false);
         setShowoption(false);
         setShowPrice(false);
-        setTimeLeft(300); 
+        setTimeLeft(300);
     }
 
     function handleMoneyClick() {
