@@ -223,7 +223,7 @@ export const paymentMethodMoneyInput = styled.input`
 `;
 
 export const paymentMethodPixGeneralContainer = styled.div`
-	height: 350px;
+	height: 550px;
 	width: 1020px;
 	display: flex;
 	flex-direction: column;
@@ -232,6 +232,11 @@ export const paymentMethodPixGeneralContainer = styled.div`
 	margin-top: 15px;
 	margin-bottom: 30px;
 `;
+
+export const expiredCodeText = styled.h2`
+	font-size: 24px;
+	font-weight: 400;
+	`;
 
 export const paymentMethodPixImg = styled.div`
 	width: 228px;

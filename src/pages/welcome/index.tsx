@@ -84,8 +84,8 @@ export function Welcome() {
                         <styled.titleSection4>
                             Cadastre seu estabelecimento aqui!
                         </styled.titleSection4>
-                        <styled.buttonCadrastNow2 onClick={handleModal}>
-                            Cadrastrar agora
+                        <styled.buttonCadrastNow2>
+                        Cadastrar agora
                         </styled.buttonCadrastNow2>
                     </styled.containerContentSection4>
                 </styled.containerSection4>
