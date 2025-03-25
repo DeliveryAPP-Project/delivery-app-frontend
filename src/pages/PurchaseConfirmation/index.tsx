@@ -11,294 +11,319 @@ import Form from '../../components/Form';
 import * as styled from './PurchaseConfirmation.styles';
 import { useCart } from '../../context/cartContext';
 import { api } from '../../service/api';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const purchaseConfirmationSchema = z.object({
-	client_name: z
-		.string()
-		.trim()
-		.nonempty('Este campo é obrigatório')
-		.transform((name) => {
-			return name
-				.split(' ')
-				.map((word) => word)
-				.join(' ');
-		}),
-	client_cellphone: z.string().trim().nonempty('Este campo é obrigatório').regex(/^\(\d{2}\) \d{5}-\d{4}$/, 'Formato inválido. Ex: (11) 91234-5678'),
-	client_address: z.string().trim().nonempty('Este campo é obrigatório'),
-	client_address_number: z.string().trim().nonempty('Este campo é obrigatório'),
-	client_address_complement: z.string().trim().optional(),
-	client_address_neighborhood: z
-		.string()
-		.trim()
-		.nonempty('Este campo é obrigatório'),
-	client_zip_code: z.string().trim().nonempty('Este campo é obrigatório').regex(/^\d{5}-\d{3}$/, 'Formato inválido. Ex: 12345-678'),
+    client_name: z
+        .string()
+        .trim()
+        .nonempty('Este campo é obrigatório')
+        .transform((name) => {
+            return name
+                .split(' ')
+                .map((word) => word)
+                .join(' ');
+        }),
+    client_cellphone: z.string().trim().nonempty('Este campo é obrigatório').regex(/^\(\d{2}\) \d{5}-\d{4}$/, 'Formato inválido. Ex: (11) 91234-5678'),
+    client_address: z.string().trim().nonempty('Este campo é obrigatório'),
+    client_address_number: z.string().trim().nonempty('Este campo é obrigatório'),
+    client_address_complement: z.string().trim().optional(),
+    client_address_neighborhood: z
+        .string()
+        .trim()
+        .nonempty('Este campo é obrigatório'),
+    client_zip_code: z.string().trim().nonempty('Este campo é obrigatório').regex(/^\d{5}-\d{3}$/, 'Formato inválido. Ex: 12345-678'),
 });
 
 type IPurchaseConfirmation = z.infer<typeof purchaseConfirmationSchema>;
 
 export default function PurchaseConfirmation() {
-	const { cart } = useCart();
-	const [showPix, setShowPix] = useState(false);
-	const [showMoney, setShowMoney] = useState(false);
-	const [showOption, setShowoption] = useState(true);
-	const [showPrice, setShowPrice] = useState(true);
-	const [buttonActive, setbuttonActive] = useState(false)
-	const [showChange, setShowChange] = useState(false)
+    const { cart } = useCart();
+    const [showPix, setShowPix] = useState(false);
+    const [showMoney, setShowMoney] = useState(false);
+    const [showOption, setShowoption] = useState(true);
+    const [showPrice, setShowPrice] = useState(true);
+    const [buttonActive, setbuttonActive] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(300); 
 
-	const purchaseForm = useForm<IPurchaseConfirmation>({
-		resolver: zodResolver(purchaseConfirmationSchema),
-	});
+    useEffect(() => {
+        let timer: ReturnType<typeof setInterval>;
+        if (showPix) {
+            timer = setInterval(() => {
+                setTimeLeft((prevTime) => {
+                    if (prevTime <= 1) {
+                        clearInterval(timer);
+                        alert('O QR Code não é mais válido.');
+                        window.location.reload();
+                        return 0;
+                    }
+                    return prevTime - 1;
+                });
+            }, 1000);
+        }
 
-	const {
-		handleSubmit,
-		formState: { errors },
-	} = purchaseForm;
+        return () => clearInterval(timer);
+    }, [showPix]);
 
-	const handleNewOrderMutation = useMutation({
-		mutationFn: async (order: IOrder) => {
-			const response = await api.post('/orders/', order);
-			return response.data;
-		},
-	});
+    const formatTime = (seconds: number) => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+    };
 
-	function totalCart() {
-		let total = 0;
-		cart?.products.map((item) => {
-			total += item.value * item.quantity;
-		});
+    const purchaseForm = useForm<IPurchaseConfirmation>({
+        resolver: zodResolver(purchaseConfirmationSchema),
+    });
 
-		return new Intl.NumberFormat('pt-BR', {
-			style: 'currency',
-			currency: 'BRL',
-		}).format(total);
-	}
+    const {
+        handleSubmit,
+        formState: { errors },
+    } = purchaseForm;
 
-	function handleWhatsAppMessage(data: IPurchaseConfirmation) {
-		const breakLine = '%0A';
+    const handleNewOrderMutation = useMutation({
+        mutationFn: async (order: IOrder) => {
+            const response = await api.post('/orders/', order);
+            return response.data;
+        },
+    });
 
-		const products = cart?.products
-			.map((product) => {
-				return `${breakLine}*Produto nº*: ${product.id}${breakLine}
-						*Nome do produto*: ${product.name}${breakLine}
-						*Quantidade*: ${product.quantity}${breakLine}
-		`;
-			})
-			.join('');
+    function totalCart() {
+        let total = 0;
+        cart?.products.map((item) => {
+            total += item.value * item.quantity;
+        });
 
-		const orderMessage = '*Detalhes do pedido:*' + products + `${breakLine}`;
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        }).format(total);
+    }
 
-		const clientMessage = `*Detalhes do cliente:*${breakLine}
-		*Nome do cliente:* ${data.client_name}${breakLine}
-		*Endereço:* ${data.client_address}, nº ${data.client_address_number}${breakLine}
-		*Complemento*: ${data.client_address_complement
-				? data.client_address_complement
-				: 'Sem complemento'
-			}${breakLine}
-		*Bairro:* ${data.client_address_neighborhood}${breakLine}
-		*CEP:* ${data.client_zip_code}${breakLine}
-		*Telefone:* ${data.client_cellphone}
-	`;
+    function handleWhatsAppMessage(data: IPurchaseConfirmation) {
+        const breakLine = '%0A';
 
-		const total = totalCart();
-		const totalMessage = `*Total a pagar:* ${total}${breakLine}${breakLine}`;
+        const products = cart?.products
+            .map((product) => {
+                return `${breakLine}*Produto nº*: ${product.id}${breakLine}
+                        *Nome do produto*: ${product.name}${breakLine}
+                        *Quantidade*: ${product.quantity}${breakLine}
+        `;
+            })
+            .join('');
 
-		const whatsAppMessage = `${cart.restaurantPhoneNumber}?text=${orderMessage}${totalMessage}${clientMessage}`;
+        const orderMessage = '*Detalhes do pedido:*' + products + `${breakLine}`;
 
-		return whatsAppMessage;
-	}
+        const clientMessage = `*Detalhes do cliente:*${breakLine}
+        *Nome do cliente:* ${data.client_name}${breakLine}
+        *Endereço:* ${data.client_address}, nº ${data.client_address_number}${breakLine}
+        *Complemento*: ${data.client_address_complement
+                ? data.client_address_complement
+                : 'Sem complemento'
+            }${breakLine}
+        *Bairro:* ${data.client_address_neighborhood}${breakLine}
+        *CEP:* ${data.client_zip_code}${breakLine}
+        *Telefone:* ${data.client_cellphone}
+    `;
 
-	async function handlePurchaseConfirmation(data: IPurchaseConfirmation) {
-		const whatsAppMessage = handleWhatsAppMessage(data);
+        const total = totalCart();
+        const totalMessage = `*Total a pagar:* ${total}${breakLine}${breakLine}`;
 
-		const whatsAppLink = `https://wa.me/${whatsAppMessage}`;
+        const whatsAppMessage = `${cart.restaurantPhoneNumber}?text=${orderMessage}${totalMessage}${clientMessage}`;
 
-		window.open(whatsAppLink);
-	}
+        return whatsAppMessage;
+    }
 
-	function handlePixClick() {
-		setShowPix(true)
-		setShowMoney(false)
-		setShowoption(false)
-		setShowPrice(false)
-	};
+    async function handlePurchaseConfirmation(data: IPurchaseConfirmation) {
+        const whatsAppMessage = handleWhatsAppMessage(data);
 
-	function handleMoneyClick() {
-		setShowMoney(true)
-		setShowPrice(false)
-		setbuttonActive(true)
-	}
-	function handleChangeClick() {
-		setShowChange(!showChange)
-	}
+        const whatsAppLink = `https://wa.me/${whatsAppMessage}`;
 
-	return (
-		<styled.Container>
-			<styled.Banner src={bannerImg}>
-				<img src={brandImg} alt='' />
-			</styled.Banner>
-			<styled.Content>
-				<img src={charactersImg} alt='' />
+        window.open(whatsAppLink);
+    }
 
-				<h1>Agora vamos concluir sua compra!</h1>
-				<h2>Insira suas informações:</h2>
+    function handlePixClick() {
+        setShowPix(true);
+        setShowMoney(false);
+        setShowoption(false);
+        setShowPrice(false);
+        setTimeLeft(300); 
+    }
 
-				<FormProvider {...purchaseForm}>
-					<styled.FormContainer
-						onSubmit={handleSubmit(handlePurchaseConfirmation)}
-					>
-						<styled.FormLine>
-							<div>
-								<Form.Field>
-									<Form.Label htmlFor='client_name'>Nome completo:</Form.Label>
-									<Form.Input name='client_name' inputSize='600px' type='text' />
-								</Form.Field>
-								{errors.client_name && (
-									<span>{errors.client_name.message}</span>
-								)}
-							</div>
+    function handleMoneyClick() {
+        setShowPix(false);
+        setShowMoney(true);
+        setShowPrice(false);
+        setbuttonActive(true);
+    }
 
-							<div>
-								<Form.Field>
-									<Form.Label htmlFor='client_cellphone'>Telefone:</Form.Label>
-									<Form.Input inputSize='300px' name='client_cellphone' type='tel' mask='(99) 99999-9999' />
-								</Form.Field>
-								{errors.client_cellphone && (
-									<span>{errors.client_cellphone.message}</span>
-								)}
-							</div>
-						</styled.FormLine>
+    return (
+        <styled.Container>
+            <styled.Banner src={bannerImg}>
+                <img src={brandImg} alt='' />
+            </styled.Banner>
+            <styled.Content>
+                <img src={charactersImg} alt='' />
 
-						<styled.FormLine>
-							<div>
-								<Form.Field>
-									<Form.Label htmlFor='client_address'>Endereço:</Form.Label>
-									<Form.Input inputSize='400px' name='client_address' type='text' />
-								</Form.Field>
-								{errors.client_address && (
-									<span>{errors.client_address.message}</span>
-								)}
-							</div>
+                <h1>Agora vamos concluir sua compra!</h1>
+                <h2>Insira suas informações:</h2>
 
-							<div>
-								<Form.Field>
-									<Form.Label htmlFor='client_address_number' >
-										Número:
-									</Form.Label>
-									<Form.Input inputSize='114px' name='client_address_number' type='number' />
-								</Form.Field>
-								{errors.client_address_number && (
-									<span>{errors.client_address_number.message}</span>
-								)}
-							</div>
+                <FormProvider {...purchaseForm}>
+                    <styled.FormContainer
+                        onSubmit={handleSubmit(handlePurchaseConfirmation)}
+                    >
+                        <styled.FormLine>
+                            <div>
+                                <Form.Field>
+                                    <Form.Label htmlFor='client_name'>Nome completo:</Form.Label>
+                                    <Form.Input name='client_name' inputSize='600px' type='text' />
+                                </Form.Field>
+                                {errors.client_name && (
+                                    <span>{errors.client_name.message}</span>
+                                )}
+                            </div>
 
-							<div>
-								<Form.Field>
-									<Form.Label htmlFor='client_address_complement'>
-										Complemento:
-									</Form.Label>
-									<Form.Input
-										inputSize='100%'
-										name='client_address_complement'
-										type='text'
-									/>
-								</Form.Field>
-								{errors.client_address_complement && (
-									<span>{errors.client_address_complement.message}</span>
-								)}
-							</div>
-						</styled.FormLine>
+                            <div>
+                                <Form.Field>
+                                    <Form.Label htmlFor='client_cellphone'>Telefone:</Form.Label>
+                                    <Form.Input inputSize='300px' name='client_cellphone' type='tel' mask='(99) 99999-9999' />
+                                </Form.Field>
+                                {errors.client_cellphone && (
+                                    <span>{errors.client_cellphone.message}</span>
+                                )}
+                            </div>
+                        </styled.FormLine>
 
-						<styled.FormLine>
-							<div>
-								<Form.Field>
-									<Form.Label htmlFor='client_address_neighborhood'>
-										Bairro:
-									</Form.Label>
-									<Form.Input
-										inputSize='740px'
-										name='client_address_neighborhood'
-										type='text'
-									/>
-								</Form.Field>
-								{errors.client_address_neighborhood && (
-									<span>{errors.client_address_neighborhood.message}</span>
-								)}
-							</div>
+                        <styled.FormLine>
+                            <div>
+                                <Form.Field>
+                                    <Form.Label htmlFor='client_address'>Endereço:</Form.Label>
+                                    <Form.Input inputSize='400px' name='client_address' type='text' />
+                                </Form.Field>
+                                {errors.client_address && (
+                                    <span>{errors.client_address.message}</span>
+                                )}
+                            </div>
 
-							<div>
-								<Form.Field>
-									<Form.Label htmlFor='client_zip_code'>Cep:</Form.Label>
-									<Form.Input inputSize='300px' name='client_zip_code' type='text' mask="99999-999" />
-								</Form.Field>
-								{errors.client_zip_code && (
-									<span>{errors.client_zip_code.message}</span>
-								)}
-							</div>
-						</styled.FormLine>
+                            <div>
+                                <Form.Field>
+                                    <Form.Label htmlFor='client_address_number' >
+                                        Número:
+                                    </Form.Label>
+                                    <Form.Input inputSize='114px' name='client_address_number' type='number' />
+                                </Form.Field>
+                                {errors.client_address_number && (
+                                    <span>{errors.client_address_number.message}</span>
+                                )}
+                            </div>
 
-						<styled.TextContainer>
-							<p>
-								Forma de pagamento
-							</p>
-						</styled.TextContainer>
+                            <div>
+                                <Form.Field>
+                                    <Form.Label htmlFor='client_address_complement'>
+                                        Complemento:
+                                    </Form.Label>
+                                    <Form.Input
+                                        inputSize='100%'
+                                        name='client_address_complement'
+                                        type='text'
+                                    />
+                                </Form.Field>
+                                {errors.client_address_complement && (
+                                    <span>{errors.client_address_complement.message}</span>
+                                )}
+                            </div>
+                        </styled.FormLine>
 
-						{showOption && (
-							<styled.containerButton>
-								<styled.buttonOption onClick={handlePixClick} type='button'>
-									<styled.textOption>
-										Pix
-									</styled.textOption>
-								</styled.buttonOption>
-								<styled.buttonOption2 onClick={handleMoneyClick} className={buttonActive ? 'active' : ''} type='button'>
-									<styled.textOption>
-										Dinheiro
-									</styled.textOption>
-								</styled.buttonOption2>
-							</styled.containerButton>
-						)}
+                        <styled.FormLine>
+                            <div>
+                                <Form.Field>
+                                    <Form.Label htmlFor='client_address_neighborhood'>
+                                        Bairro:
+                                    </Form.Label>
+                                    <Form.Input
+                                        inputSize='740px'
+                                        name='client_address_neighborhood'
+                                        type='text'
+                                    />
+                                </Form.Field>
+                                {errors.client_address_neighborhood && (
+                                    <span>{errors.client_address_neighborhood.message}</span>
+                                )}
+                            </div>
 
-						{showPrice && (<styled.totalvalueContainer>
-							<styled.totalValueText>Valor total:  </styled.totalValueText>
-							<styled.totalValueText2>R$ 00,00{ }</styled.totalValueText2>
-						</styled.totalvalueContainer>)}
+                            <div>
+                                <Form.Field>
+                                    <Form.Label htmlFor='client_zip_code'>Cep:</Form.Label>
+                                    <Form.Input inputSize='300px' name='client_zip_code' type='text' mask="99999-999" />
+                                </Form.Field>
+                                {errors.client_zip_code && (
+                                    <span>{errors.client_zip_code.message}</span>
+                                )}
+                            </div>
+                        </styled.FormLine>
 
-						{showMoney && (<styled.paymentMethodMoneyGeneralContainer>
-							<styled.paymentMethodMoneyContainer>
-								<styled.paymentMethodMoneyCheckbox type='checkbox' onClick={handleChangeClick} />
+                        <styled.TextContainer>
+                            <p>
+                                Forma de pagamento
+                            </p>
+                        </styled.TextContainer>
 
-								<styled.paymentMethodMoneyText >Precisa de troco </styled.paymentMethodMoneyText>
 
-							</styled.paymentMethodMoneyContainer>
-							
-							{showChange ? (<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />) : null }
-							
-							
-							<styled.FormButton
-								type='submit'
-								disabled={handleNewOrderMutation.isPending}
-							>
-								{handleNewOrderMutation.isPending
-									? 'Enviando Pedido'
-									: 'Continuar'}
-							</styled.FormButton>
-						</styled.paymentMethodMoneyGeneralContainer>)}
+                        <styled.containerButton>
+                            <styled.buttonOption onClick={handlePixClick} type='button'>
+                                <styled.textOption>
+                                    Pix
+                                </styled.textOption>
+                            </styled.buttonOption>
+                            <styled.buttonOption2 onClick={handleMoneyClick} className={buttonActive ? 'active' : ''} type='button'>
+                                <styled.textOption>
+                                    Dinheiro
+                                </styled.textOption>
+                            </styled.buttonOption2>
+                        </styled.containerButton>
 
-						{showPix && (<styled.paymentMethodPixGeneralContainer>
-							<styled.paymentMethodPixImg />
-							<styled.FormButton
-								type='submit'
-								disabled={handleNewOrderMutation.isPending}
-							>
-								{handleNewOrderMutation.isPending
-									? 'Enviando Pedido'
-									: 'Já fiz o pagamento'}
-							</styled.FormButton>
-						</styled.paymentMethodPixGeneralContainer>
-						)}
-					</styled.FormContainer>
-				</FormProvider>
-			</styled.Content>
-		</styled.Container>
-	);
+
+                        {showPrice && (<styled.totalvalueContainer>
+                            <styled.totalValueText>Valor total:  </styled.totalValueText>
+                            <styled.totalValueText2>R$ 00,00{ }</styled.totalValueText2>
+                        </styled.totalvalueContainer>)}
+
+                        {showMoney && (<styled.paymentMethodMoneyGeneralContainer>
+                            <styled.paymentMethodMoneyContainer>
+                                <styled.paymentMethodMoneyCheckbox type='checkbox' />
+                                <styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
+                            </styled.paymentMethodMoneyContainer>
+                            <styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />
+                            <styled.FormButton
+                                type='submit'
+                                disabled={handleNewOrderMutation.isPending}
+                            >
+                                {handleNewOrderMutation.isPending
+                                    ? 'Enviando Pedido'
+                                    : 'Continuar'}
+                            </styled.FormButton>
+                        </styled.paymentMethodMoneyGeneralContainer>)}
+
+                        {showPix && (<styled.paymentMethodPixGeneralContainer>
+
+                            <styled.expiredCodeText>
+                                Este código expira em {formatTime(timeLeft)}
+                            </styled.expiredCodeText>
+                            <styled.paymentMethodPixImg />
+
+                            <styled.FormButton
+                                type='submit'
+                                disabled={handleNewOrderMutation.isPending}
+                            >
+
+                                {handleNewOrderMutation.isPending
+                                    ? 'Enviando Pedido'
+                                    : 'Já fiz o pagamento'}
+                            </styled.FormButton>
+                        </styled.paymentMethodPixGeneralContainer>
+                        )}
+                    </styled.FormContainer>
+                </FormProvider>
+            </styled.Content>
+        </styled.Container>
+    );
 }
