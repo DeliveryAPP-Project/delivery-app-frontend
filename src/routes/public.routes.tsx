@@ -8,7 +8,6 @@ import PurchaseConfirmation from '../pages/PurchaseConfirmation';
 import Restaurant from '../pages/Restaurant';
 import Restaurants from '../pages/Restaurants';
 import { Welcome } from '../pages/welcome';
-
 export function PublicRoutes() {
 	return (
 		<Routes>
