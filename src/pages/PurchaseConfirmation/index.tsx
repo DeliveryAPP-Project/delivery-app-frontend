@@ -149,14 +149,6 @@ export default function PurchaseConfirmation() {
         setTimeLeft(300); 
     }
 
-	function handleMoneyClick() {
-		setShowMoney(true)
-		setShowPrice(false)
-		setbuttonActive(true)
-	}
-	function handleChangeClick() {
-		setShowChange(!showChange)
-	}
     function handleMoneyClick() {
         setShowPix(false);
         setShowMoney(true);
@@ -297,15 +289,10 @@ export default function PurchaseConfirmation() {
 
                         {showMoney && (<styled.paymentMethodMoneyGeneralContainer>
                             <styled.paymentMethodMoneyContainer>
-                                <styled.paymentMethodMoneyCheckbox type='checkbox' onClick={handleChangeClick} />
-
-                                <styled.paymentMethodMoneyText >Precisa de troco </styled.paymentMethodMoneyText>
-
+                                <styled.paymentMethodMoneyCheckbox type='checkbox' />
+                                <styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
                             </styled.paymentMethodMoneyContainer>
-                            
-							{showChange ? (<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />) : null }
-							
-							
+                            <styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />
                             <styled.FormButton
                                 type='submit'
                                 disabled={handleNewOrderMutation.isPending}
