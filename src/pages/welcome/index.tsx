@@ -78,7 +78,7 @@ export function Welcome() {
                         Cadastre seu estabelecimento aqui!
                         </styled.titleSection4>
                         <styled.buttonCadrastNow2>
-                            Cadrastrar agora
+                        Cadastrar agora
                         </styled.buttonCadrastNow2>
                     </styled.containerContentSection4>
                 </styled.containerSection4>
