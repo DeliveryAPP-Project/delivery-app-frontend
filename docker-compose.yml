@@ -1,0 +1,42 @@
+services:
+    backend:
+        build:
+            context: ../delivery-app-backend
+            dockerfile: Dockerfile
+        container_name: backend
+        ports:
+            - "5000:5000"
+        environment:
+            - FLASK_ENV=staging
+            - FLASK_APP=project
+            - PYTHONPATH=./
+        networks:
+            - default
+
+    postgres:
+        image: postgres:14
+        container_name: postgres-container
+        environment:
+            POSTGRES_DB: mydatabase
+            POSTGRES_USER: myuser
+            POSTGRES_PASSWORD: mypassword1
+        ports:
+            - "5432:5432"
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        networks:
+            - default
+
+    redis:
+        image: redis:latest
+        container_name: redis
+        ports:
+            - "6379:6379"
+        networks:
+            - default
+
+volumes:
+    pgdata:
+
+networks:
+    default:
