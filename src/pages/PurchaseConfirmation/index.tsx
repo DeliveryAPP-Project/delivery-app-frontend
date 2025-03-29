@@ -88,6 +88,7 @@ export default function PurchaseConfirmation() {
     });
 
     function totalCart() {
+
         let total = 0;
         cart?.products.map((item) => {
             total += item.value * item.quantity;
@@ -284,7 +285,7 @@ export default function PurchaseConfirmation() {
 
                         {showPrice && (<styled.totalvalueContainer>
                             <styled.totalValueText>Valor total:  </styled.totalValueText>
-                            <styled.totalValueText2>R$ 00,00{ }</styled.totalValueText2>
+                            <styled.totalValueText2>{totalCart()}</styled.totalValueText2>
                         </styled.totalvalueContainer>)}
 
                         {showMoney && (<styled.paymentMethodMoneyGeneralContainer>
