@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, set, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import bannerImg from '../../assets/banner-image-purchase-confirmation-page.png';
@@ -45,6 +45,11 @@ export default function PurchaseConfirmation() {
     const [showPrice, setShowPrice] = useState(true);
     const [buttonActive, setbuttonActive] = useState(false);
     const [timeLeft, setTimeLeft] = useState(300);
+    const[showTroco, setShowTroco] = useState(false);
+
+    const handleTroco = () => {
+        setShowTroco(!showTroco);
+    }
 
     useEffect(() => {
         let timer: ReturnType<typeof setInterval>;
@@ -142,6 +147,8 @@ export default function PurchaseConfirmation() {
     }
 
     function handlePixClick() {
+        setShowTroco(false);
+
         setShowPix(true);
         setShowMoney(false);
         setShowoption(false);
@@ -289,10 +296,19 @@ export default function PurchaseConfirmation() {
 
                         {showMoney && (<styled.paymentMethodMoneyGeneralContainer>
                             <styled.paymentMethodMoneyContainer>
-                                <styled.paymentMethodMoneyCheckbox type='checkbox' />
+
+                                <styled.paymentMethodMoneyCheckbox type='checkbox' onClick={handleTroco} />
+                                
                                 <styled.paymentMethodMoneyText>Precisa de troco </styled.paymentMethodMoneyText>
+
                             </styled.paymentMethodMoneyContainer>
-                            <styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />
+
+                            
+                            {
+                                showTroco && (<styled.paymentMethodMoneyInput placeholder='Troco para quanto?' type='number' />)
+                            }
+                            
+
                             <styled.FormButton
                                 type='submit'
                                 disabled={handleNewOrderMutation.isPending}
