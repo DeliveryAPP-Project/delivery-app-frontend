@@ -26,6 +26,7 @@ export default function ModalRegister({ isOpen, onClose }: ModalRegisterProps) {
             console.log(email)
             const response = await api.post('/leads', { email });
             setModalSucess(true);
+            onClose();
             return response;
         } catch (error) {
             console.log(error);
@@ -70,6 +71,7 @@ export default function ModalRegister({ isOpen, onClose }: ModalRegisterProps) {
                     </styled.Button>
                 </styled.Container>
             )}
+
             <ModalRegisterSucess
                 isOpen={modalSucess}
                 onClose={handleCloseSuccessModal}
